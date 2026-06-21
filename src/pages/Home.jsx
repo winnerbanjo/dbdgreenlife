@@ -179,13 +179,13 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
             
             {/* Parallax Floating Boxes */}
             <img 
-              src="/assets/pregnancy-box.jpg" 
-              alt="Pregnancy Softgels" 
+              src="/assets/omg-hero.png" 
+              alt="OMG Softgels" 
               className="floating-hero-img img-purple"
               style={{ transform: `translate(${parallaxOffset.x * 0.8}px, ${parallaxOffset.y * 0.8}px) rotate(${-10 + parallaxOffset.x * 0.2}deg)` }}
             />
             <img 
-              src="/assets/pregnancy-plus-box.jpg" 
+              src="/assets/pregnancy-plus-hero.png" 
               alt="Pregnancy Plus Softgels" 
               className="floating-hero-img img-orange"
               style={{ transform: `translate(${parallaxOffset.x * -0.6}px, ${parallaxOffset.y * -0.6}px) rotate(${12 + parallaxOffset.y * -0.2}deg)` }}
@@ -331,7 +331,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         <div className="container">
           <div className="text-center">
             <span className="lifestyle-badge">Day by Day Vibes</span>
-            <h2 className="lifestyle-title">Real Vibe. Real Results. 💖</h2>
+            <h2 className="lifestyle-title">Real People. Real Results. 💖</h2>
             <p className="lifestyle-subtitle">
               See how the Day by Day community integrates clean wellness into active gym routines, prenatal journeys, and daily travels.
             </p>
