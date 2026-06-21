@@ -326,6 +326,65 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         </div>
       </section>
 
+      {/* Lifestyle / Human Element Gallery */}
+      <section className="lifestyle-gallery-section">
+        <div className="container">
+          <div className="text-center">
+            <span className="lifestyle-badge">Day by Day Vibes</span>
+            <h2 className="lifestyle-title">Real Vibe. Real Results. 💖</h2>
+            <p className="lifestyle-subtitle">
+              See how the Day by Day community integrates clean wellness into active gym routines, prenatal journeys, and daily travels.
+            </p>
+          </div>
+
+          <div className="lifestyle-grid">
+            <div className="lifestyle-card">
+              <div className="lifestyle-img-wrapper">
+                <img src="/assets/lifestyle-models.jpg" alt="Glow Besties" className="lifestyle-img" />
+                <div className="lifestyle-overlay">
+                  <span className="overlay-tag">Community</span>
+                  <h3 className="overlay-title">Glow Besties 💅</h3>
+                  <p className="overlay-desc">Sharing the wellness love and daily glow with your favorites.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="lifestyle-card">
+              <div className="lifestyle-img-wrapper">
+                <img src="/assets/lifestyle-gym.jpg" alt="Active Recovery" className="lifestyle-img" />
+                <div className="lifestyle-overlay">
+                  <span className="overlay-tag">Active</span>
+                  <h3 className="overlay-title">Active Energy ⚡</h3>
+                  <p className="overlay-desc">Keeping OMG softgels close for post-workout metabolic fuel.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="lifestyle-card">
+              <div className="lifestyle-img-wrapper">
+                <img src="/assets/lifestyle-hands.jpg" alt="Everyday Rituals" className="lifestyle-img" />
+                <div className="lifestyle-overlay">
+                  <span className="overlay-tag">Daily Ritual</span>
+                  <h3 className="overlay-title">Everyday Support 🤲</h3>
+                  <p className="overlay-desc">Premium formulations made to sit beautifully in your hands.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="lifestyle-card">
+              <div className="lifestyle-img-wrapper">
+                <img src="/assets/lifestyle-travel.jpg" alt="Ready to Jetset" className="lifestyle-img" />
+                <div className="lifestyle-overlay">
+                  <span className="overlay-tag">Travel</span>
+                  <h3 className="overlay-title">Ready to Jetset ✈️</h3>
+                  <p className="overlay-desc">Your ultimate wellness companions, packed and ready for the go.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Interactive Quiz Callout */}
       <section className="quiz-callout-section">
         <div className="quiz-callout-container container">
@@ -914,6 +973,153 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           }
           .quiz-callout-illustration {
             display: none;
+          }
+        }
+
+        /* Lifestyle Gallery Section */
+        .lifestyle-gallery-section {
+          padding: 80px 0;
+          background-color: var(--color-bg-base);
+          border-bottom: 1px solid var(--color-border);
+        }
+        
+        .text-center {
+          text-align: center;
+          margin-bottom: 48px;
+        }
+        
+        .lifestyle-badge {
+          display: inline-block;
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: var(--color-preg-primary);
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          margin-bottom: 12px;
+          background-color: var(--color-preg-secondary);
+          padding: 4px 14px;
+          border-radius: var(--radius-full);
+        }
+        
+        .lifestyle-title {
+          font-size: 2.5rem;
+          color: var(--color-text-dark);
+          margin-bottom: 12px;
+        }
+        
+        .lifestyle-subtitle {
+          font-size: 1.1rem;
+          color: var(--color-text-muted);
+          max-width: 600px;
+          margin: 0 auto;
+          line-height: 1.5;
+        }
+        
+        .lifestyle-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+        }
+        
+        .lifestyle-card {
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          box-shadow: var(--shadow-sm);
+          background-color: var(--color-white);
+          border: 1px solid var(--color-border);
+          transition: var(--transition-bounce);
+        }
+        
+        .lifestyle-card:hover {
+          transform: translateY(-8px);
+          box-shadow: var(--shadow-lg);
+          border-color: var(--color-preg-accent);
+        }
+        
+        .lifestyle-img-wrapper {
+          position: relative;
+          width: 100%;
+          height: 380px;
+          overflow: hidden;
+        }
+        
+        .lifestyle-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .lifestyle-card:hover .lifestyle-img {
+          transform: scale(1.05);
+        }
+        
+        .lifestyle-overlay {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: linear-gradient(to top, rgba(44, 37, 51, 0.9) 0%, rgba(44, 37, 51, 0.4) 60%, rgba(44, 37, 51, 0) 100%);
+          padding: 24px;
+          color: var(--color-white);
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          height: 100%;
+          transition: var(--transition-smooth);
+        }
+        
+        .overlay-tag {
+          font-size: 0.7rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: var(--color-pregplus-secondary);
+          margin-bottom: 6px;
+        }
+        
+        .overlay-title {
+          font-size: 1.25rem;
+          color: var(--color-white);
+          margin-bottom: 6px;
+        }
+        
+        .overlay-desc {
+          font-size: 0.85rem;
+          color: rgba(255, 255, 255, 0.8);
+          line-height: 1.4;
+          margin: 0;
+        }
+
+        @media (max-width: 968px) {
+          .lifestyle-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+          }
+          .lifestyle-img-wrapper {
+            height: 300px;
+          }
+        }
+
+        @media (max-width: 580px) {
+          .lifestyle-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 16px;
+            padding: 0 24px 24px;
+            margin: 0 -24px;
+            scrollbar-width: none;
+          }
+          .lifestyle-grid::-webkit-scrollbar {
+            display: none;
+          }
+          .lifestyle-card {
+            flex: 0 0 280px;
+            scroll-snap-align: start;
+          }
+          .lifestyle-img-wrapper {
+            height: 340px;
           }
         }
       `}</style>

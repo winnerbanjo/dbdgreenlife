@@ -132,6 +132,24 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
     setShowPortalModal(true);
   };
 
+  // Determine lifestyle image and details dynamically based on product type
+  let routineImage = '/assets/lifestyle-hands.jpg';
+  let routineTitle = 'Made for Daily Rituals';
+  let routineDesc = 'Designed to fit cleanly into your daily life. No chemical smell, no giant chalky pills—just simple daily wellness that fits in the palm of your hand.';
+  let routineTag = 'Daily Ritual';
+
+  if (productId === 'omg') {
+    routineImage = '/assets/lifestyle-gym.jpg';
+    routineTitle = 'Elevate Your Active Vibe';
+    routineDesc = 'Pack OMG in your gym bag. Sourced from cold-pressed botanical oils, our softgels support your post-workout metabolic fuel and active cellular skin glow.';
+    routineTag = 'Active Vibe';
+  } else if (productId === 'pregnancy-plus') {
+    routineImage = '/assets/lifestyle-travel.jpg';
+    routineTitle = 'Your Premium Travel Companion';
+    routineDesc = 'Never miss a day of cognitive prenatal care. The Pregnancy Plus twin pack is ready to slide into your handbag or carry-on, keeping you and your baby supported wherever you go.';
+    routineTag = 'On the Go';
+  }
+
   return (
     <div className={`detail-page ${themeName}`}>
       
@@ -417,6 +435,34 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contextual Routine Lifestyle Banner */}
+      <section className="routine-lifestyle-section container">
+        <div className="routine-grid">
+          <div className="routine-content">
+            <span className="routine-badge-tag">{routineTag}</span>
+            <h2 className="routine-title-large">{routineTitle}</h2>
+            <p className="routine-text-desc">{routineDesc}</p>
+            <div className="routine-bullet-points">
+              <div className="routine-bullet-pt">
+                <span className="bullet-dot">•</span>
+                <span>100% Bioavailable Formulas</span>
+              </div>
+              <div className="routine-bullet-pt">
+                <span className="bullet-dot">•</span>
+                <span>Aesthetic Box fits anywhere</span>
+              </div>
+              <div className="routine-bullet-pt">
+                <span className="bullet-dot">•</span>
+                <span>NAFDAC Approved Quality</span>
+              </div>
+            </div>
+          </div>
+          <div className="routine-image-wrapper">
+            <img src={routineImage} alt={routineTitle} className="routine-img" />
           </div>
         </div>
       </section>
@@ -1177,6 +1223,109 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
           font-weight: 600;
         }
         
+        /* Contextual Routine Lifestyle Banner */
+        .routine-lifestyle-section {
+          padding: 60px 24px;
+        }
+        
+        .routine-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.2fr;
+          gap: 60px;
+          align-items: center;
+          background-color: var(--color-white);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-xl);
+          overflow: hidden;
+          padding: 48px;
+          box-shadow: var(--shadow-sm);
+        }
+        
+        .routine-content {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        
+        .routine-badge-tag {
+          display: inline-block;
+          font-size: 0.8rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          margin-bottom: 12px;
+          color: var(--color-preg-primary);
+        }
+        
+        .theme-orange .routine-badge-tag {
+          color: var(--color-pregplus-primary);
+        }
+        
+        .theme-green .routine-badge-tag {
+          color: var(--color-accent-green);
+        }
+        
+        .routine-title-large {
+          font-size: 2.25rem;
+          color: var(--color-text-dark);
+          margin-bottom: 20px;
+          line-height: 1.2;
+        }
+        
+        .routine-text-desc {
+          font-size: 1.05rem;
+          color: var(--color-text-muted);
+          line-height: 1.6;
+          margin-bottom: 24px;
+        }
+        
+        .routine-bullet-points {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+        
+        .routine-bullet-pt {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: var(--color-text-dark);
+        }
+        
+        .routine-bullet-pt .bullet-dot {
+          color: var(--color-preg-primary);
+          font-size: 1.5rem;
+          line-height: 1;
+        }
+        
+        .theme-orange .routine-bullet-pt .bullet-dot {
+          color: var(--color-pregplus-primary);
+        }
+        
+        .theme-green .routine-bullet-pt .bullet-dot {
+          color: var(--color-accent-green);
+        }
+        
+        .routine-image-wrapper {
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          height: 380px;
+          box-shadow: var(--shadow-md);
+        }
+        
+        .routine-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: var(--transition-bounce);
+        }
+        
+        .routine-grid:hover .routine-img {
+          transform: scale(1.03);
+        }
+
         /* Responsive design */
         @media (max-width: 968px) {
           .detail-hero-container {
@@ -1197,6 +1346,15 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
           }
           .portal-options {
             grid-template-columns: 1fr;
+          }
+          .routine-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 24px;
+          }
+          .routine-image-wrapper {
+            height: 280px;
+            order: -1;
           }
         }
       `}</style>

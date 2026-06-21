@@ -104,6 +104,25 @@ export default function About({ onExploreProducts }) {
         </div>
       </section>
 
+      {/* Community / Vibe Split Section */}
+      <section className="about-community-section container">
+        <div className="about-community-grid">
+          <div className="about-community-image">
+            <img src="/assets/lifestyle-models.jpg" alt="Day by Day community" className="community-img" />
+          </div>
+          <div className="about-community-content">
+            <span className="community-badge">Designed for You</span>
+            <h2 className="community-title">Supplements That Match Your Vibe</h2>
+            <p className="community-p">
+              Wellness isn't a chore; it's a celebration. Day by Day is crafted to fit seamlessly into your lifestyle, whether you're building a family, crushing gym goals, or heading out on a trip.
+            </p>
+            <p className="community-p">
+              Our formulas look great on your shelf and feel even better in your body. Clean, effective, and made to share with your besties.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="about-cta-section container">
         <div className="about-cta-box">
@@ -333,6 +352,76 @@ export default function About({ onExploreProducts }) {
           background-color: var(--color-preg-light);
           color: var(--color-preg-primary);
         }
+
+        /* Community Section */
+        .about-community-section {
+          padding: 60px 24px;
+        }
+        
+        .about-community-grid {
+          display: grid;
+          grid-template-columns: 1.1fr 1fr;
+          gap: 60px;
+          align-items: center;
+          background-color: var(--color-white);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-xl);
+          overflow: hidden;
+          padding: 40px;
+          box-shadow: var(--shadow-sm);
+        }
+        
+        .about-community-image {
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          height: 440px;
+          box-shadow: var(--shadow-md);
+        }
+        
+        .community-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: var(--transition-bounce);
+        }
+        
+        .about-community-grid:hover .community-img {
+          transform: scale(1.02);
+        }
+        
+        .about-community-content {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        
+        .community-badge {
+          display: inline-block;
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: var(--color-pregplus-primary);
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          margin-bottom: 12px;
+        }
+        
+        .community-title {
+          font-size: 2.25rem;
+          color: var(--color-text-dark);
+          margin-bottom: 20px;
+          line-height: 1.2;
+        }
+        
+        .community-p {
+          font-size: 1.05rem;
+          color: var(--color-text-muted);
+          line-height: 1.6;
+          margin-bottom: 16px;
+        }
+        
+        .community-p:last-of-type {
+          margin-bottom: 0;
+        }
         
         /* Responsive design */
         @media (max-width: 968px) {
@@ -347,6 +436,14 @@ export default function About({ onExploreProducts }) {
           }
           .about-cta-box {
             padding: 30px;
+          }
+          .about-community-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 24px;
+          }
+          .about-community-image {
+            height: 300px;
           }
         }
       `}</style>
