@@ -104,16 +104,16 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
 
   // Calculate transforms dynamically based on current scroll progress & device screen width
   const omgTransform = isMobile
-    ? `translateX(${-50 - (1 - flyInFactor) * 50}px) rotate(${-20 + flyInFactor * 12}deg) scale(${0.75 + flyInFactor * 0.1})`
-    : `translateX(${(1 - flyInFactor) * -160}px) rotate(${-30 + flyInFactor * 18}deg) scale(${0.8 + flyInFactor * 0.15})`;
+    ? `translate(-50%, -50%) translateX(${-60 * flyInFactor - (1 - flyInFactor) * 150}px) translateY(${(1 - flyInFactor) * 60}px) rotate(${-20 + flyInFactor * 12}deg) scale(${0.75 + flyInFactor * 0.1})`
+    : `translate(-50%, -50%) translateX(${-150 * flyInFactor - (1 - flyInFactor) * 350}px) translateY(${(1 - flyInFactor) * 100}px) rotate(${-30 + flyInFactor * 18}deg) scale(${0.8 + flyInFactor * 0.15})`;
 
   const pregTransform = isMobile
-    ? `translateY(${(1 - flyInFactor) * 100}px) scale(${0.75 + flyInFactor * 0.2})`
-    : `translateY(${(1 - flyInFactor) * 140}px) scale(${0.8 + flyInFactor * 0.25})`;
+    ? `translate(-50%, -50%) translateY(${(1 - flyInFactor) * 100}px) scale(${0.8 + flyInFactor * 0.15})`
+    : `translate(-50%, -50%) translateY(${(1 - flyInFactor) * 200}px) scale(${0.8 + flyInFactor * 0.25})`;
 
   const pregPlusTransform = isMobile
-    ? `translateX(${50 + (1 - flyInFactor) * 50}px) rotate(${20 - flyInFactor * 12}deg) scale(${0.75 + flyInFactor * 0.1})`
-    : `translateX(${(1 - flyInFactor) * 160}px) rotate(${30 - flyInFactor * 18}deg) scale(${0.8 + flyInFactor * 0.15})`;
+    ? `translate(-50%, -50%) translateX(${60 * flyInFactor + (1 - flyInFactor) * 150}px) translateY(${(1 - flyInFactor) * 60}px) rotate(${20 - flyInFactor * 12}deg) scale(${0.75 + flyInFactor * 0.1})`
+    : `translate(-50%, -50%) translateX(${150 * flyInFactor + (1 - flyInFactor) * 350}px) translateY(${(1 - flyInFactor) * 100}px) rotate(${30 - flyInFactor * 18}deg) scale(${0.8 + flyInFactor * 0.15})`;
 
   const imgOpacity = 0.05 + flyInFactor * 0.95;
 
@@ -1366,6 +1366,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           }
           .lifestyle-grid::-webkit-scrollbar {
             display: none;
+          }
           .lifestyle-card {
             flex: 0 0 280px;
             scroll-snap-align: start;
@@ -1377,24 +1378,31 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
 
         /* Dramatic Scroll-Driven Fly-in Section */
         .dramatic-flyin-section {
-          background: linear-gradient(180deg, var(--color-white) 0%, #f7f3fb 100%);
+          /* Warm gradient background */
+          background: linear-gradient(135deg, #fff8e1, #ffe4e1);
           padding: 120px 0 160px;
           position: relative;
           overflow: hidden;
           border-top: 1px solid var(--color-border);
           border-bottom: 1px solid var(--color-border);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
         }
         
         .flyin-bg-text {
           position: absolute;
-          top: 50%;
+          top: 55%;
           left: 50%;
           transform: translate(-50%, -50%);
-          font-size: 11vw;
+          font-size: 14vw;
           font-family: var(--font-heading);
           font-weight: 900;
-          color: rgba(140, 66, 181, 0.04);
-          letter-spacing: -0.02em;
+          /* Soft warm color for background text */
+          color: rgba(200, 120, 80, 0.04);
+          letter-spacing: -0.03em;
           user-select: none;
           pointer-events: none;
           white-space: nowrap;
@@ -1412,7 +1420,11 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         }
         
         .flyin-content {
-          max-width: 600px;
+          max-width: 700px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
         }
         
         .flyin-badge {
@@ -1460,6 +1472,9 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         
         .flyin-product-img {
           position: absolute;
+          left: 50%;
+          top: 50%;
+          transform-origin: center center;
           max-height: 340px;
           object-fit: contain;
           filter: drop-shadow(0 20px 30px rgba(110,100,120,0.18));
@@ -1468,7 +1483,6 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         }
         
         .flyin-product-img.img-omg {
-          left: 10%;
           z-index: 2;
         }
         
@@ -1477,7 +1491,6 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         }
         
         .flyin-product-img.img-pregnancy-plus {
-          right: 10%;
           z-index: 2;
         }
 
@@ -1497,16 +1510,16 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
             max-width: 420px;
           }
           .flyin-product-img {
-            max-height: 240px;
+            max-height: 220px;
           }
           .flyin-product-img.img-omg {
-            left: auto;
+            left: 50%;
           }
           .flyin-product-img.img-pregnancy {
-            /* centered */
+            left: 50%;
           }
           .flyin-product-img.img-pregnancy-plus {
-            right: auto;
+            left: 50%;
           }
         }
       `}</style>
