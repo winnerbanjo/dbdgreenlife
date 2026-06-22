@@ -61,23 +61,37 @@ const productsData = [
 export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
   const [activeBenefit, setActiveBenefit] = useState('all');
   const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
-  const [isFlyInVisible, setIsFlyInVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsFlyInVisible(entry.isIntersecting);
-      },
-      { threshold: 0.12 }
-    );
+    const handleScroll = () => {
+      const target = document.querySelector('.dramatic-flyin-section');
+      if (!target) return;
 
-    const target = document.querySelector('.dramatic-flyin-section');
-    if (target) observer.observe(target);
+      const rect = target.getBoundingClientRect();
+      const viewHeight = window.innerHeight;
+
+      // Calculate progress (0 = enters bottom of screen, 1 = leaves top of screen)
+      const start = viewHeight;
+      const end = -rect.height;
+      const current = rect.top;
+
+      let progress = (start - current) / (start - end);
+      progress = Math.max(0, Math.min(1, progress));
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Trigger initial calculation
+    handleScroll();
 
     return () => {
-      if (target) observer.unobserve(target);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // Calculate factor (0 to 1, where 1 is fully converged / centered in view)
+  const flyInFactor = scrollProgress < 0.5 ? scrollProgress * 2 : (1 - scrollProgress) * 2;
 
   // Softgel mixer states
   const [mixerGoals, setMixerGoals] = useState({
@@ -250,6 +264,46 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
               onShopNow={() => onShopRedirect(product.id)}
             />
           ))}
+        </div>
+      </section>
+
+      {/* Dramatic Scroll-Driven Fly-in Section */}
+      <section 
+        className="dramatic-flyin-section"
+        style={{ '--scroll-factor': flyInFactor }}
+      >
+        {/* Massive Bold Background Text */}
+        <div className="flyin-bg-text">DAY BY DAY</div>
+        
+        <div className="container flyin-container">
+          <div className="flyin-content">
+            <span className="flyin-badge">FORMULATED FOR YOU</span>
+            <h2 className="flyin-title">The Launch Trio in Motion 🚀</h2>
+            <p className="flyin-desc">
+              Scroll to witness the balance of clinical science and everyday style. Greenlife grade formulations, packaged for active lives.
+            </p>
+            <button className="btn-round btn-purple btn-flyin" onClick={onOpenQuiz}>
+              Take the Vibe Quiz 💅
+            </button>
+          </div>
+          
+          <div className="flyin-products-wrapper">
+            <img 
+              src="/assets/omg-nobg.png" 
+              alt="OMG Green Box" 
+              className="flyin-product-img img-omg" 
+            />
+            <img 
+              src="/assets/pregnancy-nobg.png" 
+              alt="Pregnancy Purple Box" 
+              className="flyin-product-img img-pregnancy" 
+            />
+            <img 
+              src="/assets/pregnancy-plus-nobg.png" 
+              alt="Pregnancy Plus Orange Box" 
+              className="flyin-product-img img-pregnancy-plus" 
+            />
+          </div>
         </div>
       </section>
 
@@ -446,43 +500,6 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
       </section>
 
       <ScienceSection />
-
-      {/* Dramatic Scroll-Driven Fly-in Section */}
-      <section className={`dramatic-flyin-section ${isFlyInVisible ? 'active' : ''}`}>
-        {/* Massive Bold Background Text */}
-        <div className="flyin-bg-text">DAY BY DAY</div>
-        
-        <div className="container flyin-container">
-          <div className="flyin-content">
-            <span className="flyin-badge">FORMULATED FOR YOU</span>
-            <h2 className="flyin-title">The Launch Trio in Motion 🚀</h2>
-            <p className="flyin-desc">
-              Scroll to witness the balance of clinical science and everyday style. Greenlife grade formulations, packaged for active lives.
-            </p>
-            <button className="btn-round btn-purple btn-flyin" onClick={onOpenQuiz}>
-              Take the Vibe Quiz 💅
-            </button>
-          </div>
-          
-          <div className="flyin-products-wrapper">
-            <img 
-              src="/assets/omg-nobg.png" 
-              alt="OMG Green Box" 
-              className="flyin-product-img img-omg" 
-            />
-            <img 
-              src="/assets/pregnancy-nobg.png" 
-              alt="Pregnancy Purple Box" 
-              className="flyin-product-img img-pregnancy" 
-            />
-            <img 
-              src="/assets/pregnancy-plus-nobg.png" 
-              alt="Pregnancy Plus Orange Box" 
-              className="flyin-product-img img-pregnancy-plus" 
-            />
-          </div>
-        </div>
-      </section>
 
       <style>{`
         .home-page {
@@ -1322,7 +1339,6 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           }
           .lifestyle-grid::-webkit-scrollbar {
             display: none;
-          }
           .lifestyle-card {
             flex: 0 0 280px;
             scroll-snap-align: start;
@@ -1339,6 +1355,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           position: relative;
           overflow: hidden;
           border-top: 1px solid var(--color-border);
+          border-bottom: 1px solid var(--color-border);
         }
         
         .flyin-bg-text {
@@ -1419,55 +1436,30 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           max-height: 340px;
           object-fit: contain;
           filter: drop-shadow(0 20px 30px rgba(110,100,120,0.18));
-          transition: transform 1.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 1.2s ease-out;
+          transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+          opacity: calc(0.05 + var(--scroll-factor) * 0.95);
         }
         
-        /* Initial fly-out/hidden state */
         .flyin-product-img.img-omg {
           left: 10%;
-          transform: translateX(-160%) rotate(-60deg) scale(0.6);
-          opacity: 0;
+          transform: translateX(calc((1 - var(--scroll-factor)) * -160px)) 
+                     rotate(calc(-30deg + var(--scroll-factor) * 18deg)) 
+                     scale(calc(0.8 + var(--scroll-factor) * 0.15));
           z-index: 2;
         }
         
         .flyin-product-img.img-pregnancy {
-          transform: translateY(180%) rotate(15deg) scale(0.7);
-          opacity: 0;
+          transform: translateY(calc((1 - var(--scroll-factor)) * 140px)) 
+                     scale(calc(0.8 + var(--scroll-factor) * 0.25));
           z-index: 3;
         }
         
         .flyin-product-img.img-pregnancy-plus {
           right: 10%;
-          transform: translateX(160%) rotate(60deg) scale(0.6);
-          opacity: 0;
+          transform: translateX(calc((1 - var(--scroll-factor)) * 160px)) 
+                     rotate(calc(30deg - var(--scroll-factor) * 18deg)) 
+                     scale(calc(0.8 + var(--scroll-factor) * 0.15));
           z-index: 2;
-        }
-        
-        /* Active fly-in state when in viewport */
-        .dramatic-flyin-section.active .flyin-product-img.img-omg {
-          transform: translateX(0) rotate(-12deg) scale(0.95);
-          opacity: 1;
-        }
-        
-        .dramatic-flyin-section.active .flyin-product-img.img-pregnancy {
-          transform: translateY(0) rotate(0deg) scale(1.05);
-          opacity: 1;
-        }
-        
-        .dramatic-flyin-section.active .flyin-product-img.img-pregnancy-plus {
-          transform: translateX(0) rotate(12deg) scale(0.95);
-          opacity: 1;
-        }
-        
-        /* Subtle float overrides when active */
-        .dramatic-flyin-section.active .flyin-product-img.img-pregnancy {
-          animation: floatCenterBox 4s ease-in-out infinite alternate;
-          animation-delay: 1.4s;
-        }
-        
-        @keyframes floatCenterBox {
-          0% { transform: translateY(0) rotate(0deg) scale(1.05); }
-          100% { transform: translateY(-8px) rotate(-1deg) scale(1.05); }
         }
 
         /* Mobile Responsive for Fly-in */
@@ -1487,16 +1479,23 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           }
           .flyin-product-img {
             max-height: 240px;
+            opacity: calc(0.05 + var(--scroll-factor) * 0.95);
           }
-          /* Active responsive overlapping positioning */
-          .dramatic-flyin-section.active .flyin-product-img.img-omg {
-            transform: translateX(-50px) rotate(-8deg) scale(0.85);
+          .flyin-product-img.img-omg {
+            left: auto;
+            transform: translateX(calc(-50px - (1 - var(--scroll-factor)) * 50px)) 
+                       rotate(calc(-20deg + var(--scroll-factor) * 12deg)) 
+                       scale(calc(0.75 + var(--scroll-factor) * 0.1));
           }
-          .dramatic-flyin-section.active .flyin-product-img.img-pregnancy {
-            transform: translateY(0) rotate(0deg) scale(0.95);
+          .flyin-product-img.img-pregnancy {
+            transform: translateY(calc((1 - var(--scroll-factor)) * 100px)) 
+                       scale(calc(0.75 + var(--scroll-factor) * 0.2));
           }
-          .dramatic-flyin-section.active .flyin-product-img.img-pregnancy-plus {
-            transform: translateX(50px) rotate(8deg) scale(0.85);
+          .flyin-product-img.img-pregnancy-plus {
+            right: auto;
+            transform: translateX(calc(50px + (1 - var(--scroll-factor)) * 50px)) 
+                       rotate(calc(20deg - var(--scroll-factor) * 12deg)) 
+                       scale(calc(0.75 + var(--scroll-factor) * 0.1));
           }
         }
       `}</style>
