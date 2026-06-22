@@ -61,6 +61,23 @@ const productsData = [
 export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
   const [activeBenefit, setActiveBenefit] = useState('all');
   const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
+  const [isFlyInVisible, setIsFlyInVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFlyInVisible(entry.isIntersecting);
+      },
+      { threshold: 0.12 }
+    );
+
+    const target = document.querySelector('.dramatic-flyin-section');
+    if (target) observer.observe(target);
+
+    return () => {
+      if (target) observer.unobserve(target);
+    };
+  }, []);
 
   // Softgel mixer states
   const [mixerGoals, setMixerGoals] = useState({
@@ -429,6 +446,43 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
       </section>
 
       <ScienceSection />
+
+      {/* Dramatic Scroll-Driven Fly-in Section */}
+      <section className={`dramatic-flyin-section ${isFlyInVisible ? 'active' : ''}`}>
+        {/* Massive Bold Background Text */}
+        <div className="flyin-bg-text">DAY BY DAY</div>
+        
+        <div className="container flyin-container">
+          <div className="flyin-content">
+            <span className="flyin-badge">FORMULATED FOR YOU</span>
+            <h2 className="flyin-title">The Launch Trio in Motion 🚀</h2>
+            <p className="flyin-desc">
+              Scroll to witness the balance of clinical science and everyday style. Greenlife grade formulations, packaged for active lives.
+            </p>
+            <button className="btn-round btn-purple btn-flyin" onClick={onOpenQuiz}>
+              Take the Vibe Quiz 💅
+            </button>
+          </div>
+          
+          <div className="flyin-products-wrapper">
+            <img 
+              src="/assets/omg-nobg.png" 
+              alt="OMG Green Box" 
+              className="flyin-product-img img-omg" 
+            />
+            <img 
+              src="/assets/pregnancy-nobg.png" 
+              alt="Pregnancy Purple Box" 
+              className="flyin-product-img img-pregnancy" 
+            />
+            <img 
+              src="/assets/pregnancy-plus-nobg.png" 
+              alt="Pregnancy Plus Orange Box" 
+              className="flyin-product-img img-pregnancy-plus" 
+            />
+          </div>
+        </div>
+      </section>
 
       <style>{`
         .home-page {
@@ -1275,6 +1329,174 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           }
           .lifestyle-img-wrapper {
             height: 340px;
+          }
+        }
+
+        /* Dramatic Scroll-Driven Fly-in Section */
+        .dramatic-flyin-section {
+          background: linear-gradient(180deg, var(--color-white) 0%, #f7f3fb 100%);
+          padding: 120px 0 160px;
+          position: relative;
+          overflow: hidden;
+          border-top: 1px solid var(--color-border);
+        }
+        
+        .flyin-bg-text {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 11vw;
+          font-family: var(--font-heading);
+          font-weight: 900;
+          color: rgba(140, 66, 181, 0.04);
+          letter-spacing: -0.02em;
+          user-select: none;
+          pointer-events: none;
+          white-space: nowrap;
+          z-index: 1;
+        }
+        
+        .flyin-container {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 60px;
+        }
+        
+        .flyin-content {
+          max-width: 600px;
+        }
+        
+        .flyin-badge {
+          display: inline-block;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          color: var(--color-preg-primary);
+          background-color: var(--color-preg-secondary);
+          padding: 6px 16px;
+          border-radius: var(--radius-full);
+          margin-bottom: 16px;
+        }
+        
+        .flyin-title {
+          font-size: 2.75rem;
+          color: var(--color-text-dark);
+          margin-bottom: 16px;
+          font-family: var(--font-heading);
+          font-weight: 800;
+        }
+        
+        .flyin-desc {
+          font-size: 1.1rem;
+          color: var(--color-text-muted);
+          line-height: 1.5;
+          margin-bottom: 24px;
+        }
+        
+        .btn-flyin {
+          box-shadow: var(--shadow-md);
+        }
+        
+        /* Products Positioning and Fly-in Anim states */
+        .flyin-products-wrapper {
+          position: relative;
+          width: 100%;
+          max-width: 800px;
+          height: 380px;
+          margin-top: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        .flyin-product-img {
+          position: absolute;
+          max-height: 340px;
+          object-fit: contain;
+          filter: drop-shadow(0 20px 30px rgba(110,100,120,0.18));
+          transition: transform 1.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 1.2s ease-out;
+        }
+        
+        /* Initial fly-out/hidden state */
+        .flyin-product-img.img-omg {
+          left: 10%;
+          transform: translateX(-160%) rotate(-60deg) scale(0.6);
+          opacity: 0;
+          z-index: 2;
+        }
+        
+        .flyin-product-img.img-pregnancy {
+          transform: translateY(180%) rotate(15deg) scale(0.7);
+          opacity: 0;
+          z-index: 3;
+        }
+        
+        .flyin-product-img.img-pregnancy-plus {
+          right: 10%;
+          transform: translateX(160%) rotate(60deg) scale(0.6);
+          opacity: 0;
+          z-index: 2;
+        }
+        
+        /* Active fly-in state when in viewport */
+        .dramatic-flyin-section.active .flyin-product-img.img-omg {
+          transform: translateX(0) rotate(-12deg) scale(0.95);
+          opacity: 1;
+        }
+        
+        .dramatic-flyin-section.active .flyin-product-img.img-pregnancy {
+          transform: translateY(0) rotate(0deg) scale(1.05);
+          opacity: 1;
+        }
+        
+        .dramatic-flyin-section.active .flyin-product-img.img-pregnancy-plus {
+          transform: translateX(0) rotate(12deg) scale(0.95);
+          opacity: 1;
+        }
+        
+        /* Subtle float overrides when active */
+        .dramatic-flyin-section.active .flyin-product-img.img-pregnancy {
+          animation: floatCenterBox 4s ease-in-out infinite alternate;
+          animation-delay: 1.4s;
+        }
+        
+        @keyframes floatCenterBox {
+          0% { transform: translateY(0) rotate(0deg) scale(1.05); }
+          100% { transform: translateY(-8px) rotate(-1deg) scale(1.05); }
+        }
+
+        /* Mobile Responsive for Fly-in */
+        @media (max-width: 768px) {
+          .dramatic-flyin-section {
+            padding: 80px 0 100px;
+          }
+          .flyin-title {
+            font-size: 2rem;
+          }
+          .flyin-bg-text {
+            font-size: 16vw;
+          }
+          .flyin-products-wrapper {
+            height: 280px;
+            max-width: 420px;
+          }
+          .flyin-product-img {
+            max-height: 240px;
+          }
+          /* Active responsive overlapping positioning */
+          .dramatic-flyin-section.active .flyin-product-img.img-omg {
+            transform: translateX(-50px) rotate(-8deg) scale(0.85);
+          }
+          .dramatic-flyin-section.active .flyin-product-img.img-pregnancy {
+            transform: translateY(0) rotate(0deg) scale(0.95);
+          }
+          .dramatic-flyin-section.active .flyin-product-img.img-pregnancy-plus {
+            transform: translateX(50px) rotate(8deg) scale(0.85);
           }
         }
       `}</style>
