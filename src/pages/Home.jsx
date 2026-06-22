@@ -62,10 +62,18 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
   const [activeBenefit, setActiveBenefit] = useState('all');
   const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const sectionRef = React.useRef(null);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const handleScroll = () => {
-      const target = document.querySelector('.dramatic-flyin-section');
+      const target = sectionRef.current;
       if (!target) return;
 
       const rect = target.getBoundingClientRect();
@@ -87,11 +95,27 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkMobile);
     };
   }, []);
 
   // Calculate factor (0 to 1, where 1 is fully converged / centered in view)
   const flyInFactor = scrollProgress < 0.5 ? scrollProgress * 2 : (1 - scrollProgress) * 2;
+
+  // Calculate transforms dynamically based on current scroll progress & device screen width
+  const omgTransform = isMobile
+    ? `translateX(${-50 - (1 - flyInFactor) * 50}px) rotate(${-20 + flyInFactor * 12}deg) scale(${0.75 + flyInFactor * 0.1})`
+    : `translateX(${(1 - flyInFactor) * -160}px) rotate(${-30 + flyInFactor * 18}deg) scale(${0.8 + flyInFactor * 0.15})`;
+
+  const pregTransform = isMobile
+    ? `translateY(${(1 - flyInFactor) * 100}px) scale(${0.75 + flyInFactor * 0.2})`
+    : `translateY(${(1 - flyInFactor) * 140}px) scale(${0.8 + flyInFactor * 0.25})`;
+
+  const pregPlusTransform = isMobile
+    ? `translateX(${50 + (1 - flyInFactor) * 50}px) rotate(${20 - flyInFactor * 12}deg) scale(${0.75 + flyInFactor * 0.1})`
+    : `translateX(${(1 - flyInFactor) * 160}px) rotate(${30 - flyInFactor * 18}deg) scale(${0.8 + flyInFactor * 0.15})`;
+
+  const imgOpacity = 0.05 + flyInFactor * 0.95;
 
   // Softgel mixer states
   const [mixerGoals, setMixerGoals] = useState({
@@ -269,8 +293,8 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
 
       {/* Dramatic Scroll-Driven Fly-in Section */}
       <section 
+        ref={sectionRef}
         className="dramatic-flyin-section"
-        style={{ '--scroll-factor': flyInFactor }}
       >
         {/* Massive Bold Background Text */}
         <div className="flyin-bg-text">DAY BY DAY</div>
@@ -292,16 +316,19 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
               src="/assets/omg-nobg.png" 
               alt="OMG Green Box" 
               className="flyin-product-img img-omg" 
+              style={{ transform: omgTransform, opacity: imgOpacity }}
             />
             <img 
               src="/assets/pregnancy-nobg.png" 
               alt="Pregnancy Purple Box" 
               className="flyin-product-img img-pregnancy" 
+              style={{ transform: pregTransform, opacity: imgOpacity }}
             />
             <img 
               src="/assets/pregnancy-plus-nobg.png" 
               alt="Pregnancy Plus Orange Box" 
               className="flyin-product-img img-pregnancy-plus" 
+              style={{ transform: pregPlusTransform, opacity: imgOpacity }}
             />
           </div>
         </div>
@@ -1436,29 +1463,21 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           max-height: 340px;
           object-fit: contain;
           filter: drop-shadow(0 20px 30px rgba(110,100,120,0.18));
-          transition: transform 0.15s ease-out, opacity 0.15s ease-out;
-          opacity: calc(0.05 + var(--scroll-factor) * 0.95);
+          transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+          will-change: transform, opacity;
         }
         
         .flyin-product-img.img-omg {
           left: 10%;
-          transform: translateX(calc((1 - var(--scroll-factor)) * -160px)) 
-                     rotate(calc(-30deg + var(--scroll-factor) * 18deg)) 
-                     scale(calc(0.8 + var(--scroll-factor) * 0.15));
           z-index: 2;
         }
         
         .flyin-product-img.img-pregnancy {
-          transform: translateY(calc((1 - var(--scroll-factor)) * 140px)) 
-                     scale(calc(0.8 + var(--scroll-factor) * 0.25));
           z-index: 3;
         }
         
         .flyin-product-img.img-pregnancy-plus {
           right: 10%;
-          transform: translateX(calc((1 - var(--scroll-factor)) * 160px)) 
-                     rotate(calc(30deg - var(--scroll-factor) * 18deg)) 
-                     scale(calc(0.8 + var(--scroll-factor) * 0.15));
           z-index: 2;
         }
 
@@ -1479,23 +1498,15 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           }
           .flyin-product-img {
             max-height: 240px;
-            opacity: calc(0.05 + var(--scroll-factor) * 0.95);
           }
           .flyin-product-img.img-omg {
             left: auto;
-            transform: translateX(calc(-50px - (1 - var(--scroll-factor)) * 50px)) 
-                       rotate(calc(-20deg + var(--scroll-factor) * 12deg)) 
-                       scale(calc(0.75 + var(--scroll-factor) * 0.1));
           }
           .flyin-product-img.img-pregnancy {
-            transform: translateY(calc((1 - var(--scroll-factor)) * 100px)) 
-                       scale(calc(0.75 + var(--scroll-factor) * 0.2));
+            /* centered */
           }
           .flyin-product-img.img-pregnancy-plus {
             right: auto;
-            transform: translateX(calc(50px + (1 - var(--scroll-factor)) * 50px)) 
-                       rotate(calc(20deg - var(--scroll-factor) * 12deg)) 
-                       scale(calc(0.75 + var(--scroll-factor) * 0.1));
           }
         }
       `}</style>
