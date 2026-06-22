@@ -236,6 +236,28 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         </div>
       </section>
 
+      {/* Midpage Promo Split Banner (Olly-style) */}
+      <section className="promo-split-section">
+        <div className="promo-split-grid">
+          <div className="promo-text-side">
+            <span className="promo-tagline-label">CLEAN WELLNESS</span>
+            <h2 className="promo-heading-title">Daily Nutrition That Fits Your Vibe</h2>
+            <p className="promo-desc-text">
+              We believe that everyday health shouldn't feel like a chore. Day by Day combines clean, pharmaceutical-grade formulas from Greenlife with active botanical oils and probiotics. No oversized chalky pills, just easy daily softgels designed to look great on your shelf and feel amazing in your body.
+            </p>
+            <a href="#products-section" className="btn-round btn-promo-action">
+              Explore Our Launch Trio
+            </a>
+          </div>
+          <div className="promo-image-side">
+            <img src="/assets/lifestyle-hands.jpg" alt="Day by Day Launch Trio in Hands" className="promo-split-img" />
+            <div className="promo-floating-badge animate-float">
+              <span>NEW</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Interactive Supplement Mixer Section (Highly Animated) */}
       <section className="mixer-section">
         <div className="container mixer-container">
@@ -881,8 +903,141 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         .illus-box.box-2 { transform: rotate(15deg); }
         .illus-box.box-3 { transform: rotate(-5deg); }
 
+        /* Promo Split Section */
+        .promo-split-section {
+          background-color: var(--color-bg-base);
+          padding: 40px 0;
+          overflow: hidden;
+        }
+        
+        .promo-split-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.2fr;
+          min-height: 520px;
+          width: 100%;
+          border-top: 1px solid var(--color-border);
+          border-bottom: 1px solid var(--color-border);
+        }
+        
+        .promo-text-side {
+          background-color: #8c42b5;
+          padding: 60px 80px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          color: var(--color-white);
+        }
+        
+        .promo-tagline-label {
+          font-size: 0.85rem;
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: var(--color-pregplus-secondary);
+          margin-bottom: 16px;
+        }
+        
+        .promo-heading-title {
+          font-size: 3rem;
+          font-family: var(--font-heading);
+          font-weight: 800;
+          line-height: 1.1;
+          color: var(--color-white);
+          margin-bottom: 24px;
+        }
+        
+        .promo-desc-text {
+          font-size: 1.15rem;
+          line-height: 1.6;
+          color: rgba(255, 255, 255, 0.9);
+          margin-bottom: 36px;
+        }
+        
+        .btn-promo-action {
+          background-color: var(--color-white);
+          color: #8c42b5;
+          font-weight: 700;
+          padding: 14px 32px;
+          box-shadow: var(--shadow-sm);
+          width: fit-content;
+          border: 2px solid var(--color-white);
+          border-radius: var(--radius-full);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transition: var(--transition-bounce);
+        }
+        
+        .btn-promo-action:hover {
+          background-color: transparent;
+          color: var(--color-white);
+          border-color: var(--color-white);
+          transform: translateY(-3px);
+        }
+        
+        .promo-image-side {
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .promo-split-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .promo-split-grid:hover .promo-split-img {
+          transform: scale(1.03);
+        }
+        
+        .promo-floating-badge {
+          position: absolute;
+          top: 30px;
+          right: 40px;
+          width: 80px;
+          height: 80px;
+          border-radius: var(--radius-full);
+          background-color: #d8562a;
+          color: var(--color-white);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          font-size: 1.1rem;
+          letter-spacing: 0.05em;
+          box-shadow: var(--shadow-md);
+          border: 2px solid var(--color-white);
+          z-index: 5;
+        }
+
         /* Responsive Layouts */
         @media (max-width: 968px) {
+          .promo-split-grid {
+            grid-template-columns: 1fr;
+          }
+          .promo-text-side {
+            padding: 48px 24px;
+            text-align: center;
+            align-items: center;
+          }
+          .promo-heading-title {
+            font-size: 2.2rem;
+          }
+          .btn-promo-action {
+            margin: 0 auto;
+          }
+          .promo-image-side {
+            height: 360px;
+          }
+          .promo-floating-badge {
+            width: 70px;
+            height: 70px;
+            font-size: 0.95rem;
+            top: 20px;
+            right: 20px;
+          }
           .hero-container {
             grid-template-columns: 1fr;
             gap: 20px;
