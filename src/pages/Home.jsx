@@ -61,7 +61,6 @@ const productsData = [
 export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
   const [activeBenefit, setActiveBenefit] = useState('all');
   const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRef = React.useRef(null);
 
@@ -72,51 +71,12 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    const handleScroll = () => {
-      const target = sectionRef.current;
-      if (!target) return;
-
-      const rect = target.getBoundingClientRect();
-      const viewHeight = window.innerHeight;
-
-      // Calculate progress (0 = enters bottom of screen, 1 = leaves top of screen)
-      const start = viewHeight;
-      const end = -rect.height;
-      const current = rect.top;
-
-      let progress = (start - current) / (start - end);
-      progress = Math.max(0, Math.min(1, progress));
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Trigger initial calculation
-    handleScroll();
-
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', checkMobile);
     };
   }, []);
 
-  // Calculate factor (0 to 1, where 1 is fully converged / centered in view)
-  const flyInFactor = scrollProgress < 0.5 ? scrollProgress * 2 : (1 - scrollProgress) * 2;
-
-  // Calculate transforms dynamically based on current scroll progress & device screen width
-  const omgTransform = isMobile
-    ? `translate(-50%, -50%) translateX(${-60 * flyInFactor - (1 - flyInFactor) * 150}px) translateY(${(1 - flyInFactor) * 60}px) rotate(${-20 + flyInFactor * 12}deg) scale(${0.75 + flyInFactor * 0.1})`
-    : `translate(-50%, -50%) translateX(${-150 * flyInFactor - (1 - flyInFactor) * 350}px) translateY(${(1 - flyInFactor) * 100}px) rotate(${-30 + flyInFactor * 18}deg) scale(${0.8 + flyInFactor * 0.15})`;
-
-  const pregTransform = isMobile
-    ? `translate(-50%, -50%) translateY(${(1 - flyInFactor) * 100}px) scale(${0.8 + flyInFactor * 0.15})`
-    : `translate(-50%, -50%) translateY(${(1 - flyInFactor) * 200}px) scale(${0.8 + flyInFactor * 0.25})`;
-
-  const pregPlusTransform = isMobile
-    ? `translate(-50%, -50%) translateX(${60 * flyInFactor + (1 - flyInFactor) * 150}px) translateY(${(1 - flyInFactor) * 60}px) rotate(${20 - flyInFactor * 12}deg) scale(${0.75 + flyInFactor * 0.1})`
-    : `translate(-50%, -50%) translateX(${150 * flyInFactor + (1 - flyInFactor) * 350}px) translateY(${(1 - flyInFactor) * 100}px) rotate(${30 - flyInFactor * 18}deg) scale(${0.8 + flyInFactor * 0.15})`;
-
-  const imgOpacity = 0.05 + flyInFactor * 0.95;
-
+// Carousel no longer uses scroll‑based transforms; variables removed.
   // Softgel mixer states
   const [mixerGoals, setMixerGoals] = useState({
     brain: false,
@@ -291,45 +251,17 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         </div>
       </section>
 
-      {/* Dramatic Scroll-Driven Fly-in Section */}
-      <section 
-        ref={sectionRef}
-        className="dramatic-flyin-section"
-      >
-        {/* Massive Bold Background Text */}
-        <div className="flyin-bg-text">DAY BY DAY</div>
-        
-        <div className="container flyin-container">
-          <div className="flyin-content">
-            <span className="flyin-badge">FORMULATED FOR YOU</span>
-            <h2 className="flyin-title">The Launch Trio in Motion 🚀</h2>
-            <p className="flyin-desc">
-              Scroll to witness the balance of clinical science and everyday style. Greenlife grade formulations, packaged for active lives.
-            </p>
-            <button className="btn-round btn-purple btn-flyin" onClick={onOpenQuiz}>
-              Take the Vibe Quiz 💅
-            </button>
-          </div>
-          
-          <div className="flyin-products-wrapper">
-            <img 
-              src="/assets/omg-nobg.png" 
-              alt="OMG Green Box" 
-              className="flyin-product-img img-omg" 
-              style={{ transform: omgTransform, opacity: imgOpacity }}
-            />
-            <img 
-              src="/assets/pregnancy-nobg.png" 
-              alt="Pregnancy Purple Box" 
-              className="flyin-product-img img-pregnancy" 
-              style={{ transform: pregTransform, opacity: imgOpacity }}
-            />
-            <img 
-              src="/assets/pregnancy-plus-nobg.png" 
-              alt="Pregnancy Plus Orange Box" 
-              className="flyin-product-img img-pregnancy-plus" 
-              style={{ transform: pregPlusTransform, opacity: imgOpacity }}
-            />
+      {/* Continuous Product Carousel Section */}
+      <section className="dramatic-flyin-section">
+        <div className="carousel-container">
+          <div className="product-carousel">
+            <img src="/assets/omg-nobg.png" alt="OMG Green Box" className="carousel-item" />
+            <img src="/assets/pregnancy-nobg.png" alt="Pregnancy Purple Box" className="carousel-item" />
+            <img src="/assets/pregnancy-plus-nobg.png" alt="Pregnancy Plus Orange Box" className="carousel-item" />
+            <!-- duplicate for seamless loop -->
+            <img src="/assets/omg-nobg.png" alt="OMG Green Box" className="carousel-item" />
+            <img src="/assets/pregnancy-nobg.png" alt="Pregnancy Purple Box" className="carousel-item" />
+            <img src="/assets/pregnancy-plus-nobg.png" alt="Pregnancy Plus Orange Box" className="carousel-item" />
           </div>
         </div>
       </section>
@@ -1378,7 +1310,6 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
 
         /* Dramatic Scroll-Driven Fly-in Section */
         .dramatic-flyin-section {
-          /* Warm gradient background */
           background: linear-gradient(135deg, #fff8e1, #ffe4e1);
           padding: 120px 0 160px;
           position: relative;
@@ -1392,21 +1323,26 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           text-align: center;
         }
         
-        .flyin-bg-text {
-          position: absolute;
-          top: 55%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          font-size: 14vw;
-          font-family: var(--font-heading);
-          font-weight: 900;
-          /* Soft warm color for background text */
-          color: rgba(200, 120, 80, 0.04);
-          letter-spacing: -0.03em;
-          user-select: none;
-          pointer-events: none;
-          white-space: nowrap;
-          z-index: 1;
+        .carousel-container {
+          width: 100%;
+          overflow: hidden;
+        }
+        
+        .product-carousel {
+          display: flex;
+          gap: 40px;
+          animation: scroll 20s linear infinite;
+        }
+        
+        .carousel-item {
+          flex: 0 0 auto;
+          width: 200px;
+          height: auto;
+        }
+        
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
         
         .flyin-container {
