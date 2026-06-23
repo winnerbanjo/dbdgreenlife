@@ -253,15 +253,66 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
 
       {/* Continuous Product Carousel Section */}
       <section className="dramatic-flyin-section">
+        <h2 className="carousel-section-title">current faves</h2>
         <div className="carousel-container">
           <div className="product-carousel">
-            <img src="/assets/omg-nobg.png" alt="OMG Green Box" className="carousel-item" />
-            <img src="/assets/pregnancy-nobg.png" alt="Pregnancy Purple Box" className="carousel-item" />
-            <img src="/assets/pregnancy-plus-nobg.png" alt="Pregnancy Plus Orange Box" className="carousel-item" />
-            <!-- duplicate for seamless loop -->
-            <img src="/assets/omg-nobg.png" alt="OMG Green Box" className="carousel-item" />
-            <img src="/assets/pregnancy-nobg.png" alt="Pregnancy Purple Box" className="carousel-item" />
-            <img src="/assets/pregnancy-plus-nobg.png" alt="Pregnancy Plus Orange Box" className="carousel-item" />
+            {/* Set 1 */}
+            <div className="carousel-card" onClick={() => onProductClick('omg')}>
+              <div className="carousel-img-wrapper">
+                <div className="carousel-img-backdrop backdrop-omg"></div>
+                <img src="/assets/omg-nobg.png" alt="OMG Green Box" className="carousel-item-img" />
+              </div>
+              <h3 className="carousel-item-title">OMG EVERYDAY WELLNESS</h3>
+              <p className="carousel-item-subtitle">Virgin Coconut & Avocado Oils*</p>
+              <span className="carousel-item-price">₦14,500</span>
+            </div>
+            <div className="carousel-card" onClick={() => onProductClick('pregnancy')}>
+              <div className="carousel-img-wrapper">
+                <div className="carousel-img-backdrop backdrop-preg"></div>
+                <img src="/assets/pregnancy-nobg.png" alt="Pregnancy Purple Box" className="carousel-item-img" />
+              </div>
+              <h3 className="carousel-item-title">WELLNESS PREGNANCY</h3>
+              <p className="carousel-item-subtitle">Prenatal Multivitamin & Probiotics*</p>
+              <span className="carousel-item-price">₦12,500</span>
+            </div>
+            <div className="carousel-card" onClick={() => onProductClick('pregnancy-plus')}>
+              <div className="carousel-img-wrapper">
+                <div className="carousel-img-backdrop backdrop-pregplus"></div>
+                <img src="/assets/pregnancy-plus-nobg.png" alt="Pregnancy Plus Orange Box" className="carousel-item-img" />
+              </div>
+              <h3 className="carousel-item-title">WELLNESS PREGNANCY PLUS</h3>
+              <p className="carousel-item-subtitle">Advanced Prenatal Twin Pack*</p>
+              <span className="carousel-item-price">₦18,500</span>
+            </div>
+            
+            {/* Set 2 (Duplicate for seamless loop) */}
+            <div className="carousel-card" onClick={() => onProductClick('omg')}>
+              <div className="carousel-img-wrapper">
+                <div className="carousel-img-backdrop backdrop-omg"></div>
+                <img src="/assets/omg-nobg.png" alt="OMG Green Box" className="carousel-item-img" />
+              </div>
+              <h3 className="carousel-item-title">OMG EVERYDAY WELLNESS</h3>
+              <p className="carousel-item-subtitle">Virgin Coconut & Avocado Oils*</p>
+              <span className="carousel-item-price">₦14,500</span>
+            </div>
+            <div className="carousel-card" onClick={() => onProductClick('pregnancy')}>
+              <div className="carousel-img-wrapper">
+                <div className="carousel-img-backdrop backdrop-preg"></div>
+                <img src="/assets/pregnancy-nobg.png" alt="Pregnancy Purple Box" className="carousel-item-img" />
+              </div>
+              <h3 className="carousel-item-title">WELLNESS PREGNANCY</h3>
+              <p className="carousel-item-subtitle">Prenatal Multivitamin & Probiotics*</p>
+              <span className="carousel-item-price">₦12,500</span>
+            </div>
+            <div className="carousel-card" onClick={() => onProductClick('pregnancy-plus')}>
+              <div className="carousel-img-wrapper">
+                <div className="carousel-img-backdrop backdrop-pregplus"></div>
+                <img src="/assets/pregnancy-plus-nobg.png" alt="Pregnancy Plus Orange Box" className="carousel-item-img" />
+              </div>
+              <h3 className="carousel-item-title">WELLNESS PREGNANCY PLUS</h3>
+              <p className="carousel-item-subtitle">Advanced Prenatal Twin Pack*</p>
+              <span className="carousel-item-price">₦18,500</span>
+            </div>
           </div>
         </div>
       </section>
@@ -1308,10 +1359,10 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           }
         }
 
-        /* Dramatic Scroll-Driven Fly-in Section */
+        /* Dramatic Scroll-Driven Fly-in Section (Now Lemme-style 'current faves' carousel) */
         .dramatic-flyin-section {
-          background: linear-gradient(135deg, #fff8e1, #ffe4e1);
-          padding: 120px 0 160px;
+          background-color: #e2d4eb; /* Solid, smooth baby purple background */
+          padding: 100px 0 120px;
           position: relative;
           overflow: hidden;
           border-top: 1px solid var(--color-border);
@@ -1323,139 +1374,144 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           text-align: center;
         }
         
+        .carousel-section-title {
+          font-family: var(--font-serif);
+          font-size: 3.75rem;
+          font-weight: 400;
+          color: var(--color-text-dark);
+          margin-bottom: 50px;
+          text-transform: lowercase;
+          letter-spacing: -0.01em;
+        }
+        
         .carousel-container {
           width: 100%;
           overflow: hidden;
+          padding: 10px 0;
         }
         
         .product-carousel {
           display: flex;
-          gap: 40px;
-          animation: scroll 20s linear infinite;
+          gap: 60px;
+          width: max-content;
+          animation: scroll-carousel 25s linear infinite;
         }
         
-        .carousel-item {
-          flex: 0 0 auto;
-          width: 200px;
-          height: auto;
+        .product-carousel:hover {
+          animation-play-state: paused;
         }
         
-        @keyframes scroll {
+        .carousel-card {
+          flex: 0 0 280px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          cursor: pointer;
+        }
+        
+        .carousel-img-wrapper {
+          position: relative;
+          width: 220px;
+          height: 220px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+        
+        .carousel-img-backdrop {
+          position: absolute;
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          z-index: 1;
+          opacity: 0.12;
+          filter: blur(6px);
+          transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        
+        .backdrop-omg { background-color: #3ca976; }
+        .backdrop-preg { background-color: #8c42b5; }
+        .backdrop-pregplus { background-color: #d8562a; }
+        
+        .carousel-item-img {
+          position: relative;
+          z-index: 2;
+          max-height: 190px;
+          object-fit: contain;
+          filter: drop-shadow(0 12px 24px rgba(110, 100, 120, 0.15));
+          transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .carousel-card:hover .carousel-item-img {
+          transform: translateY(-8px) scale(1.04);
+        }
+        
+        .carousel-card:hover .carousel-img-backdrop {
+          transform: scale(1.1);
+          opacity: 0.2;
+        }
+        
+        .carousel-item-title {
+          font-family: var(--font-heading);
+          font-size: 0.95rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          color: var(--color-text-dark);
+          margin-bottom: 6px;
+          text-transform: uppercase;
+          max-width: 240px;
+          line-height: 1.3;
+        }
+        
+        .carousel-item-subtitle {
+          font-family: var(--font-primary);
+          font-size: 0.85rem;
+          color: var(--color-text-muted);
+          margin-bottom: 8px;
+        }
+        
+        .carousel-item-price {
+          font-family: var(--font-heading);
+          font-size: 1rem;
+          font-weight: 700;
+          color: var(--color-text-dark);
+        }
+        
+        @keyframes scroll-carousel {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
         
-        .flyin-container {
-          position: relative;
-          z-index: 2;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          gap: 60px;
-        }
-        
-        .flyin-content {
-          max-width: 700px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-        }
-        
-        .flyin-badge {
-          display: inline-block;
-          font-size: 0.8rem;
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          color: var(--color-preg-primary);
-          background-color: var(--color-preg-secondary);
-          padding: 6px 16px;
-          border-radius: var(--radius-full);
-          margin-bottom: 16px;
-        }
-        
-        .flyin-title {
-          font-size: 2.75rem;
-          color: var(--color-text-dark);
-          margin-bottom: 16px;
-          font-family: var(--font-heading);
-          font-weight: 800;
-        }
-        
-        .flyin-desc {
-          font-size: 1.1rem;
-          color: var(--color-text-muted);
-          line-height: 1.5;
-          margin-bottom: 24px;
-        }
-        
-        .btn-flyin {
-          box-shadow: var(--shadow-md);
-        }
-        
-        /* Products Positioning and Fly-in Anim states */
-        .flyin-products-wrapper {
-          position: relative;
-          width: 100%;
-          max-width: 800px;
-          height: 380px;
-          margin-top: 40px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        
-        .flyin-product-img {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform-origin: center center;
-          max-height: 340px;
-          object-fit: contain;
-          filter: drop-shadow(0 20px 30px rgba(110,100,120,0.18));
-          transition: transform 0.1s ease-out, opacity 0.1s ease-out;
-          will-change: transform, opacity;
-        }
-        
-        .flyin-product-img.img-omg {
-          z-index: 2;
-        }
-        
-        .flyin-product-img.img-pregnancy {
-          z-index: 3;
-        }
-        
-        .flyin-product-img.img-pregnancy-plus {
-          z-index: 2;
-        }
-
-        /* Mobile Responsive for Fly-in */
         @media (max-width: 768px) {
+          .carousel-section-title {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+          }
           .dramatic-flyin-section {
-            padding: 80px 0 100px;
+            padding: 60px 0;
           }
-          .flyin-title {
-            font-size: 2rem;
+          .carousel-card {
+            flex: 0 0 220px;
           }
-          .flyin-bg-text {
-            font-size: 16vw;
+          .carousel-img-wrapper {
+            width: 170px;
+            height: 170px;
           }
-          .flyin-products-wrapper {
-            height: 280px;
-            max-width: 420px;
+          .carousel-img-backdrop {
+            width: 120px;
+            height: 120px;
           }
-          .flyin-product-img {
-            max-height: 220px;
+          .carousel-item-img {
+            max-height: 140px;
           }
-          .flyin-product-img.img-omg {
-            left: 50%;
+          .carousel-item-title {
+            font-size: 0.85rem;
+            max-width: 180px;
           }
-          .flyin-product-img.img-pregnancy {
-            left: 50%;
-          }
-          .flyin-product-img.img-pregnancy-plus {
-            left: 50%;
+          .carousel-item-subtitle {
+            font-size: 0.75rem;
           }
         }
       `}</style>
