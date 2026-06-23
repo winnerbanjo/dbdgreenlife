@@ -264,7 +264,6 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
               </div>
               <h3 className="carousel-item-title">OMG EVERYDAY WELLNESS</h3>
               <p className="carousel-item-subtitle">Virgin Coconut & Avocado Oils*</p>
-              <span className="carousel-item-price">₦14,500</span>
             </div>
             <div className="carousel-card" onClick={() => onProductClick('pregnancy')}>
               <div className="carousel-img-wrapper">
@@ -273,7 +272,6 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
               </div>
               <h3 className="carousel-item-title">WELLNESS PREGNANCY</h3>
               <p className="carousel-item-subtitle">Prenatal Multivitamin & Probiotics*</p>
-              <span className="carousel-item-price">₦12,500</span>
             </div>
             <div className="carousel-card" onClick={() => onProductClick('pregnancy-plus')}>
               <div className="carousel-img-wrapper">
@@ -282,7 +280,6 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
               </div>
               <h3 className="carousel-item-title">WELLNESS PREGNANCY PLUS</h3>
               <p className="carousel-item-subtitle">Advanced Prenatal Twin Pack*</p>
-              <span className="carousel-item-price">₦18,500</span>
             </div>
             
             {/* Set 2 (Duplicate for seamless loop) */}
@@ -293,7 +290,6 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
               </div>
               <h3 className="carousel-item-title">OMG EVERYDAY WELLNESS</h3>
               <p className="carousel-item-subtitle">Virgin Coconut & Avocado Oils*</p>
-              <span className="carousel-item-price">₦14,500</span>
             </div>
             <div className="carousel-card" onClick={() => onProductClick('pregnancy')}>
               <div className="carousel-img-wrapper">
@@ -302,7 +298,6 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
               </div>
               <h3 className="carousel-item-title">WELLNESS PREGNANCY</h3>
               <p className="carousel-item-subtitle">Prenatal Multivitamin & Probiotics*</p>
-              <span className="carousel-item-price">₦12,500</span>
             </div>
             <div className="carousel-card" onClick={() => onProductClick('pregnancy-plus')}>
               <div className="carousel-img-wrapper">
@@ -311,7 +306,6 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
               </div>
               <h3 className="carousel-item-title">WELLNESS PREGNANCY PLUS</h3>
               <p className="carousel-item-subtitle">Advanced Prenatal Twin Pack*</p>
-              <span className="carousel-item-price">₦18,500</span>
             </div>
           </div>
         </div>

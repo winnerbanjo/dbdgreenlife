@@ -42,8 +42,7 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         {/* Price & Action Row */}
         <div className="card-action-row">
           <div className="price-tag">
-            <span className="amount">{product.price}</span>
-            <span className="pack-size">/ {product.size}</span>
+            <span className="pack-size" style={{ fontSize: '0.85rem', fontWeight: 600 }}>{product.size}</span>
           </div>
 
           <div className="card-buttons">

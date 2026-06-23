@@ -128,8 +128,7 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
   const [absorptionStep, setAbsorptionStep] = useState(0);
 
   const handleBuyClick = () => {
-    setPortalTab('select');
-    setShowPortalModal(true);
+    onShopRedirect(product.id);
   };
 
   // Determine lifestyle image and details dynamically based on product type
@@ -191,11 +190,10 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
               ))}
             </div>
 
-            {/* Price, Size & Checkout */}
+            {/* Size & Checkout */}
             <div className="detail-purchase-row">
               <div className="detail-price-box">
-                <span className="detail-price">{product.price}</span>
-                <span className="detail-size">/ {product.size}</span>
+                <span className="detail-size" style={{ fontSize: '1.4rem', fontWeight: 800 }}>{product.size}</span>
               </div>
 
               <div className="detail-actions">
@@ -508,101 +506,7 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
         </div>
       </section>
 
-      {/* B2B / B2C Commerce Integration Modal */}
-      {showPortalModal && (
-        <div className="portal-overlay">
-          <div className="portal-modal animate-slide-up">
-            <button className="portal-close" onClick={() => setShowPortalModal(false)}>Back</button>
-            <div className="portal-icon">🛒</div>
-            
-            {portalTab === 'select' ? (
-              <>
-                <h2 className="portal-title">Purchase {product.title}</h2>
-                <p className="portal-desc">
-                  You are being redirected to the Greenlife Pharmaceuticals sales infrastructure. Please select your purchase method:
-                </p>
-
-                <div className="portal-options">
-                  <div className="portal-card-btn" onClick={() => onShopRedirect(product.id)}>
-                    <h3 className="p-option-title">Buy Online (B2C Checkout)</h3>
-                    <p className="p-option-desc">Purchase direct for home delivery. Fast shipping across Nigeria.</p>
-                    <button className={`btn-round btn-buy-now`}>Proceed to Order</button>
-                  </div>
-
-                  <div className="portal-card-btn b2b" onClick={() => setPortalTab('b2b')}>
-                    <h3 className="p-option-title">Distributor Portal (B2B Calc)</h3>
-                    <p className="p-option-desc">Calculate cargo carton volumes, estimate wholesale discounts, and sync purchase orders.</p>
-                    <button className="btn-round btn-outline">Calculate Wholesale</button>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <div className="b2b-calc-pane">
-                <h2 className="portal-title">B2B Wholesale Calculator</h2>
-                <p className="portal-desc">Specify cargo cases to estimate invoice totals and volume discounts before syncing to Greenlife ERP.</p>
-                
-                <div className="calc-inputs-row">
-                  <div className="calc-input-group">
-                    <label className="calc-label">Carton Quantity (30 bottles/carton)</label>
-                    <input 
-                      type="number" 
-                      min="1" 
-                      value={wholesaleCartons} 
-                      onChange={(e) => setWholesaleCartons(Math.max(1, parseInt(e.target.value) || 1))}
-                      className="calc-number-input"
-                    />
-                  </div>
-                </div>
-
-                {(() => {
-                  const retailPrice = productId === 'pregnancy' ? 12500 : productId === 'omg' ? 14500 : 18500;
-                  const b2bBasePrice = retailPrice * 0.8; // 20% off wholesale
-                  const totalBottles = wholesaleCartons * 30;
-                  const retailValue = totalBottles * retailPrice;
-                  const wholesaleValue = totalBottles * b2bBasePrice;
-                  const volumeDiscountPercent = wholesaleCartons >= 10 ? 5 : 0;
-                  const additionalSavings = wholesaleValue * (volumeDiscountPercent / 100);
-                  const finalInvoiceTotal = wholesaleValue - additionalSavings;
-                  const totalSaved = retailValue - finalInvoiceTotal;
-
-                  return (
-                    <div className="calc-results-sheet">
-                      <div className="calc-result-row"><span>Total Product Units:</span><span>{totalBottles} bottles</span></div>
-                      <div className="calc-result-row"><span>Retail Value:</span><span>₦{retailValue.toLocaleString()}</span></div>
-                      <div className="calc-result-row highlighted"><span>Wholesale Value (20% off):</span><span>₦{wholesaleValue.toLocaleString()}</span></div>
-                      {volumeDiscountPercent > 0 && (
-                        <div className="calc-result-row discount"><span>Extra 5% Volume Discount:</span><span>-₦{additionalSavings.toLocaleString()}</span></div>
-                      )}
-                      <div className="calc-result-row total-row"><span>Estimated Net Invoice:</span><span>₦{finalInvoiceTotal.toLocaleString()}</span></div>
-                      <div className="calc-result-savings">🎉 Total Distributor Savings: <strong>₦{totalSaved.toLocaleString()}</strong></div>
-                    </div>
-                  );
-                })()}
-
-                <div className="portal-actions-row">
-                  <button className="btn-round btn-outline" onClick={() => setPortalTab('select')}>
-                    Back to Select
-                  </button>
-                  <button 
-                    className="btn-round btn-purple btn-sync-po" 
-                    onClick={() => {
-                      setShowPortalModal(false);
-                      alert("Purchase order GLB2B-" + Math.floor(Math.random()*900000 + 100000) + " successfully compiled and synced to Greenlife ERP database!");
-                    }}
-                  >
-                    Sync PO to Greenlife ERP
-                  </button>
-                </div>
-              </div>
-            )}
-
-            <div className="portal-security-notice">
-              <ShieldCheck size={16} className="trust-icon-green" />
-              <span>Secure connection hosted by Greenlife Pharmaceuticals Commerce Network.</span>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Modal removed to bypass B2B price calculator */}
 
       <style>{`
         .detail-page {

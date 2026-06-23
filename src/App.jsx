@@ -114,7 +114,6 @@ function App() {
               </div>
               <div className="preview-details">
                 <h4 className="preview-name">{activeRedirectProduct}</h4>
-                <span className="preview-price">{activeRedirectProduct === 'Wellness Pregnancy' ? '₦12,500' : '₦18,500'}</span>
               </div>
             </div>
 

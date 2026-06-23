@@ -21,21 +21,21 @@ const CHAT_STEPS = {
     ]
   },
   recommend_pregnancy: {
-    message: "Period! 💅 Wellness Pregnancy has Folic Acid, L-Lysine & active Probiotics. It's ₦12,500 and literally covers all baby development basics. Click below to view details!",
+    message: "Period! 💅 Wellness Pregnancy has Folic Acid, L-Lysine & active Probiotics and literally covers all baby development basics. Click below to view details!",
     options: [
       { label: "View Wellness Pregnancy 💜", next: "view_pregnancy_action" },
       { label: "Ask something else 💬", next: "welcome" }
     ]
   },
   recommend_plus: {
-    message: "A absolute serve! 🧡 Pregnancy Plus comes with an extra daily softgel of Omega 3-6-9 fish oil. Total brain, eye, and birth weight booster for baby. It's ₦18,500. Highly recommend!",
+    message: "A absolute serve! 🧡 Pregnancy Plus comes with an extra daily softgel of Omega 3-6-9 fish oil. Total brain, eye, and birth weight booster for baby. Highly recommend!",
     options: [
       { label: "View Pregnancy Plus 🧡", next: "view_plus_action" },
       { label: "Ask something else 💬", next: "welcome" }
     ]
   },
   recommend_omg: {
-    message: "Period! 💚 OMG is formulated with cold-pressed coconut, avocado, grape seed, and rice bran oils + Omegas 3-5-6-7-9 and vitamins. Sourced for skin glow, energy, and weight management. It's ₦14,500. Click below to view details!",
+    message: "Period! 💚 OMG is formulated with cold-pressed coconut, avocado, grape seed, and rice bran oils + Omegas 3-5-6-7-9 and vitamins. Sourced for skin glow, energy, and weight management. Click below to view details!",
     options: [
       { label: "View OMG 💚", next: "view_omg_action" },
       { label: "Ask something else 💬", next: "welcome" }
@@ -51,9 +51,9 @@ const CHAT_STEPS = {
   discount: {
     message: "Say less! 🎟️ Use code **BESTIE10** at checkout for a clean 10% off your first order. We love a budget-friendly wellness queen. 👑",
     options: [
-      { label: "Shop Pregnancy (₦12,500) 💜", next: "shop_pregnancy_action" },
-      { label: "Shop Pregnancy Plus (₦18,500) 🧡", next: "shop_plus_action" },
-      { label: "Shop OMG (₦14,500) 💚", next: "shop_omg_action" },
+      { label: "Shop Pregnancy 💜", next: "shop_pregnancy_action" },
+      { label: "Shop Pregnancy Plus 🧡", next: "shop_plus_action" },
+      { label: "Shop OMG 💚", next: "shop_omg_action" },
       { label: "Main menu 🏠", next: "welcome" }
     ]
   },

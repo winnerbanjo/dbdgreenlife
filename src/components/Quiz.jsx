@@ -158,8 +158,7 @@ export default function Quiz({ onClose, onProductClick, onShopRedirect }) {
                 <p className="result-product-desc">{recommendation.desc}</p>
                 
                 <div className="result-meta">
-                  <div className="result-price">{recommendation.price}</div>
-                  <div className="result-size">{recommendation.size}</div>
+                  <div className="result-size" style={{ fontSize: '1rem', fontWeight: 700 }}>{recommendation.size}</div>
                 </div>
 
                 <div className="discount-box">
