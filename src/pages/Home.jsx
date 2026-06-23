@@ -311,27 +311,6 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         </div>
       </section>
 
-      {/* Midpage Promo Split Banner (Olly-style) */}
-      <section className="promo-split-section">
-        <div className="promo-split-grid">
-          <div className="promo-text-side">
-            <span className="promo-tagline-label">CLEAN WELLNESS</span>
-            <h2 className="promo-heading-title">Daily Nutrition That Fits Your Vibe</h2>
-            <p className="promo-desc-text">
-              We believe that everyday health shouldn't feel like a chore. Day by Day combines clean, pharmaceutical-grade formulas from Greenlife with active botanical oils and probiotics. No oversized chalky pills, just easy daily softgels designed to look great on your shelf and feel amazing in your body.
-            </p>
-            <a href="#products-section" className="btn-round btn-promo-action">
-              Explore Our Launch Trio
-            </a>
-          </div>
-          <div className="promo-image-side">
-            <img src="/assets/lifestyle-hands.jpg" alt="Day by Day Launch Trio in Hands" className="promo-split-img" />
-            <div className="promo-floating-badge animate-float">
-              <span>NEW</span>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Interactive Supplement Mixer Section (Highly Animated) */}
       <section className="mixer-section">
@@ -418,65 +397,6 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
                   <p>Toggle goals on the left to synthesize your perfect capsule match!</p>
                 </div>
               )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Lifestyle / Human Element Gallery */}
-      <section className="lifestyle-gallery-section">
-        <div className="container">
-          <div className="text-center">
-            <span className="lifestyle-badge">Day by Day Vibes</span>
-            <h2 className="lifestyle-title">Real People. Real Results. 💖</h2>
-            <p className="lifestyle-subtitle">
-              See how the Day by Day community integrates clean wellness into active gym routines, prenatal journeys, and daily travels.
-            </p>
-          </div>
-
-          <div className="lifestyle-grid">
-            <div className="lifestyle-card">
-              <div className="lifestyle-img-wrapper">
-                <img src="/assets/lifestyle-models.jpg" alt="Glow Besties" className="lifestyle-img" />
-                <div className="lifestyle-overlay">
-                  <span className="overlay-tag">Community</span>
-                  <h3 className="overlay-title">Glow Besties 💅</h3>
-                  <p className="overlay-desc">Sharing the wellness love and daily glow with your favorites.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="lifestyle-card">
-              <div className="lifestyle-img-wrapper">
-                <img src="/assets/lifestyle-gym.jpg" alt="Active Recovery" className="lifestyle-img" />
-                <div className="lifestyle-overlay">
-                  <span className="overlay-tag">Active</span>
-                  <h3 className="overlay-title">Active Energy ⚡</h3>
-                  <p className="overlay-desc">Keeping OMG softgels close for post-workout metabolic fuel.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="lifestyle-card">
-              <div className="lifestyle-img-wrapper">
-                <img src="/assets/lifestyle-hands.jpg" alt="Everyday Rituals" className="lifestyle-img" />
-                <div className="lifestyle-overlay">
-                  <span className="overlay-tag">Daily Ritual</span>
-                  <h3 className="overlay-title">Everyday Support 🤲</h3>
-                  <p className="overlay-desc">Premium formulations made to sit beautifully in your hands.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="lifestyle-card">
-              <div className="lifestyle-img-wrapper">
-                <img src="/assets/lifestyle-travel.jpg" alt="Ready to Jetset" className="lifestyle-img" />
-                <div className="lifestyle-overlay">
-                  <span className="overlay-tag">Travel</span>
-                  <h3 className="overlay-title">Ready to Jetset ✈️</h3>
-                  <p className="overlay-desc">Your ultimate wellness companions, packed and ready for the go.</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
