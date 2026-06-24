@@ -159,7 +159,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         name: 'OMG (Oh My Glow!) 💚',
         color: 'linear-gradient(135deg, #a3e4d7 0%, var(--color-accent-green) 100%)',
         badge: 'Everyday Glow & Metabolism',
-        price: '₦14,500'
+        size: '30 Softgels'
       });
     } else if (updated.brain && updated.iron) {
       setMixResult({
@@ -167,7 +167,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         name: 'Wellness Pregnancy Plus 🧡',
         color: 'linear-gradient(135deg, var(--color-pregplus-secondary) 0%, var(--color-pregplus-primary) 100%)',
         badge: 'Premium Prenatal Support + DHA',
-        price: '₦18,500'
+        size: '60 Softgels (Twin Pack)'
       });
     } else {
       setMixResult({
@@ -175,7 +175,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         name: 'Wellness Pregnancy 💜',
         color: 'linear-gradient(135deg, var(--color-preg-secondary) 0%, var(--color-preg-primary) 100%)',
         badge: 'Complete Essential Prenatal Care',
-        price: '₦12,500'
+        size: '30 Softgels'
       });
     }
   };
@@ -386,10 +386,12 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
               Explore Our Launch Trio
             </a>
           </div>
-          <div className="promo-image-side">
-            <img src="/assets/magical-product.png" alt="Day by Day Magical Wellness Supplement" className="promo-split-img" />
-            <div className="promo-floating-badge animate-float">
-              <span>NEW</span>
+          <div className="promo-image-side promo-graphics-container">
+            <div className="promo-graphics-glow"></div>
+            <div className="promo-box-stack">
+              <img src="/assets/pregnancy-nobg.png" alt="Wellness Pregnancy Box" className="promo-stack-img img-preg" />
+              <img src="/assets/omg-nobg.png" alt="OMG Everyday Wellness Box" className="promo-stack-img img-omg" />
+              <img src="/assets/pregnancy-plus-nobg.png" alt="Wellness Pregnancy Plus Box" className="promo-stack-img img-plus" />
             </div>
           </div>
         </div>
@@ -464,7 +466,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
                   <span className="m-res-badge">{mixResult.badge}</span>
                   <h3 className="m-res-title">{mixResult.name}</h3>
                   <div className="m-res-footer">
-                    <span className="m-res-price">{mixResult.price}</span>
+                    <span className="m-res-size">{mixResult.size}</span>
                     <button 
                       className="btn-round btn-purple btn-mixer-action"
                       onClick={() => onProductClick(mixResult.id)}
@@ -552,12 +554,12 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         }
         
         .hero-title {
-          font-size: 4rem;
+          font-size: 4.5rem;
           line-height: 1.1;
           color: var(--color-text-dark);
           margin-bottom: 20px;
           font-family: var(--font-serif);
-          font-weight: 400;
+          font-weight: 700;
         }
         
         .hero-title .highlight {
@@ -898,10 +900,10 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           align-items: center;
         }
         
-        .m-res-price {
-          font-size: 1.2rem;
-          font-weight: 800;
-          color: var(--color-text-dark);
+        .m-res-size {
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: var(--color-text-muted);
         }
         
         .btn-mixer-action {
@@ -1015,12 +1017,12 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         }
         
         .promo-text-side {
-          background-color: #8c42b5;
+          background-color: var(--color-white);
           padding: 60px 80px;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          color: var(--color-white);
+          color: var(--color-text-dark);
         }
         
         .promo-tagline-label {
@@ -1028,7 +1030,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           font-weight: 700;
           letter-spacing: 0.15em;
           text-transform: uppercase;
-          color: var(--color-pregplus-secondary);
+          color: var(--color-preg-primary);
           margin-bottom: 16px;
         }
         
@@ -1037,25 +1039,25 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           font-family: var(--font-serif);
           font-weight: 400;
           line-height: 1.1;
-          color: var(--color-white);
+          color: var(--color-text-dark);
           margin-bottom: 24px;
         }
         
         .promo-desc-text {
           font-size: 1.15rem;
           line-height: 1.6;
-          color: rgba(255, 255, 255, 0.9);
+          color: var(--color-text-muted);
           margin-bottom: 36px;
         }
         
         .btn-promo-action {
-          background-color: var(--color-white);
-          color: #8c42b5;
+          background-color: var(--color-preg-primary);
+          color: var(--color-white);
           font-weight: 700;
           padding: 14px 32px;
           box-shadow: var(--shadow-sm);
           width: fit-content;
-          border: 2px solid var(--color-white);
+          border: 2px solid var(--color-preg-primary);
           border-radius: var(--radius-full);
           display: inline-flex;
           align-items: center;
@@ -1065,46 +1067,80 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         
         .btn-promo-action:hover {
           background-color: transparent;
-          color: var(--color-white);
-          border-color: var(--color-white);
+          color: var(--color-preg-primary);
+          border-color: var(--color-preg-primary);
           transform: translateY(-3px);
         }
         
         .promo-image-side {
           position: relative;
           overflow: hidden;
-        }
-        
-        .promo-split-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .promo-split-grid:hover .promo-split-img {
-          transform: scale(1.03);
-        }
-        
-        .promo-floating-badge {
-          position: absolute;
-          top: 30px;
-          right: 40px;
-          width: 80px;
-          height: 80px;
-          border-radius: var(--radius-full);
-          background-color: #d8562a;
-          color: var(--color-white);
+          background-color: #faf6ff;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-weight: 800;
-          font-size: 1.1rem;
-          letter-spacing: 0.05em;
-          box-shadow: var(--shadow-md);
-          border: 2px solid var(--color-white);
-          z-index: 5;
+        }
+
+        .promo-graphics-glow {
+          position: absolute;
+          width: 250px;
+          height: 250px;
+          border-radius: 50%;
+          background-color: var(--color-pregplus-secondary);
+          filter: blur(50px);
+          opacity: 0.3;
+          z-index: 1;
+          animation: pulseGlow 6s ease-in-out infinite alternate;
+        }
+
+        .promo-box-stack {
+          position: relative;
+          width: 100%;
+          height: 380px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 2;
+        }
+
+        .promo-stack-img {
+          position: absolute;
+          max-height: 220px;
+          object-fit: contain;
+          filter: drop-shadow(0 15px 25px rgba(110,100,120,0.15));
+          transition: transform 0.4s ease;
+        }
+
+        .img-preg {
+          left: 12%;
+          transform: rotate(-10deg) translateY(-10px);
+          z-index: 2;
+          animation: bobUp 4s ease-in-out infinite;
+        }
+
+        .img-omg {
+          z-index: 4;
+          transform: translateY(15px);
+          animation: bobUp 3.5s ease-in-out infinite 0.5s;
+        }
+
+        .img-plus {
+          right: 12%;
+          transform: rotate(12deg) translateY(-5px);
+          z-index: 3;
+          animation: bobUp 4.5s ease-in-out infinite 1s;
+        }
+
+        .promo-box-stack:hover .img-preg {
+          transform: rotate(-15deg) translateX(-15px) translateY(-10px);
+        }
+
+        .promo-box-stack:hover .img-omg {
+          transform: scale(1.05) translateY(5px);
+        }
+
+        .promo-box-stack:hover .img-plus {
+          transform: rotate(18deg) translateX(15px) translateY(-5px);
         }
 
         /* Responsive Layouts */
@@ -1126,6 +1162,18 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           .promo-image-side {
             height: 360px;
           }
+          .promo-box-stack {
+            height: 320px;
+          }
+          .promo-stack-img {
+            max-height: 170px;
+          }
+          .img-preg {
+            left: 5%;
+          }
+          .img-plus {
+            right: 5%;
+          }
           .promo-floating-badge {
             width: 70px;
             height: 70px;
@@ -1144,8 +1192,8 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
             margin-right: auto;
           }
           .hero-title {
-            font-size: 2.2rem;
-            line-height: 1.2;
+            font-size: 2.8rem;
+            line-height: 1.15;
           }
           .hero-subtitle {
             margin-left: auto;
