@@ -106,7 +106,7 @@ export default function ScienceSection() {
       <style>{`
         .science-section {
           padding: 80px 0;
-          background: linear-gradient(180deg, var(--color-bg-base) 0%, var(--color-preg-light) 100%);
+          background: linear-gradient(180deg, #ffffff 0%, #f4f7fa 100%);
           border-top: 1px solid var(--color-border);
           border-bottom: 1px solid var(--color-border);
         }

@@ -82,7 +82,7 @@ export default function BenefitGrid({ activeBenefit, onSelectBenefit }) {
       <style>{`
         .benefit-section {
           padding: 80px 0 40px;
-          background-color: var(--color-bg-base);
+          background-color: var(--color-white);
         }
         
         .section-header {
