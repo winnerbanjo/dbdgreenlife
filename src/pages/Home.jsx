@@ -55,6 +55,36 @@ const productsData = [
       'Supports healthy birth weight & gestation length',
       'Provides Inositol for glycemic stability'
     ]
+  },
+  {
+    id: 'proman',
+    title: 'PROMAN',
+    subtitle: 'Dual Pack: 30 Multivitamin Softgels + 30 High-Potency Omega 3-5-6-7-9 Softgels for men\'s health support.',
+    type: 'Men\'s Vitality',
+    image: '/assets/proman.png',
+    theme: 'blue',
+    size: '60 Softgels (Twin Pack)',
+    benefitType: 'mens-health',
+    bullets: [
+      'Boosts daily energy, stamina, and physical endurance',
+      'Enhances mental focus, cognitive drive, and clarity',
+      'Supports overall immune system and cardiovascular wellbeing'
+    ]
+  },
+  {
+    id: 'prowoman-young',
+    title: 'PROWOMAN YOUNG',
+    subtitle: 'Dual Pack: 30 Multivitamin Softgels + 30 High-Potency Omega 3-5-6-7-9 Softgels containing Safflower Oil.',
+    type: 'Women\'s Wellness',
+    image: '/assets/prowoman-young.png',
+    theme: 'pink',
+    size: '60 Softgels (Twin Pack)',
+    benefitType: 'womens-health',
+    bullets: [
+      'Supports vibrant skin glow, healthy hair, and nails',
+      'Promotes balanced, comfortable menstrual cycles',
+      'Optimizes daily energy, mood, and overall wellbeing'
+    ]
   }
 ];
 
@@ -311,6 +341,27 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         </div>
       </section>
 
+      {/* Midpage Promo Split Banner (Olly-style) */}
+      <section className="promo-split-section">
+        <div className="promo-split-grid">
+          <div className="promo-text-side">
+            <span className="promo-tagline-label">CLEAN WELLNESS</span>
+            <h2 className="promo-heading-title">Daily Nutrition That Fits Your Vibe</h2>
+            <p className="promo-desc-text">
+              We believe that everyday health shouldn't feel like a chore. Day by Day combines clean, pharmaceutical-grade formulas from Greenlife with active botanical oils and probiotics. No oversized chalky pills, just easy daily softgels designed to look great on your shelf and feel amazing in your body.
+            </p>
+            <a href="#products-section" className="btn-round btn-promo-action">
+              Explore Our Launch Trio
+            </a>
+          </div>
+          <div className="promo-image-side">
+            <img src="/assets/products-collage.png" alt="Day by Day Launch Trio Collage" className="promo-split-img" />
+            <div className="promo-floating-badge animate-float">
+              <span>NEW</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Interactive Supplement Mixer Section (Highly Animated) */}
       <section className="mixer-section">
@@ -471,6 +522,8 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           line-height: 1.1;
           color: var(--color-text-dark);
           margin-bottom: 20px;
+          font-family: var(--font-serif);
+          font-weight: 400;
         }
         
         .hero-title .highlight {
@@ -631,6 +684,8 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         .products-title {
           font-size: 2rem;
           color: var(--color-text-dark);
+          font-family: var(--font-serif);
+          font-weight: 400;
         }
         
         .btn-clear-filter {
@@ -680,6 +735,8 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           font-size: 2.25rem;
           color: var(--color-text-dark);
           margin-bottom: 12px;
+          font-family: var(--font-serif);
+          font-weight: 400;
         }
         
         .mixer-text {
@@ -857,6 +914,8 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           font-size: 2.25rem;
           color: var(--color-pregplus-dark);
           margin-bottom: 12px;
+          font-family: var(--font-serif);
+          font-weight: 400;
         }
         
         .quiz-callout-text {
@@ -934,8 +993,8 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         
         .promo-heading-title {
           font-size: 3rem;
-          font-family: var(--font-heading);
-          font-weight: 800;
+          font-family: var(--font-serif);
+          font-weight: 400;
           line-height: 1.1;
           color: var(--color-white);
           margin-bottom: 24px;

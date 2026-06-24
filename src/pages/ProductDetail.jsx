@@ -109,6 +109,72 @@ const productsDetailData = {
       { author: 'Ngozi E.', rating: 5, date: '3 days ago', title: 'Amazing for my baby\'s growth', content: 'My OB-GYN recommended I take DHA, and this twin pack makes it so convenient. I don\'t have to buy separate fish oil bottles. No fishy aftertaste!' },
       { author: 'Amara K.', rating: 5, date: '3 weeks ago', title: 'Premium quality!', content: 'Love the sunset orange branding and the dual capsule concept. Feel energetic and my skin looks great too. Greenlife never disappoints.' }
     ]
+  },
+  proman: {
+    id: 'proman',
+    title: 'PROMAN',
+    subtitle: 'Dual Pack: 30 Multivitamin Softgels + 30 High-Potency Omega 3-5-6-7-9 Softgels for men\'s health support.',
+    type: 'Men\'s Vitality',
+    image: '/assets/proman.png',
+    theme: 'blue',
+    size: '60 Softgels (Twin Pack)',
+    tagline: 'High-potency multivitamin + Omega 3-5-6-7-9 twin pack for men.',
+    bullets: [
+      'Boosts daily energy, stamina, and physical endurance',
+      'Enhances mental focus, cognitive drive, and clarity',
+      'Supports overall immune system and cardiovascular wellbeing'
+    ],
+    ingredients: [
+      { name: 'Coenzyme Q10', dose: '15 mg', desc: 'Critical for cellular energy production, mitochondrial health, and cardiovascular stamina.' },
+      { name: 'Ginseng Extract', dose: '20 mg', desc: 'A legendary botanical adaptogen that boosts physical endurance, focus, and reduces daily fatigue.' },
+      { name: 'Amino Acid Complex', dose: '25 mg', desc: 'Supports muscular recovery, nitric oxide synthesis, healthy circulation, and cellular energy.' },
+      { name: 'Active Omega Blend', dose: '350 mg', desc: 'Comprehensive fatty acid spectrum to protect heart function, brain cells, and lower cellular inflammation.' },
+      { name: 'Immune & Vitality Minerals', dose: '12 mg', desc: 'Crucial trace elements for male reproductive health, testosterone synthesis, and antioxidant defenses.' },
+      { name: 'Complete Vitamin B-Complex', dose: 'Clinical Dose', desc: 'Essential for metabolic energy conversion, nerve conduction, and cognitive focus.' }
+    ],
+    howToUse: 'Take 2 softgels daily (1 black multivitamin softgel + 1 yellow Omega softgel) with a meal. Swallow whole with a full glass of water.',
+    faqs: [
+      { q: 'What is the benefit of the PROMAN Twin Pack?', a: 'PROMAN is a complete male vitality solution combining a premium multivitamin with a high-potency Omega 3-5-6-7-9 softgel. Instead of buying multiple bottles, you get full-spectrum energy, immune, and cognitive support in one box.' },
+      { q: 'Why does PROMAN contain CoQ10 and Ginseng?', a: 'CoQ10 is essential for mitochondrial energy and heart health, while Ginseng is a natural adaptogen that helps the body adapt to stress and enhances stamina and cognitive drive.' },
+      { q: 'Are these softgels easy to digest?', a: 'Yes! Sourced under Greenlife standards, our softgels are designed with premium carrier oils (including Lecithin and Omegas) for stomach-friendly, rapid absorption without nausea.' }
+    ],
+    reviews: [
+      { author: 'Emeka O.', rating: 5, date: '1 week ago', title: 'Excellent daily stamina!', content: 'I\'ve been taking the PROMAN twin pack for a month. The difference in my midday energy and mental focus is noticeable. No more afternoon slumps, and it\'s easy on the stomach.' },
+      { author: 'Kabir Y.', rating: 5, date: '2 weeks ago', title: 'Very premium packaging and results', content: 'Having the multivitamins and Omega softgels in one twin pack is super convenient. Sourced from Greenlife, so I trust the quality.' }
+    ]
+  },
+  'prowoman-young': {
+    id: 'prowoman-young',
+    title: 'PROWOMAN YOUNG',
+    subtitle: 'Dual Pack: 30 Multivitamin Softgels + 30 High-Potency Omega 3-5-6-7-9 Softgels containing Safflower Oil.',
+    type: 'Women\'s Wellness',
+    image: '/assets/prowoman-young.png',
+    theme: 'pink',
+    size: '60 Softgels (Twin Pack)',
+    tagline: 'Advanced multivitamin + Omega 3-5-6-7-9 twin pack for active women.',
+    bullets: [
+      'Supports vibrant skin glow, healthy hair, and nails',
+      'Promotes balanced, comfortable menstrual cycles',
+      'Optimizes daily energy, mood, and overall wellbeing'
+    ],
+    ingredients: [
+      { name: 'Evening Primrose & Borage Oils', dose: '150 mg', desc: 'Rich in GLA (Gamma-Linolenic Acid) to support hormonal balance, skin elasticity, and ease menstrual cycles.' },
+      { name: 'Safflower Oil', dose: '100 mg', desc: 'Rich in linoleic acid to help lock in skin moisture, promote hair vitality, and maintain healthy metabolism.' },
+      { name: 'Glow & Hair Complex', dose: '30 mg', desc: 'Amino acids (like L-Cysteine) and Aloe Vera extract that promote keratin production for stronger hair, nails, and a radiant complexion.' },
+      { name: 'Active Omega Blend', dose: '350 mg', desc: 'Comprehensive fatty acid spectrum (Omegas 3-5-6-7-9) to support heart health, mental wellbeing, and cellular skin glow.' },
+      { name: 'Essential Blood & Cell Care', dose: '600 mcg', desc: 'Folic acid and Iron blend that maintains healthy red blood cell production, cellular oxygenation, and supports female reproductive wellness.' },
+      { name: 'Energy & Mood Support', dose: 'Clinical Dose', desc: 'A full spectrum of B-vitamins to help combat fatigue, support nervous health, and keep mood balanced.' }
+    ],
+    howToUse: 'Take 2 softgels daily (1 pink multivitamin softgel + 1 yellow Omega softgel) with a meal. Swallow whole with a full glass of water.',
+    faqs: [
+      { q: 'What makes PROWOMAN YOUNG unique?', a: 'It combines a highly targeted young women\'s multivitamin (with Safflower Oil, Evening Primrose, and Aloe Vera) with a full-spectrum Omega 3-5-6-7-9 softgel. It specifically targets hormonal balance, skin glow, and active vitality.' },
+      { q: 'How does it help with menstrual cycles?', a: 'The inclusion of Evening Primrose Oil and Borage Oil provides high levels of Gamma-Linolenic Acid (GLA), which plays a critical role in managing hormonal balance and reducing cyclical bloating or cramps.' },
+      { q: 'Is it NAFDAC registered?', a: 'Yes! Like all Greenlife Day by Day products, it is fully registered and approved by NAFDAC, ensuring highest clinical safety standards.' }
+    ],
+    reviews: [
+      { author: 'Zainab A.', rating: 5, date: '5 days ago', title: 'My skin is glowing!', content: 'I\'ve tried many multivitamins, but the Safflower and Evening Primrose oils in this one make it stand out. My cycles have been smoother, and my skin has a beautiful natural glow!' },
+      { author: 'Chiamaka U.', rating: 5, date: '3 weeks ago', title: 'Highly recommend this twin pack!', content: 'I love the pink packaging and the dual-capsule format. It\'s so easy to take and has helped me feel active and balanced all month long.' }
+    ]
   }
 };
 
@@ -117,9 +183,7 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
   const isPurple = product.theme === 'purple';
   const isGreen = product.theme === 'green';
   
-  let themeName = 'theme-purple';
-  if (product.theme === 'orange') themeName = 'theme-orange';
-  if (product.theme === 'green') themeName = 'theme-green';
+  let themeName = `theme-${product.theme || 'purple'}`;
 
   const [selectedIngredient, setSelectedIngredient] = useState(null);
   const [showPortalModal, setShowPortalModal] = useState(false);
@@ -147,6 +211,16 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
     routineTitle = 'Your Premium Travel Companion';
     routineDesc = 'Never miss a day of cognitive prenatal care. The Pregnancy Plus twin pack is ready to slide into your handbag or carry-on, keeping you and your baby supported wherever you go.';
     routineTag = 'On the Go';
+  } else if (productId === 'proman') {
+    routineImage = '/assets/lifestyle-gym.jpg';
+    routineTitle = 'Fuel Your Daily Performance';
+    routineDesc = 'Engineered for men on the move. Pair your daily PROMAN multivitamin and Omega softgels with your morning routine or post-workout fuel to sustain focus and drive all day.';
+    routineTag = 'Male Vitality';
+  } else if (productId === 'prowoman-young') {
+    routineImage = '/assets/lifestyle-models.jpg';
+    routineTitle = 'Share the Daily Glow';
+    routineDesc = 'Formulated for active, modern women. Safflower Oil and Evening Primrose Oil keep your skin hydrated and hair vibrant, helping you feel balanced and glowing, inside and out.';
+    routineTag = 'Skin & Balance';
   }
 
   return (
@@ -273,7 +347,7 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
           {/* Supplement Facts Box */}
           <div className="supplement-facts-box">
             <h3 className="facts-header-title">Supplement Facts</h3>
-            <p className="facts-servings">Serving Size: {productId === 'pregnancy-plus' ? '2 Softgels Daily' : '1 Softgel Daily'}</p>
+            <p className="facts-servings">Serving Size: {['pregnancy-plus', 'proman', 'prowoman-young'].includes(productId) ? '2 Softgels Daily' : '1 Softgel Daily'}</p>
             <p className="facts-servings border-bottom">Servings Per Container: 30</p>
             
             <div className="facts-row header-row">
@@ -317,6 +391,30 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
                 <div className="facts-row"><span>Flaxseed & Olive Oil (Omega 6-9)</span><span>150 mg (†)</span></div>
                 <div className="facts-row"><span>L-Lysine & L-Arginine Complex</span><span>10 mg (†)</span></div>
                 <div className="facts-row last-row"><span>Inositol</span><span>5 mg (†)</span></div>
+              </>
+            )}
+
+            {productId === 'proman' && (
+              <>
+                <div className="facts-row"><span>Coenzyme Q10</span><span>15 mg (†)</span></div>
+                <div className="facts-row"><span>Ginseng Extract</span><span>20 mg (†)</span></div>
+                <div className="facts-row"><span>L-Arginine & L-Carnitine Complex</span><span>25 mg (†)</span></div>
+                <div className="facts-row"><span>Omega 3-5-6-7-9 Complex</span><span>350 mg (†)</span></div>
+                <div className="facts-row"><span>Zinc & Selenium</span><span>12 mg (100%)</span></div>
+                <div className="facts-row"><span>Vitamin B-Complex (B1-B12)</span><span>Clinical Dose (100%)</span></div>
+                <div className="facts-row last-row"><span>Vitamin A, C, D3, E</span><span>Daily Balance (100%)</span></div>
+              </>
+            )}
+
+            {productId === 'prowoman-young' && (
+              <>
+                <div className="facts-row"><span>Evening Primrose & Borage Oils</span><span>150 mg (†)</span></div>
+                <div className="facts-row"><span>Safflower Oil</span><span>100 mg (†)</span></div>
+                <div className="facts-row"><span>L-Cysteine & Aloe Vera Complex</span><span>30 mg (†)</span></div>
+                <div className="facts-row"><span>Omega 3-5-6-7-9 Complex</span><span>350 mg (†)</span></div>
+                <div className="facts-row"><span>Folic Acid & Iron</span><span>600 mcg / 18 mg (150% / 100%)</span></div>
+                <div className="facts-row"><span>Complete Vitamin B-Complex</span><span>Clinical Dose (100%)</span></div>
+                <div className="facts-row last-row"><span>Vitamin A, C, D3, E, K</span><span>Daily Balance (100%)</span></div>
               </>
             )}
 
@@ -593,12 +691,16 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
         .theme-purple .detail-type-badge { background-color: var(--color-preg-light); color: var(--color-preg-primary); }
         .theme-orange .detail-type-badge { background-color: var(--color-pregplus-light); color: var(--color-pregplus-primary); }
         .theme-green .detail-type-badge { background-color: var(--color-accent-green-light); color: var(--color-accent-green); }
+        .theme-blue .detail-type-badge { background-color: var(--color-blue-light); color: var(--color-blue-primary); }
+        .theme-pink .detail-type-badge { background-color: var(--color-pink-light); color: var(--color-pink-primary); }
         
         .detail-title {
           font-size: 3rem;
           color: var(--color-text-dark);
           line-height: 1.1;
           margin-bottom: 8px;
+          font-family: var(--font-serif);
+          font-weight: 400;
         }
         
         .detail-tagline {
@@ -610,6 +712,8 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
         .theme-purple .detail-tagline { color: var(--color-preg-primary); }
         .theme-orange .detail-tagline { color: var(--color-pregplus-primary); }
         .theme-green .detail-tagline { color: var(--color-accent-green); }
+        .theme-blue .detail-tagline { color: var(--color-blue-accent); }
+        .theme-pink .detail-tagline { color: var(--color-pink-accent); }
         
         .detail-subtitle {
           font-size: 1.05rem;
@@ -649,6 +753,8 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
         .theme-purple .bullet-check-icon { background-color: var(--color-preg-light); color: var(--color-preg-primary); }
         .theme-orange .bullet-check-icon { background-color: var(--color-pregplus-light); color: var(--color-pregplus-primary); }
         .theme-green .bullet-check-icon { background-color: var(--color-accent-green-light); color: var(--color-accent-green); }
+        .theme-blue .bullet-check-icon { background-color: var(--color-blue-light); color: var(--color-blue-primary); }
+        .theme-pink .bullet-check-icon { background-color: var(--color-pink-light); color: var(--color-pink-primary); }
         
         /* Purchase Area */
         .detail-purchase-row {
@@ -690,6 +796,10 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
         .theme-orange .btn-buy-now:hover { background-color: var(--color-pregplus-dark); }
         .theme-green .btn-buy-now { background-color: var(--color-accent-green); color: var(--color-white); }
         .theme-green .btn-buy-now:hover { background-color: #2c855a; }
+        .theme-blue .btn-buy-now { background-color: var(--color-blue-primary); color: var(--color-white); }
+        .theme-blue .btn-buy-now:hover { background-color: var(--color-blue-dark); }
+        .theme-pink .btn-buy-now { background-color: var(--color-pink-primary); color: var(--color-white); }
+        .theme-pink .btn-buy-now:hover { background-color: var(--color-pink-dark); }
         
         .detail-trust-badges {
           display: flex;
@@ -756,6 +866,8 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
         .theme-purple .ing-dose { color: var(--color-preg-primary); }
         .theme-orange .ing-dose { color: var(--color-pregplus-primary); }
         .theme-green .ing-dose { color: var(--color-accent-green); }
+        .theme-blue .ing-dose { color: var(--color-blue-primary); }
+        .theme-pink .ing-dose { color: var(--color-pink-primary); }
         
         .ing-short-desc {
           font-size: 0.85rem;
@@ -775,6 +887,8 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
         .theme-purple .ing-learn-more { color: var(--color-preg-primary); }
         .theme-orange .ing-learn-more { color: var(--color-pregplus-primary); }
         .theme-green .ing-learn-more { color: var(--color-accent-green); }
+        .theme-blue .ing-learn-more { color: var(--color-blue-primary); }
+        .theme-pink .ing-learn-more { color: var(--color-pink-primary); }
         
         .ingredient-card:hover, .ingredient-card.active {
           transform: translateY(-5px);
@@ -795,6 +909,16 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
           border-color: var(--color-accent-green);
         }
         
+        .theme-blue .ingredient-card:hover, .theme-blue .ingredient-card.active {
+          background-color: var(--color-blue-light);
+          border-color: var(--color-blue-primary);
+        }
+        
+        .theme-pink .ingredient-card:hover, .theme-pink .ingredient-card.active {
+          background-color: var(--color-pink-light);
+          border-color: var(--color-pink-primary);
+        }
+        
         /* Ingredient detail panel */
         .ingredient-detail-panel {
           border-radius: var(--radius-md);
@@ -808,6 +932,13 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
         .theme-purple .ingredient-detail-panel { background-color: var(--color-preg-light); border-color: var(--color-preg-secondary); }
         .theme-orange .ingredient-detail-panel { background-color: var(--color-pregplus-light); border-color: var(--color-pregplus-secondary); }
         .theme-green .ingredient-detail-panel { background-color: var(--color-accent-green-light); border-color: var(--color-border); }
+        .theme-blue .ingredient-detail-panel { background-color: var(--color-blue-light); border-color: var(--color-blue-secondary); }
+        .theme-pink .ingredient-detail-panel { background-color: var(--color-pink-light); border-color: var(--color-pink-secondary); }
+
+        .section-title, .timeline-title {
+          font-family: var(--font-serif);
+          font-weight: 400;
+        }
         
         .detail-panel-icon {
           font-size: 1.8rem;
@@ -837,6 +968,8 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
           margin-bottom: 24px;
           border-bottom: 2px solid var(--color-border);
           padding-bottom: 10px;
+          font-family: var(--font-serif);
+          font-weight: 400;
         }
         
         .usage-card {
@@ -882,6 +1015,8 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
         .theme-purple .use-feat-bullet { background-color: var(--color-preg-light); color: var(--color-preg-primary); }
         .theme-orange .use-feat-bullet { background-color: var(--color-pregplus-light); color: var(--color-pregplus-primary); }
         .theme-green .use-feat-bullet { background-color: var(--color-accent-green-light); color: var(--color-accent-green); }
+        .theme-blue .use-feat-bullet { background-color: var(--color-blue-light); color: var(--color-blue-primary); }
+        .theme-pink .use-feat-bullet { background-color: var(--color-pink-light); color: var(--color-pink-primary); }
         
         .faq-item {
           margin-bottom: 16px;
@@ -907,6 +1042,8 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
         .theme-purple .faq-icon { color: var(--color-preg-primary); }
         .theme-orange .faq-icon { color: var(--color-pregplus-primary); }
         .theme-green .faq-icon { color: var(--color-accent-green); }
+        .theme-blue .faq-icon { color: var(--color-blue-primary); }
+        .theme-pink .faq-icon { color: var(--color-pink-primary); }
         
         .faq-answer {
           font-size: 0.88rem;
@@ -978,6 +1115,8 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
         .theme-purple .author-avatar { background-color: var(--color-preg-light); color: var(--color-preg-primary); }
         .theme-orange .author-avatar { background-color: var(--color-pregplus-light); color: var(--color-pregplus-primary); }
         .theme-green .author-avatar { background-color: var(--color-accent-green-light); color: var(--color-accent-green); }
+        .theme-blue .author-avatar { background-color: var(--color-blue-light); color: var(--color-blue-primary); }
+        .theme-pink .author-avatar { background-color: var(--color-pink-light); color: var(--color-pink-primary); }
         
         .review-author {
           font-size: 0.95rem;
@@ -1169,11 +1308,21 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
           color: var(--color-accent-green);
         }
         
+        .theme-blue .routine-badge-tag {
+          color: var(--color-blue-primary);
+        }
+        
+        .theme-pink .routine-badge-tag {
+          color: var(--color-pink-primary);
+        }
+        
         .routine-title-large {
           font-size: 2.25rem;
           color: var(--color-text-dark);
           margin-bottom: 20px;
           line-height: 1.2;
+          font-family: var(--font-serif);
+          font-weight: 400;
         }
         
         .routine-text-desc {
@@ -1210,6 +1359,14 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
         
         .theme-green .routine-bullet-pt .bullet-dot {
           color: var(--color-accent-green);
+        }
+        
+        .theme-blue .routine-bullet-pt .bullet-dot {
+          color: var(--color-blue-primary);
+        }
+        
+        .theme-pink .routine-bullet-pt .bullet-dot {
+          color: var(--color-pink-primary);
         }
         
         .routine-image-wrapper {

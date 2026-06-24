@@ -24,6 +24,20 @@ const benefits = [
     icon: Activity,
   },
   {
+    id: 'mens-health',
+    label: "Men's Vitality",
+    color: 'blue',
+    desc: 'Energy & Focus Support',
+    icon: Activity,
+  },
+  {
+    id: 'womens-health',
+    label: "Women's Wellness",
+    color: 'pink',
+    desc: 'Balance & Skin Glow',
+    icon: Sparkles,
+  },
+  {
     id: 'immune',
     label: 'Immune Support',
     color: 'yellow',
@@ -105,7 +119,7 @@ export default function BenefitGrid({ activeBenefit, onSelectBenefit }) {
         /* Benefit Grid */
         .benefit-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
           gap: 24px;
         }
         
@@ -202,6 +216,30 @@ export default function BenefitGrid({ activeBenefit, onSelectBenefit }) {
         }
         .benefit-card.yellow.active .benefit-icon-wrapper {
           background-color: var(--color-accent-yellow);
+          color: var(--color-white);
+        }
+        
+        .benefit-card.blue .benefit-icon-wrapper {
+          background-color: var(--color-blue-light);
+          color: var(--color-blue-primary);
+        }
+        .benefit-card.blue:hover, .benefit-card.blue.active {
+          border-color: var(--color-blue-primary);
+        }
+        .benefit-card.blue.active .benefit-icon-wrapper {
+          background-color: var(--color-blue-primary);
+          color: var(--color-white);
+        }
+        
+        .benefit-card.pink .benefit-icon-wrapper {
+          background-color: var(--color-pink-light);
+          color: var(--color-pink-primary);
+        }
+        .benefit-card.pink:hover, .benefit-card.pink.active {
+          border-color: var(--color-pink-primary);
+        }
+        .benefit-card.pink.active .benefit-icon-wrapper {
+          background-color: var(--color-pink-primary);
           color: var(--color-white);
         }
         

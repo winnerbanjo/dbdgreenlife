@@ -2,8 +2,7 @@ import React from 'react';
 import { Pill, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function ProductCard({ product, onViewDetails, onShopNow }) {
-  const isPurple = product.theme === 'purple';
-  const themeClass = isPurple ? 'theme-purple' : 'theme-orange';
+  const themeClass = `theme-${product.theme || 'purple'}`;
   
   return (
     <div className={`product-card ${themeClass}`}>
@@ -55,7 +54,7 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
             </button>
             
             <button 
-              className={`btn-round ${isPurple ? 'btn-purple' : 'btn-orange'} btn-card-shop`}
+              className={`btn-round btn-${product.theme || 'purple'} btn-card-shop`}
               onClick={onShopNow}
             >
               Shop
@@ -90,6 +89,8 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         
         .product-card.theme-purple::before { background-color: var(--color-preg-primary); }
         .product-card.theme-orange::before { background-color: var(--color-pregplus-primary); }
+        .product-card.theme-blue::before { background-color: var(--color-blue-primary); }
+        .product-card.theme-pink::before { background-color: var(--color-pink-primary); }
         
         /* Card Badges */
         .card-badge {
@@ -151,6 +152,16 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
           background-color: var(--color-pregplus-light);
           border-color: var(--color-pregplus-secondary);
         }
+
+        .product-card.theme-blue:hover {
+          background-color: var(--color-blue-light);
+          border-color: var(--color-blue-secondary);
+        }
+
+        .product-card.theme-pink:hover {
+          background-color: var(--color-pink-light);
+          border-color: var(--color-pink-secondary);
+        }
         
         .product-card:hover .product-image {
           transform: scale(1.08) translateY(-5px);
@@ -175,6 +186,14 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         
         .theme-orange .brand-label {
           color: var(--color-pregplus-accent);
+        }
+
+        .theme-blue .brand-label {
+          color: var(--color-blue-accent);
+        }
+
+        .theme-pink .brand-label {
+          color: var(--color-pink-accent);
         }
         
         .product-title {
@@ -223,6 +242,8 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         
         .theme-purple .bullet-icon { color: var(--color-preg-primary); }
         .theme-orange .bullet-icon { color: var(--color-pregplus-primary); }
+        .theme-blue .bullet-icon { color: var(--color-blue-primary); }
+        .theme-pink .bullet-icon { color: var(--color-pink-primary); }
         
         /* Action Row */
         .card-action-row {
