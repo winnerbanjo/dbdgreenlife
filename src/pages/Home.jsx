@@ -247,7 +247,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         {/* Wavy Divider */}
         <div className="hero-wave">
           <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,1120,120C960,120,800,120,800,120C640,120,480,120,480,120C320,120,160,120,80,120L0,120Z" fill="#fafaf9"></path>
+            <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,1120,120C960,120,800,120,800,120C640,120,480,120,480,120C320,120,160,120,80,120L0,120Z" fill="#f5effa"></path>
           </svg>
         </div>
       </section>
@@ -311,6 +311,22 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
               <h3 className="carousel-item-title">WELLNESS PREGNANCY PLUS</h3>
               <p className="carousel-item-subtitle">Advanced Prenatal Twin Pack*</p>
             </div>
+            <div className="carousel-card" onClick={() => onProductClick('proman')}>
+              <div className="carousel-img-wrapper">
+                <div className="carousel-img-backdrop backdrop-blue"></div>
+                <img src="/assets/proman.png" alt="PROMAN Blue Box" className="carousel-item-img" />
+              </div>
+              <h3 className="carousel-item-title">PROMAN MEN'S VITALITY</h3>
+              <p className="carousel-item-subtitle">Multivitamins & Omega 3-5-6-7-9*</p>
+            </div>
+            <div className="carousel-card" onClick={() => onProductClick('prowoman-young')}>
+              <div className="carousel-img-wrapper">
+                <div className="carousel-img-backdrop backdrop-pink"></div>
+                <img src="/assets/prowoman-young.png" alt="PROWOMAN YOUNG Pink Box" className="carousel-item-img" />
+              </div>
+              <h3 className="carousel-item-title">PROWOMAN YOUNG</h3>
+              <p className="carousel-item-subtitle">Multivitamin, Safflower Oil & Omegas*</p>
+            </div>
             
             {/* Set 2 (Duplicate for seamless loop) */}
             <div className="carousel-card" onClick={() => onProductClick('omg')}>
@@ -337,6 +353,22 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
               <h3 className="carousel-item-title">WELLNESS PREGNANCY PLUS</h3>
               <p className="carousel-item-subtitle">Advanced Prenatal Twin Pack*</p>
             </div>
+            <div className="carousel-card" onClick={() => onProductClick('proman')}>
+              <div className="carousel-img-wrapper">
+                <div className="carousel-img-backdrop backdrop-blue"></div>
+                <img src="/assets/proman.png" alt="PROMAN Blue Box" className="carousel-item-img" />
+              </div>
+              <h3 className="carousel-item-title">PROMAN MEN'S VITALITY</h3>
+              <p className="carousel-item-subtitle">Multivitamins & Omega 3-5-6-7-9*</p>
+            </div>
+            <div className="carousel-card" onClick={() => onProductClick('prowoman-young')}>
+              <div className="carousel-img-wrapper">
+                <div className="carousel-img-backdrop backdrop-pink"></div>
+                <img src="/assets/prowoman-young.png" alt="PROWOMAN YOUNG Pink Box" className="carousel-item-img" />
+              </div>
+              <h3 className="carousel-item-title">PROWOMAN YOUNG</h3>
+              <p className="carousel-item-subtitle">Multivitamin, Safflower Oil & Omegas*</p>
+            </div>
           </div>
         </div>
       </section>
@@ -355,7 +387,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
             </a>
           </div>
           <div className="promo-image-side">
-            <img src="/assets/products-collage.png" alt="Day by Day Launch Trio Collage" className="promo-split-img" />
+            <img src="/assets/magical-product.png" alt="Day by Day Magical Wellness Supplement" className="promo-split-img" />
             <div className="promo-floating-badge animate-float">
               <span>NEW</span>
             </div>
@@ -484,7 +516,9 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         
         /* Hero Section */
         .hero-section {
-          background: linear-gradient(135deg, #f3edf8 0%, #fcf7f4 100%);
+          background: linear-gradient(135deg, #f5effa 0%, #fff6f0 50%, #f5effa 100%);
+          background-size: 200% 200%;
+          animation: gradientShift 10s ease infinite;
           padding: 80px 0 140px;
           position: relative;
           overflow: hidden;
@@ -602,6 +636,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           background-color: var(--color-preg-secondary);
           top: 30px;
           left: 20px;
+          animation: pulseGlow 6s ease-in-out infinite;
         }
         
         .graphics-circle-bg.orange {
@@ -610,6 +645,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           background-color: var(--color-pregplus-secondary);
           bottom: 40px;
           right: 20px;
+          animation: pulseGlow 8s ease-in-out infinite alternate;
         }
         
         .floating-hero-img {
@@ -648,10 +684,15 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           user-select: none;
         }
         
-        .bubble-1 { top: 40px; right: 60px; }
-        .bubble-2 { bottom: 140px; left: 40px; }
-        .bubble-3 { top: 220px; left: 140px; }
-        .bubble-4 { bottom: 30px; right: 160px; }
+        @keyframes bobUp {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+          100% { transform: translateY(0px); }
+        }
+        .bubble-1 { top: 40px; right: 60px; animation: bobUp 4s ease-in-out infinite; }
+        .bubble-2 { bottom: 140px; left: 40px; animation: bobUp 5s ease-in-out infinite 1s; }
+        .bubble-3 { top: 220px; left: 140px; animation: bobUp 3.5s ease-in-out infinite 0.5s; }
+        .bubble-4 { bottom: 30px; right: 160px; animation: bobUp 4.5s ease-in-out infinite 1.5s; }
         
         .hero-wave {
           position: absolute;
@@ -1407,6 +1448,20 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         .backdrop-omg { background-color: #3ca976; }
         .backdrop-preg { background-color: #8c42b5; }
         .backdrop-pregplus { background-color: #d8562a; }
+        .backdrop-blue { background-color: var(--color-blue-primary); }
+        .backdrop-pink { background-color: var(--color-pink-primary); }
+
+        @keyframes pulseGlow {
+          0% { transform: scale(1) translate(0px, 0px) rotate(0deg); opacity: 0.45; }
+          50% { transform: scale(1.15) translate(15px, -15px) rotate(3deg); opacity: 0.65; }
+          100% { transform: scale(1) translate(0px, 0px) rotate(0deg); opacity: 0.45; }
+        }
+
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
         
         .carousel-item-img {
           position: relative;
