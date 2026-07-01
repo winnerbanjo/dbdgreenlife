@@ -90,9 +90,75 @@ const productsData = [
   }
 ];
 
+const HERO_SLIDES = [
+  {
+    id: 'pregnancy',
+    theme: 'purple',
+    bg: 'linear-gradient(135deg, var(--color-preg-dark) 0%, var(--color-preg-primary) 100%)',
+    tagline: 'Prenatal Care Elevated',
+    title: 'Complete Care For Mom & Baby',
+    subtitle: 'Greenlife Wellness Pregnancy combines active probiotics, essential vitamins, and key minerals. The ultimate clinical formula for maternal vitality and early development.',
+    image: '/assets/pregnancy-detail-view.png',
+    actionText: 'Shop Pregnancy Care',
+    quizText: 'Take the Bestie Quiz 💅'
+  },
+  {
+    id: 'omg',
+    theme: 'green',
+    bg: 'linear-gradient(135deg, #1b5235 0%, var(--color-accent-green) 100%)',
+    tagline: 'Botanical Oil & Vitamin Infusion',
+    title: 'Oh My Glow! Skin & Energy Boost',
+    subtitle: 'Cold-pressed Virgin Coconut, Avocado, Grape Seed, and Rice Bran Oils blended with vitamins A, D3, and E. The premium choice for weight management, skin glow, and cellular defense.',
+    image: '/assets/omg-box.png',
+    actionText: 'Shop OMG Glow',
+    quizText: 'Take the Bestie Quiz 💅'
+  },
+  {
+    id: 'pregnancy-plus',
+    theme: 'orange',
+    bg: 'linear-gradient(135deg, var(--color-pregplus-dark) 0%, var(--color-pregplus-primary) 100%)',
+    tagline: 'Double-Action Maternal Support',
+    title: 'Advanced Brain & Body Development',
+    subtitle: 'Twin Pack: 30 Prenatal Multivitamins + 30 High-Potency Omega 3-6-9 fish oil softgels. Complete structural cognitive protection for baby, and glycemic stability for mom.',
+    image: '/assets/pregnancy-plus-detail-view.png',
+    actionText: 'Shop Pregnancy Plus',
+    quizText: 'Take the Bestie Quiz 💅'
+  },
+  {
+    id: 'proman',
+    theme: 'blue',
+    bg: 'linear-gradient(135deg, #1c3d5a 0%, var(--color-blue-primary) 100%)',
+    tagline: 'Male Stamina & Vitality',
+    title: 'Ultimate Men\'s Daily Energy Pack',
+    subtitle: 'Twin Pack: 30 High-potency Multivitamin Softgels + 30 Omega 3-5-6-7-9 Softgels infused with CoQ10 & Ginseng. Boost stamina, heart function, and cognitive focus.',
+    image: '/assets/proman.png',
+    actionText: 'Shop PROMAN Vitality',
+    quizText: 'Take the Bestie Quiz 💅'
+  },
+  {
+    id: 'prowoman-young',
+    theme: 'pink',
+    bg: 'linear-gradient(135deg, #7c1a47 0%, var(--color-pink-primary) 100%)',
+    tagline: 'Everyday Glow & Balance',
+    title: 'Hormonal Balance & Active Glow',
+    subtitle: 'Twin Pack: 30 Multivitamins + 30 High-Potency Omega 3-5-6-7-9 Softgels containing Safflower, Borage, and Evening Primrose oils. Lock in moisture, support hair & nails, and ease cycles.',
+    image: '/assets/prowoman-young.png',
+    actionText: 'Shop PROWOMAN',
+    quizText: 'Take the Bestie Quiz 💅'
+  }
+];
+
 export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
   const [activeBenefit, setActiveBenefit] = useState('all');
   const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+
+  useEffect(() => {
+    const slideTimer = setInterval(() => {
+      setCurrentHeroSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 6000);
+    return () => clearInterval(slideTimer);
+  }, []);
 
 // Carousel no longer uses scroll‑based transforms; variables removed.
   // Softgel mixer states
@@ -168,74 +234,107 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
     }
   };
 
+  const slide = HERO_SLIDES[currentHeroSlide];
+
   return (
     <div className="home-page" onMouseMove={handleMouseMove}>
       {/* Hero Section */}
-      <section className="hero-section">
+      <section className="hero-section" style={{ background: slide.bg, transition: 'background 0.8s ease' }}>
         <div className="hero-container container">
-          <div className="hero-text-side">
+          <div className="hero-text-side animate-fade-in" key={currentHeroSlide}>
             <div className="hero-tag">
               <Pill size={14} className="hero-tag-icon" />
-              <span>Greenlife Premium Formulas</span>
+              <span>{slide.tagline}</span>
             </div>
             <h1 className="hero-title">
-              Wellness in Every <span className="highlight">Softgel.</span>
+              {slide.title}
             </h1>
             <p className="hero-subtitle">
-              Day by Day Wellness combines bold lifestyle aesthetics with the clinical authority of Greenlife Pharmaceuticals. Interactive, bioavailable, and NAFDAC certified.
+              {slide.subtitle}
             </p>
             <div className="hero-actions">
-              <a href="#products-section" className="btn-round btn-purple">
-                Shop Our Launch Collection
+              <button 
+                onClick={() => onProductClick(slide.id)} 
+                className="btn-round"
+                style={{ 
+                  backgroundColor: 'var(--color-white)', 
+                  color: slide.id === 'pregnancy' ? 'var(--color-preg-dark)' :
+                         slide.id === 'omg' ? '#1b5235' :
+                         slide.id === 'pregnancy-plus' ? 'var(--color-pregplus-dark)' :
+                         slide.id === 'proman' ? '#1c3d5a' : '#7c1a47',
+                  border: '2px solid var(--color-white)',
+                  fontWeight: 700,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                {slide.actionText}
                 <ArrowRight size={16} style={{ marginLeft: '6px' }} />
-              </a>
-              <button className="btn-round btn-outline btn-hero-quiz" onClick={onOpenQuiz}>
-                Take the Bestie Quiz 💅
+              </button>
+              <button 
+                className="btn-round btn-hero-quiz" 
+                onClick={onOpenQuiz}
+                style={{
+                  border: '2px solid var(--color-white)',
+                  color: 'var(--color-white)',
+                  backgroundColor: 'transparent',
+                  fontWeight: 600
+                }}
+              >
+                {slide.quizText}
               </button>
             </div>
             
             <div className="hero-certs">
               <div className="cert-item">
-                <CheckCircle2 size={18} className="cert-icon" />
-                <span>NAFDAC Approved Formulas</span>
+                <CheckCircle2 size={18} className="cert-icon-white" />
+                <span style={{ color: 'rgba(255, 255, 255, 0.95)' }}>NAFDAC Approved Formulas</span>
               </div>
               <div className="cert-item">
-                <CheckCircle2 size={18} className="cert-icon" />
-                <span>Purity Batch Tested</span>
+                <CheckCircle2 size={18} className="cert-icon-white" />
+                <span style={{ color: 'rgba(255, 255, 255, 0.95)' }}>Purity Batch Tested</span>
               </div>
             </div>
           </div>
 
-          <div className="hero-graphics-side">
-            <div className="graphics-circle-bg purple" style={{ transform: `translate(${parallaxOffset.x * 0.4}px, ${parallaxOffset.y * 0.4}px)` }}></div>
-            <div className="graphics-circle-bg orange" style={{ transform: `translate(${parallaxOffset.x * -0.3}px, ${parallaxOffset.y * -0.3}px)` }}></div>
+          <div className="hero-graphics-side" key={`img-${currentHeroSlide}`}>
+            <div className="graphics-circle-bg white-glow" style={{ transform: `translate(${parallaxOffset.x * 0.4}px, ${parallaxOffset.y * 0.4}px)` }}></div>
             
-            {/* Parallax Floating Boxes */}
             <img 
-              src="/assets/omg-hero.png" 
-              alt="OMG Softgels" 
-              className="floating-hero-img img-purple"
-              style={{ transform: `translate(${parallaxOffset.x * 0.8}px, ${parallaxOffset.y * 0.8}px) rotate(${-10 + parallaxOffset.x * 0.2}deg)` }}
-            />
-            <img 
-              src="/assets/pregnancy-plus-hero.png" 
-              alt="Pregnancy Plus Softgels" 
-              className="floating-hero-img img-orange"
-              style={{ transform: `translate(${parallaxOffset.x * -0.6}px, ${parallaxOffset.y * -0.6}px) rotate(${12 + parallaxOffset.y * -0.2}deg)` }}
+              src={slide.image} 
+              alt={slide.title} 
+              className="single-hero-img animate-float"
+              style={{ transform: `translate(${parallaxOffset.x * 0.6}px, ${parallaxOffset.y * 0.6}px) rotate(${-2 + parallaxOffset.x * 0.1}deg)` }}
             />
 
             {/* Parallax Emojis */}
-            <div className="floating-bubble bubble-1" style={{ transform: `translate(${parallaxOffset.x * 1.2}px, ${parallaxOffset.y * 1.2}px)` }}>🤰</div>
-            <div className="floating-bubble bubble-2" style={{ transform: `translate(${parallaxOffset.x * -1.5}px, ${parallaxOffset.y * -1.5}px)` }}>✨</div>
-            <div className="floating-bubble bubble-3" style={{ transform: `translate(${parallaxOffset.x * 0.9}px, ${parallaxOffset.y * -0.9}px)` }}>💊</div>
-            <div className="floating-bubble bubble-4" style={{ transform: `translate(${parallaxOffset.x * -1.1}px, ${parallaxOffset.y * 1.1}px)` }}>💚</div>
+            {slide.id === 'pregnancy' && <div className="floating-bubble bubble-1">🤰</div>}
+            {slide.id === 'omg' && <div className="floating-bubble bubble-1">💚</div>}
+            {slide.id === 'pregnancy-plus' && <div className="floating-bubble bubble-1">🧡</div>}
+            {slide.id === 'proman' && <div className="floating-bubble bubble-1">⚡</div>}
+            {slide.id === 'prowoman-young' && <div className="floating-bubble bubble-1">🌸</div>}
+            <div className="floating-bubble bubble-2">✨</div>
+            <div className="floating-bubble bubble-3">💊</div>
           </div>
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="hero-indicators">
+          {HERO_SLIDES.map((s, idx) => (
+            <button
+              key={s.id}
+              className={`indicator-dot ${idx === currentHeroSlide ? 'active' : ''}`}
+              onClick={() => setCurrentHeroSlide(idx)}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
         
         {/* Wavy Divider */}
         <div className="hero-wave">
           <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,1120,120C960,120,800,120,800,120C640,120,480,120,480,120C320,120,160,120,80,120L0,120Z" fill="#f5effa"></path>
+            <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,1120,120C960,120,800,120,800,120C640,120,480,120,480,120C320,120,160,120,80,120L0,120Z" fill="var(--color-bg-base)"></path>
           </svg>
         </div>
       </section>
@@ -508,10 +607,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         
         /* Hero Section */
         .hero-section {
-          background: linear-gradient(135deg, #f5effa 0%, #fff6f0 50%, #f5effa 100%);
-          background-size: 200% 200%;
-          animation: gradientShift 10s ease infinite;
-          padding: 80px 0 140px;
+          padding: 100px 0 160px;
           position: relative;
           overflow: hidden;
         }
@@ -526,53 +622,35 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         .hero-tag {
           display: inline-flex;
           align-items: center;
-          background-color: var(--color-white);
+          background-color: rgba(255, 255, 255, 0.15);
           padding: 6px 14px;
           border-radius: var(--radius-full);
           font-size: 0.8rem;
           font-weight: 700;
-          color: var(--color-preg-primary);
-          box-shadow: var(--shadow-sm);
+          color: var(--color-white);
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          backdrop-filter: blur(4px);
           width: fit-content;
           margin-bottom: 24px;
-          border: 1px solid var(--color-border);
         }
         
         .hero-tag-icon {
-          color: var(--color-pregplus-primary);
+          color: var(--color-white);
           margin-right: 6px;
         }
         
         .hero-title {
-          font-size: 4.5rem;
+          font-size: 4rem;
           line-height: 1.1;
-          color: var(--color-text-dark);
+          color: var(--color-white);
           margin-bottom: 20px;
           font-family: var(--font-serif);
           font-weight: 700;
         }
         
-        .hero-title .highlight {
-          color: var(--color-preg-primary);
-          position: relative;
-          display: inline-block;
-        }
-        
-        .hero-title .highlight::after {
-          content: '';
-          position: absolute;
-          bottom: 5px;
-          left: 0;
-          width: 100%;
-          height: 12px;
-          background-color: var(--color-preg-secondary);
-          z-index: -1;
-          border-radius: var(--radius-full);
-        }
-        
         .hero-subtitle {
           font-size: 1.25rem;
-          color: var(--color-text-muted);
+          color: rgba(255, 255, 255, 0.9);
           line-height: 1.6;
           margin-bottom: 36px;
           max-width: 580px;
@@ -587,7 +665,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         .hero-certs {
           display: flex;
           gap: 24px;
-          border-top: 1px solid var(--color-border);
+          border-top: 1px solid rgba(255, 255, 255, 0.15);
           padding-top: 24px;
         }
         
@@ -597,11 +675,11 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           gap: 8px;
           font-size: 0.85rem;
           font-weight: 600;
-          color: var(--color-text-dark);
+          color: var(--color-white);
         }
         
-        .cert-icon {
-          color: var(--color-accent-green);
+        .cert-icon-white {
+          color: var(--color-white);
         }
         
         /* Hero Graphics */
@@ -622,42 +700,71 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           transition: transform 0.2s ease-out;
         }
         
-        .graphics-circle-bg.purple {
-          width: 320px;
-          height: 320px;
-          background-color: var(--color-preg-secondary);
-          top: 30px;
-          left: 20px;
-          animation: pulseGlow 6s ease-in-out infinite;
+        .graphics-circle-bg.white-glow {
+          width: 360px;
+          height: 360px;
+          background-color: var(--color-white);
+          opacity: 0.15;
+          filter: blur(50px);
+          z-index: 1;
+          animation: pulseGlow 6s ease-in-out infinite alternate;
         }
         
-        .graphics-circle-bg.orange {
-          width: 280px;
-          height: 280px;
-          background-color: var(--color-pregplus-secondary);
-          bottom: 40px;
-          right: 20px;
-          animation: pulseGlow 8s ease-in-out infinite alternate;
-        }
-        
-        .floating-hero-img {
-          position: absolute;
-          max-height: 300px;
+        .single-hero-img {
+          max-height: 380px;
           object-fit: contain;
           z-index: 2;
-          filter: drop-shadow(0 20px 30px rgba(110,100,120,0.25));
-          transition: transform 0.2s ease-out;
+          filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.3));
+          transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .single-hero-img:hover {
+          transform: translateY(-8px) scale(1.03) rotate(1deg);
+        }
+        
+        @keyframes fadeInSlide {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in {
+          animation: fadeInSlide 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .hero-indicators {
+          position: absolute;
+          bottom: 75px;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 12px;
+          z-index: 15;
+        }
+        
+        .indicator-dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          border: none;
+          background-color: rgba(255, 255, 255, 0.4);
           cursor: pointer;
+          transition: all 0.3s ease;
         }
         
-        .img-purple {
-          top: 30px;
-          left: 20px;
+        .indicator-dot.active {
+          background-color: var(--color-white);
+          transform: scale(1.3);
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
         
-        .img-orange {
-          bottom: 50px;
-          right: 20px;
+        .indicator-dot:hover {
+          background-color: rgba(255, 255, 255, 0.8);
         }
         
         .floating-bubble {
