@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import BenefitGrid from '../components/BenefitGrid';
-import ProductCard from '../components/ProductCard';
 import ScienceSection from '../components/ScienceSection';
 import { Sparkles, ArrowRight, Pill, Sliders, CheckCircle2 } from 'lucide-react';
 
@@ -191,9 +190,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
     setActiveBenefit(activeBenefit === benefitId ? 'all' : benefitId);
   };
 
-  const filteredProducts = activeBenefit === 'all' 
-    ? productsData 
-    : productsData.filter(p => p.benefitType === activeBenefit);
+
 
   // Mixer logic
   const handleMixerToggle = (goal) => {
@@ -235,6 +232,21 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
   };
 
   const slide = HERO_SLIDES[currentHeroSlide];
+
+  const carouselProducts = activeBenefit === 'all'
+    ? productsData
+    : productsData.filter(p => p.benefitType === activeBenefit);
+
+  const getMarqueeItems = (products) => {
+    if (products.length === 0) return [];
+    let items = [...products];
+    while (items.length < 8) {
+      items = [...items, ...products];
+    }
+    return items;
+  };
+
+  const marqueeItems = getMarqueeItems(carouselProducts);
 
   return (
     <div className="home-page" onMouseMove={handleMouseMove}>
@@ -345,27 +357,64 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         onSelectBenefit={handleSelectBenefit} 
       />
 
-      {/* Product Display Section */}
-      <section id="products-section" className="products-section">
-        <div className="container">
-          <div className="products-section-header">
-            <h2 className="products-title">Our Launch Collection</h2>
-            {activeBenefit !== 'all' && (
-              <button className="btn-clear-filter" onClick={() => setActiveBenefit('all')}>
-                Show All Products
-              </button>
-            )}
-          </div>
+      {/* Product Carousel Section (Moved up to replace Catalog Grid) */}
+      <section id="products-section" className="dramatic-flyin-section">
+        <h2 className="carousel-section-title">Our Launch Collection</h2>
+        {activeBenefit !== 'all' && (
+          <button className="btn-clear-filter" onClick={() => setActiveBenefit('all')} style={{ marginBottom: '24px' }}>
+            Show All Products
+          </button>
+        )}
+        <div className="carousel-container">
+          <div className="product-carousel">
+            {marqueeItems.map((product, index) => {
+              const textThemeColor = product.theme === 'pregnancy' || product.theme === 'purple' ? 'var(--color-preg-dark)' :
+                                     product.theme === 'omg' || product.theme === 'green' ? '#1b5235' :
+                                     product.theme === 'pregnancy-plus' || product.theme === 'orange' ? 'var(--color-pregplus-dark)' :
+                                     product.theme === 'proman' || product.theme === 'blue' ? '#1c3d5a' : '#7c1a47';
+              const cardClass = `card-${product.id}`;
 
-          <div className="product-grid-3">
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onViewDetails={() => onProductClick(product.id)}
-                onShopNow={() => onShopRedirect(product.id)}
-              />
-            ))}
+              return (
+                <div 
+                  key={`${product.id}-${index}`} 
+                  className={`carousel-card ${cardClass}`}
+                  onClick={() => onProductClick(product.id)}
+                >
+                  <span className="carousel-item-tag">{product.type}</span>
+                  <div className="carousel-img-wrapper">
+                    <div className="carousel-img-backdrop"></div>
+                    <img src={product.image} alt={product.title} className="carousel-item-img" />
+                  </div>
+                  <h3 className="carousel-item-title">{product.title}</h3>
+                  <p className="carousel-item-subtitle">{product.subtitle}</p>
+                  
+                  {/* Bullet benefits */}
+                  <ul className="carousel-item-bullets">
+                    {product.bullets.slice(0, 3).map((bullet, idx) => (
+                      <li key={idx} className="carousel-item-bullet-item">
+                        <Sparkles size={12} className="bullet-icon-sparkle" style={{ flexShrink: 0 }} />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="carousel-item-footer">
+                    <span className="carousel-item-size">{product.size}</span>
+                    <button 
+                      className="btn-carousel-shop"
+                      style={{ color: textThemeColor }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onShopRedirect(product.id, 'b2c');
+                      }}
+                    >
+                      Shop Now
+                      <ArrowRight size={12} style={{ marginLeft: '4px' }} />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -505,97 +554,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         </div>
       </section>
 
-      {/* Continuous Product Carousel Section (Moved towards the footer) */}
-      <section className="dramatic-flyin-section">
-        <h2 className="carousel-section-title">current faves</h2>
-        <div className="carousel-container">
-          <div className="product-carousel">
-            {/* Set 1 */}
-            <div className="carousel-card card-omg" onClick={() => onProductClick('omg')}>
-              <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop"></div>
-                <img src="/assets/omg-nobg.png" alt="OMG Green Box" className="carousel-item-img" />
-              </div>
-              <h3 className="carousel-item-title">OMG EVERYDAY WELLNESS</h3>
-              <p className="carousel-item-subtitle">Virgin Coconut & Avocado Oils*</p>
-            </div>
-            <div className="carousel-card card-preg" onClick={() => onProductClick('pregnancy')}>
-              <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop"></div>
-                <img src="/assets/pregnancy-nobg.png" alt="Pregnancy Purple Box" className="carousel-item-img" />
-              </div>
-              <h3 className="carousel-item-title">WELLNESS PREGNANCY</h3>
-              <p className="carousel-item-subtitle">Prenatal Multivitamin & Probiotics*</p>
-            </div>
-            <div className="carousel-card card-pregplus" onClick={() => onProductClick('pregnancy-plus')}>
-              <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop"></div>
-                <img src="/assets/pregnancy-plus-nobg.png" alt="Pregnancy Plus Orange Box" className="carousel-item-img" />
-              </div>
-              <h3 className="carousel-item-title">WELLNESS PREGNANCY PLUS</h3>
-              <p className="carousel-item-subtitle">Advanced Prenatal Twin Pack*</p>
-            </div>
-            <div className="carousel-card card-proman" onClick={() => onProductClick('proman')}>
-              <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop"></div>
-                <img src="/assets/proman.png" alt="PROMAN Blue Box" className="carousel-item-img" />
-              </div>
-              <h3 className="carousel-item-title">PROMAN MEN'S VITALITY</h3>
-              <p className="carousel-item-subtitle">Multivitamins & Omega 3-5-6-7-9*</p>
-            </div>
-            <div className="carousel-card card-prowoman" onClick={() => onProductClick('prowoman-young')}>
-              <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop"></div>
-                <img src="/assets/prowoman-young.png" alt="PROWOMAN YOUNG Pink Box" className="carousel-item-img" />
-              </div>
-              <h3 className="carousel-item-title">PROWOMAN YOUNG</h3>
-              <p className="carousel-item-subtitle">Multivitamin, Safflower Oil & Omegas*</p>
-            </div>
-            
-            {/* Set 2 (Duplicate for seamless loop) */}
-            <div className="carousel-card card-omg" onClick={() => onProductClick('omg')}>
-              <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop"></div>
-                <img src="/assets/omg-nobg.png" alt="OMG Green Box" className="carousel-item-img" />
-              </div>
-              <h3 className="carousel-item-title">OMG EVERYDAY WELLNESS</h3>
-              <p className="carousel-item-subtitle">Virgin Coconut & Avocado Oils*</p>
-            </div>
-            <div className="carousel-card card-preg" onClick={() => onProductClick('pregnancy')}>
-              <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop"></div>
-                <img src="/assets/pregnancy-nobg.png" alt="Pregnancy Purple Box" className="carousel-item-img" />
-              </div>
-              <h3 className="carousel-item-title">WELLNESS PREGNANCY</h3>
-              <p className="carousel-item-subtitle">Prenatal Multivitamin & Probiotics*</p>
-            </div>
-            <div className="carousel-card card-pregplus" onClick={() => onProductClick('pregnancy-plus')}>
-              <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop"></div>
-                <img src="/assets/pregnancy-plus-nobg.png" alt="Pregnancy Plus Orange Box" className="carousel-item-img" />
-              </div>
-              <h3 className="carousel-item-title">WELLNESS PREGNANCY PLUS</h3>
-              <p className="carousel-item-subtitle">Advanced Prenatal Twin Pack*</p>
-            </div>
-            <div className="carousel-card card-proman" onClick={() => onProductClick('proman')}>
-              <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop"></div>
-                <img src="/assets/proman.png" alt="PROMAN Blue Box" className="carousel-item-img" />
-              </div>
-              <h3 className="carousel-item-title">PROMAN MEN'S VITALITY</h3>
-              <p className="carousel-item-subtitle">Multivitamins & Omega 3-5-6-7-9*</p>
-            </div>
-            <div className="carousel-card card-prowoman" onClick={() => onProductClick('prowoman-young')}>
-              <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop"></div>
-                <img src="/assets/prowoman-young.png" alt="PROWOMAN YOUNG Pink Box" className="carousel-item-img" />
-              </div>
-              <h3 className="carousel-item-title">PROWOMAN YOUNG</h3>
-              <p className="carousel-item-subtitle">Multivitamin, Safflower Oil & Omegas*</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Catalog grid replaced by carousel section above */}
 
       <ScienceSection />
 
@@ -799,6 +758,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           left: 0;
           width: 100%;
           z-index: 10;
+          display: none; /* hidden on web */
         }
         
         .hero-wave svg {
@@ -807,39 +767,14 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           display: block;
         }
         
-        /* Products Catalog Section */
-        .products-section {
-          padding: 80px 0;
-          background: linear-gradient(180deg, #ffffff 0%, #fffbf7 100%);
-        }
-        
-        .products-section-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 40px;
-          border-bottom: 2px solid var(--color-border);
-          padding-bottom: 16px;
-        }
-        
-        .products-title {
-          font-size: 2rem;
-          color: var(--color-text-dark);
-          font-family: var(--font-serif);
-          font-weight: 400;
-        }
-        
         .btn-clear-filter {
           font-weight: 700;
           color: var(--color-preg-primary);
           border-bottom: 2px dashed var(--color-preg-primary);
           font-size: 0.95rem;
-        }
-        
-        .product-grid-3 {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 32px;
+          background: none;
+          border: none;
+          cursor: pointer;
         }
         
         /* Mixer Interactive Section */
@@ -1563,14 +1498,14 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         }
         
         .carousel-card {
-          flex: 0 0 280px;
+          flex: 0 0 320px;
           display: flex;
           flex-direction: column;
           align-items: center;
           text-align: center;
           cursor: pointer;
           border-radius: 24px;
-          padding: 30px 20px;
+          padding: 30px 24px;
           transition: var(--transition-bounce);
           box-shadow: var(--shadow-sm);
           position: relative;
@@ -1578,10 +1513,10 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         }
 
         .carousel-card.card-omg { background: linear-gradient(135deg, #58d68d 0%, var(--color-accent-green) 100%); }
-        .carousel-card.card-preg { background: linear-gradient(135deg, #a569bd 0%, var(--color-preg-primary) 100%); }
-        .carousel-card.card-pregplus { background: linear-gradient(135deg, #f5b041 0%, var(--color-pregplus-primary) 100%); }
+        .carousel-card.card-pregnancy { background: linear-gradient(135deg, #a569bd 0%, var(--color-preg-primary) 100%); }
+        .carousel-card.card-pregnancy-plus { background: linear-gradient(135deg, #f5b041 0%, var(--color-pregplus-primary) 100%); }
         .carousel-card.card-proman { background: linear-gradient(135deg, #5dade2 0%, var(--color-blue-primary) 100%); }
-        .carousel-card.card-prowoman { background: linear-gradient(135deg, #f48fb1 0%, var(--color-pink-primary) 100%); }
+        .carousel-card.card-prowoman-young { background: linear-gradient(135deg, #f48fb1 0%, var(--color-pink-primary) 100%); }
         
         .carousel-card:hover {
           transform: translateY(-12px) scale(1.02);
@@ -1590,12 +1525,12 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         
         .carousel-img-wrapper {
           position: relative;
-          width: 220px;
-          height: 220px;
+          width: 180px;
+          height: 180px;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 20px;
+          margin-bottom: 16px;
         }
         
         .carousel-img-backdrop {
@@ -1625,9 +1560,9 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         .carousel-item-img {
           position: relative;
           z-index: 2;
-          max-height: 190px;
+          max-height: 160px;
           object-fit: contain;
-          filter: drop-shadow(0 12px 24px rgba(110, 100, 120, 0.15));
+          filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.25));
           transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
@@ -1640,30 +1575,100 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           opacity: 0.3;
         }
         
+        .carousel-item-tag {
+          font-size: 0.72rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          color: rgba(255, 255, 255, 0.85);
+          background-color: rgba(255, 255, 255, 0.15);
+          padding: 4px 10px;
+          border-radius: var(--radius-full);
+          margin-bottom: 12px;
+        }
+
         .carousel-item-title {
           font-family: var(--font-heading);
-          font-size: 0.95rem;
+          font-size: 1.15rem;
           font-weight: 700;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.05em;
           color: var(--color-white);
-          margin-bottom: 6px;
+          margin-bottom: 8px;
           text-transform: uppercase;
-          max-width: 240px;
+          max-width: 280px;
           line-height: 1.3;
         }
         
         .carousel-item-subtitle {
           font-family: var(--font-primary);
-          font-size: 0.85rem;
+          font-size: 0.82rem;
+          line-height: 1.45;
           color: rgba(255, 255, 255, 0.85);
-          margin-bottom: 8px;
+          margin-bottom: 18px;
+          font-weight: 400;
+          max-width: 270px;
+        }
+
+        .carousel-item-bullets {
+          list-style: none;
+          padding: 0;
+          margin: 0 0 24px 0;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          text-align: left;
         }
         
-        .carousel-item-price {
-          font-family: var(--font-heading);
-          font-size: 1rem;
-          font-weight: 700;
+        .carousel-item-bullet-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+          font-size: 0.8rem;
+          line-height: 1.3;
+          color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .bullet-icon-sparkle {
           color: var(--color-white);
+          opacity: 0.9;
+          margin-top: 2px;
+        }
+
+        .carousel-item-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          margin-top: auto;
+          border-top: 1px solid rgba(255, 255, 255, 0.15);
+          padding-top: 18px;
+        }
+        
+        .carousel-item-size {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .btn-carousel-shop {
+          background-color: var(--color-white);
+          font-weight: 700;
+          border: none;
+          padding: 8px 18px;
+          font-size: 0.8rem;
+          border-radius: var(--radius-full);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          cursor: pointer;
+          transition: var(--transition-smooth);
+        }
+        
+        .btn-carousel-shop:hover {
+          transform: scale(1.05);
+          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
         }
         
         @keyframes scroll-carousel {
@@ -1672,6 +1677,9 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         }
         
         @media (max-width: 768px) {
+          .hero-wave {
+            display: block; /* shown on mobile */
+          }
           .carousel-section-title {
             font-size: 2.8rem;
             margin-bottom: 30px;
@@ -1680,25 +1688,35 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
             padding: 60px 0;
           }
           .carousel-card {
-            flex: 0 0 220px;
+            flex: 0 0 280px;
+            padding: 24px 16px;
           }
           .carousel-img-wrapper {
-            width: 170px;
-            height: 170px;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 12px;
           }
           .carousel-img-backdrop {
             width: 120px;
             height: 120px;
           }
           .carousel-item-img {
-            max-height: 140px;
+            max-height: 120px;
           }
           .carousel-item-title {
-            font-size: 0.85rem;
-            max-width: 180px;
+            font-size: 1rem;
+            max-width: 240px;
           }
           .carousel-item-subtitle {
+            font-size: 0.78rem;
+            margin-bottom: 12px;
+          }
+          .carousel-item-bullet-item {
             font-size: 0.75rem;
+          }
+          .carousel-item-bullets {
+            margin-bottom: 16px;
+            gap: 4px;
           }
         }
       `}</style>
