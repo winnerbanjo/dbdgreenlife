@@ -46,31 +46,37 @@ function App() {
       {/* Main Pages Router */}
       <main style={{ flex: 1 }}>
         {currentPage === 'home' && (
-          <Home 
-            onProductClick={handleProductClick} 
-            onShopRedirect={(id) => handleShopRedirect(id, 'b2c')} 
-            onOpenQuiz={() => setQuizOpen(true)} 
-          />
+          <div className="animate-page-entry">
+            <Home 
+              onProductClick={handleProductClick} 
+              onShopRedirect={(id) => handleShopRedirect(id, 'b2c')} 
+              onOpenQuiz={() => setQuizOpen(true)} 
+            />
+          </div>
         )}
         
         {currentPage === 'about' && (
-          <About 
-            onExploreProducts={() => {
-              setCurrentPage('home');
-              setTimeout(() => {
-                const section = document.getElementById('products-section');
-                if (section) section.scrollIntoView({ behavior: 'smooth' });
-              }, 100);
-            }} 
-          />
+          <div className="animate-page-entry">
+            <About 
+              onExploreProducts={() => {
+                setCurrentPage('home');
+                setTimeout(() => {
+                  const section = document.getElementById('products-section');
+                  if (section) section.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }} 
+            />
+          </div>
         )}
 
         {currentPage === 'product-detail' && (
-          <ProductDetail 
-            productId={selectedProductId} 
-            onBack={() => setCurrentPage('home')}
-            onShopRedirect={(id) => handleShopRedirect(id, 'b2c')}
-          />
+          <div className="animate-page-entry" key={selectedProductId}>
+            <ProductDetail 
+              productId={selectedProductId} 
+              onBack={() => setCurrentPage('home')}
+              onShopRedirect={(id) => handleShopRedirect(id, 'b2c')}
+            />
+          </div>
         )}
       </main>
 

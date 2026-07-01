@@ -325,6 +325,51 @@ button {
   transition: var(--transition-bounce);
 }
 
+/* Page entrance transition */
+.animate-page-entry {
+  animation: pageEntry 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pageEntry {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card Sheen Sweep Animation */
+.sheen-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.sheen-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  z-index: 10;
+  transition: none;
+}
+
+.sheen-card:hover::before {
+  left: 150%;
+  transition: left 0.8s ease-in-out;
+}
+
 .benefit-card:hover .benefit-icon-wrapper {
   transform: scale(1.18) rotate(5deg);
   transition: var(--transition-bounce);

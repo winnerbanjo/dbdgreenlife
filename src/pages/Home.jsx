@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import BenefitGrid from '../components/BenefitGrid';
 import ScienceSection from '../components/ScienceSection';
-import { Sparkles, ArrowRight, Pill, Sliders, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowRight, Pill, Sliders, CheckCircle2, ChevronDown } from 'lucide-react';
 
 const productsData = [
   {
@@ -343,6 +343,14 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           ))}
         </div>
         
+        {/* Scroll Down Indicator */}
+        <div className="hero-scroll-indicator" onClick={() => {
+          const section = document.getElementById('products-section');
+          if (section) section.scrollIntoView({ behavior: 'smooth' });
+        }}>
+          <ChevronDown size={28} className="scroll-arrow-icon" />
+        </div>
+
         {/* Wavy Divider */}
         <div className="hero-wave">
           <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -377,7 +385,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
               return (
                 <div 
                   key={`${product.id}-${index}`} 
-                  className={`carousel-card ${cardClass}`}
+                  className={`carousel-card ${cardClass} sheen-card`}
                   onClick={() => onProductClick(product.id)}
                 >
                   <span className="carousel-item-tag">{product.type}</span>
@@ -566,7 +574,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         
         /* Hero Section */
         .hero-section {
-          padding: 100px 0 160px;
+          padding: 60px 0 110px;
           position: relative;
           overflow: hidden;
         }
@@ -644,7 +652,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         /* Hero Graphics */
         .hero-graphics-side {
           position: relative;
-          height: 480px;
+          height: 400px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -670,7 +678,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         }
         
         .single-hero-img {
-          max-height: 380px;
+          max-height: 320px;
           object-fit: contain;
           z-index: 2;
           filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.3));
@@ -679,6 +687,39 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         
         .single-hero-img:hover {
           transform: translateY(-8px) scale(1.03) rotate(1deg);
+        }
+
+        /* Scroll Down Arrow */
+        .hero-scroll-indicator {
+          position: absolute;
+          bottom: 25px;
+          left: 50%;
+          transform: translateX(-50%);
+          color: var(--color-white);
+          cursor: pointer;
+          z-index: 15;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          animation: bounceArrow 2s infinite ease-in-out;
+          opacity: 0.8;
+          transition: opacity 0.3s ease;
+        }
+
+        .hero-scroll-indicator:hover {
+          opacity: 1;
+        }
+
+        @keyframes bounceArrow {
+          0%, 20%, 50%, 80%, 100% {
+            transform: translate(-50%, 0);
+          }
+          40% {
+            transform: translate(-50%, -10px);
+          }
+          60% {
+            transform: translate(-50%, -5px);
+          }
         }
         
         @keyframes fadeInSlide {
