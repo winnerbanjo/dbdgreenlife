@@ -412,41 +412,41 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         <div className="carousel-container">
           <div className="product-carousel">
             {/* Set 1 */}
-            <div className="carousel-card" onClick={() => onProductClick('omg')}>
+            <div className="carousel-card card-omg" onClick={() => onProductClick('omg')}>
               <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop backdrop-omg"></div>
+                <div className="carousel-img-backdrop"></div>
                 <img src="/assets/omg-nobg.png" alt="OMG Green Box" className="carousel-item-img" />
               </div>
               <h3 className="carousel-item-title">OMG EVERYDAY WELLNESS</h3>
               <p className="carousel-item-subtitle">Virgin Coconut & Avocado Oils*</p>
             </div>
-            <div className="carousel-card" onClick={() => onProductClick('pregnancy')}>
+            <div className="carousel-card card-preg" onClick={() => onProductClick('pregnancy')}>
               <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop backdrop-preg"></div>
+                <div className="carousel-img-backdrop"></div>
                 <img src="/assets/pregnancy-nobg.png" alt="Pregnancy Purple Box" className="carousel-item-img" />
               </div>
               <h3 className="carousel-item-title">WELLNESS PREGNANCY</h3>
               <p className="carousel-item-subtitle">Prenatal Multivitamin & Probiotics*</p>
             </div>
-            <div className="carousel-card" onClick={() => onProductClick('pregnancy-plus')}>
+            <div className="carousel-card card-pregplus" onClick={() => onProductClick('pregnancy-plus')}>
               <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop backdrop-pregplus"></div>
+                <div className="carousel-img-backdrop"></div>
                 <img src="/assets/pregnancy-plus-nobg.png" alt="Pregnancy Plus Orange Box" className="carousel-item-img" />
               </div>
               <h3 className="carousel-item-title">WELLNESS PREGNANCY PLUS</h3>
               <p className="carousel-item-subtitle">Advanced Prenatal Twin Pack*</p>
             </div>
-            <div className="carousel-card" onClick={() => onProductClick('proman')}>
+            <div className="carousel-card card-proman" onClick={() => onProductClick('proman')}>
               <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop backdrop-blue"></div>
+                <div className="carousel-img-backdrop"></div>
                 <img src="/assets/proman.png" alt="PROMAN Blue Box" className="carousel-item-img" />
               </div>
               <h3 className="carousel-item-title">PROMAN MEN'S VITALITY</h3>
               <p className="carousel-item-subtitle">Multivitamins & Omega 3-5-6-7-9*</p>
             </div>
-            <div className="carousel-card" onClick={() => onProductClick('prowoman-young')}>
+            <div className="carousel-card card-prowoman" onClick={() => onProductClick('prowoman-young')}>
               <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop backdrop-pink"></div>
+                <div className="carousel-img-backdrop"></div>
                 <img src="/assets/prowoman-young.png" alt="PROWOMAN YOUNG Pink Box" className="carousel-item-img" />
               </div>
               <h3 className="carousel-item-title">PROWOMAN YOUNG</h3>
@@ -454,41 +454,41 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
             </div>
             
             {/* Set 2 (Duplicate for seamless loop) */}
-            <div className="carousel-card" onClick={() => onProductClick('omg')}>
+            <div className="carousel-card card-omg" onClick={() => onProductClick('omg')}>
               <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop backdrop-omg"></div>
+                <div className="carousel-img-backdrop"></div>
                 <img src="/assets/omg-nobg.png" alt="OMG Green Box" className="carousel-item-img" />
               </div>
               <h3 className="carousel-item-title">OMG EVERYDAY WELLNESS</h3>
               <p className="carousel-item-subtitle">Virgin Coconut & Avocado Oils*</p>
             </div>
-            <div className="carousel-card" onClick={() => onProductClick('pregnancy')}>
+            <div className="carousel-card card-preg" onClick={() => onProductClick('pregnancy')}>
               <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop backdrop-preg"></div>
+                <div className="carousel-img-backdrop"></div>
                 <img src="/assets/pregnancy-nobg.png" alt="Pregnancy Purple Box" className="carousel-item-img" />
               </div>
               <h3 className="carousel-item-title">WELLNESS PREGNANCY</h3>
               <p className="carousel-item-subtitle">Prenatal Multivitamin & Probiotics*</p>
             </div>
-            <div className="carousel-card" onClick={() => onProductClick('pregnancy-plus')}>
+            <div className="carousel-card card-pregplus" onClick={() => onProductClick('pregnancy-plus')}>
               <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop backdrop-pregplus"></div>
+                <div className="carousel-img-backdrop"></div>
                 <img src="/assets/pregnancy-plus-nobg.png" alt="Pregnancy Plus Orange Box" className="carousel-item-img" />
               </div>
               <h3 className="carousel-item-title">WELLNESS PREGNANCY PLUS</h3>
               <p className="carousel-item-subtitle">Advanced Prenatal Twin Pack*</p>
             </div>
-            <div className="carousel-card" onClick={() => onProductClick('proman')}>
+            <div className="carousel-card card-proman" onClick={() => onProductClick('proman')}>
               <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop backdrop-blue"></div>
+                <div className="carousel-img-backdrop"></div>
                 <img src="/assets/proman.png" alt="PROMAN Blue Box" className="carousel-item-img" />
               </div>
               <h3 className="carousel-item-title">PROMAN MEN'S VITALITY</h3>
               <p className="carousel-item-subtitle">Multivitamins & Omega 3-5-6-7-9*</p>
             </div>
-            <div className="carousel-card" onClick={() => onProductClick('prowoman-young')}>
+            <div className="carousel-card card-prowoman" onClick={() => onProductClick('prowoman-young')}>
               <div className="carousel-img-wrapper">
-                <div className="carousel-img-backdrop backdrop-pink"></div>
+                <div className="carousel-img-backdrop"></div>
                 <img src="/assets/prowoman-young.png" alt="PROWOMAN YOUNG Pink Box" className="carousel-item-img" />
               </div>
               <h3 className="carousel-item-title">PROWOMAN YOUNG</h3>
@@ -1462,6 +1462,23 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           align-items: center;
           text-align: center;
           cursor: pointer;
+          border-radius: 24px;
+          padding: 30px 20px;
+          transition: var(--transition-bounce);
+          box-shadow: var(--shadow-sm);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .carousel-card.card-omg { background: linear-gradient(135deg, #58d68d 0%, var(--color-accent-green) 100%); }
+        .carousel-card.card-preg { background: linear-gradient(135deg, #a569bd 0%, var(--color-preg-primary) 100%); }
+        .carousel-card.card-pregplus { background: linear-gradient(135deg, #f5b041 0%, var(--color-pregplus-primary) 100%); }
+        .carousel-card.card-proman { background: linear-gradient(135deg, #5dade2 0%, var(--color-blue-primary) 100%); }
+        .carousel-card.card-prowoman { background: linear-gradient(135deg, #f48fb1 0%, var(--color-pink-primary) 100%); }
+        
+        .carousel-card:hover {
+          transform: translateY(-12px) scale(1.02);
+          box-shadow: var(--shadow-hover);
         }
         
         .carousel-img-wrapper {
@@ -1476,20 +1493,15 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         
         .carousel-img-backdrop {
           position: absolute;
-          width: 150px;
-          height: 150px;
+          width: 160px;
+          height: 160px;
           border-radius: 50%;
           z-index: 1;
-          opacity: 0.12;
-          filter: blur(6px);
+          background-color: var(--color-white);
+          opacity: 0.2;
+          filter: blur(10px);
           transition: transform 0.4s ease, opacity 0.4s ease;
         }
-        
-        .backdrop-omg { background-color: #3ca976; }
-        .backdrop-preg { background-color: #8c42b5; }
-        .backdrop-pregplus { background-color: #d8562a; }
-        .backdrop-blue { background-color: var(--color-blue-primary); }
-        .backdrop-pink { background-color: var(--color-pink-primary); }
 
         @keyframes pulseGlow {
           0% { transform: scale(1) translate(0px, 0px) rotate(0deg); opacity: 0.45; }
@@ -1518,7 +1530,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         
         .carousel-card:hover .carousel-img-backdrop {
           transform: scale(1.1);
-          opacity: 0.2;
+          opacity: 0.3;
         }
         
         .carousel-item-title {
@@ -1526,7 +1538,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           font-size: 0.95rem;
           font-weight: 700;
           letter-spacing: 0.08em;
-          color: var(--color-text-dark);
+          color: var(--color-white);
           margin-bottom: 6px;
           text-transform: uppercase;
           max-width: 240px;
@@ -1536,7 +1548,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         .carousel-item-subtitle {
           font-family: var(--font-primary);
           font-size: 0.85rem;
-          color: var(--color-text-muted);
+          color: rgba(255, 255, 255, 0.85);
           margin-bottom: 8px;
         }
         
@@ -1544,7 +1556,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           font-family: var(--font-heading);
           font-size: 1rem;
           font-weight: 700;
-          color: var(--color-text-dark);
+          color: var(--color-white);
         }
         
         @keyframes scroll-carousel {
