@@ -1008,12 +1008,12 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         }
         
         .promo-text-side {
-          background-color: var(--color-white);
+          background-color: var(--color-preg-dark);
           padding: 60px 80px;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          color: var(--color-text-dark);
+          color: var(--color-white);
         }
         
         .promo-tagline-label {
@@ -1021,7 +1021,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           font-weight: 700;
           letter-spacing: 0.15em;
           text-transform: uppercase;
-          color: var(--color-preg-primary);
+          color: var(--color-preg-secondary);
           margin-bottom: 16px;
         }
         
@@ -1030,26 +1030,26 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           font-family: var(--font-serif);
           font-weight: 700;
           line-height: 1.1;
-          color: var(--color-preg-primary);
+          color: var(--color-white);
           margin-bottom: 24px;
         }
         
         .promo-desc-text {
           font-size: 1.15rem;
           line-height: 1.6;
-          color: var(--color-preg-primary);
-          font-weight: 500;
+          color: rgba(255, 255, 255, 0.9);
+          font-weight: 400;
           margin-bottom: 36px;
         }
         
         .btn-promo-action {
-          background-color: var(--color-preg-primary);
-          color: var(--color-white);
+          background-color: var(--color-white);
+          color: var(--color-preg-dark);
           font-weight: 700;
           padding: 14px 32px;
           box-shadow: var(--shadow-sm);
           width: fit-content;
-          border: 2px solid var(--color-preg-primary);
+          border: 2px solid var(--color-white);
           border-radius: var(--radius-full);
           display: inline-flex;
           align-items: center;
@@ -1059,8 +1059,8 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         
         .btn-promo-action:hover {
           background-color: transparent;
-          color: var(--color-preg-primary);
-          border-color: var(--color-preg-primary);
+          color: var(--color-white);
+          border-color: var(--color-white);
           transform: translateY(-3px);
         }
         
