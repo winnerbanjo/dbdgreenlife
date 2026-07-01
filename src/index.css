@@ -197,6 +197,16 @@ button {
   background-color: var(--color-pink-dark);
 }
 
+.btn-green {
+  background-color: var(--color-accent-green);
+  color: var(--color-white);
+}
+
+.btn-green:hover {
+  background-color: #2c855a;
+}
+
+
 .btn-outline {
   border: 2px solid var(--color-border);
   background-color: transparent;

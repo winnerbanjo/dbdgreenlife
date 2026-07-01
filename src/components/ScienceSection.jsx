@@ -1,4 +1,3 @@
-import React from 'react';
 import { ShieldCheck, Flame, HeartHandshake, Check } from 'lucide-react';
 
 const clinicalAdvisors = [

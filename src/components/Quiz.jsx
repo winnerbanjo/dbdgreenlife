@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { X, Sparkles, Check, ArrowRight, ShieldCheck } from 'lucide-react';
 
 const questions = [
@@ -9,7 +9,9 @@ const questions = [
     options: [
       { label: "Healthy Pregnancy & Prenatal Care", value: "pregnancy", icon: "🌸" },
       { label: "General Daily Vitality & Skin Glow", value: "general", icon: "✨" },
-      { label: "Weight Management & Energy", value: "weight", icon: "⚡" }
+      { label: "Weight Management & Energy", value: "weight", icon: "⚡" },
+      { label: "Men's Daily Energy & Stamina", value: "mens", icon: "💙" },
+      { label: "Women's Daily Balance & Glow (Non-Prenatal)", value: "womens-young", icon: "💗" }
     ]
   },
   {
@@ -42,7 +44,7 @@ export default function Quiz({ onClose, onProductClick, onShopRedirect }) {
     const newAnswers = { ...answers, [questionId]: value };
     setAnswers(newAnswers);
 
-    if (questionId === 1 && (value === 'general' || value === 'weight')) {
+    if (questionId === 1 && (value === 'general' || value === 'weight' || value === 'mens' || value === 'womens-young')) {
       // Skip question 2 (pregnancy standard/plus) and go directly to question 3
       setCurrentStep(2);
     } else if (currentStep < questions.length - 1) {
@@ -60,6 +62,34 @@ export default function Quiz({ onClose, onProductClick, onShopRedirect }) {
 
   // Determine recommendation based on answers
   const getRecommendation = () => {
+    if (answers[1] === 'mens') {
+      return {
+        id: 'proman',
+        title: "PROMAN",
+        subtitle: "Men's Vitality & Peak Performance",
+        desc: "A high-performance formulation designed specifically for men. Combines daily essential multivitamins with a high-potency Omega 3-5-6-7-9 softgel to support physical endurance, daily stamina, heart health, and sharp cognitive focus.",
+        color: "blue",
+        theme: "blue",
+        image: "/assets/proman.png",
+        price: "₦18,500",
+        size: "60 Softgels (Twin Pack)"
+      };
+    }
+
+    if (answers[1] === 'womens-young') {
+      return {
+        id: 'prowoman-young',
+        title: "PROWOMAN YOUNG",
+        subtitle: "Women's Wellness & Hormonal Balance",
+        desc: "Designed for young women looking for everyday support. Features essential daily multivitamins paired with active Safflower Oil and Omegas 3-5-6-7-9 to optimize energy, clear skin glow, hair health, and comfortable cycles.",
+        color: "pink",
+        theme: "pink",
+        image: "/assets/prowoman-young.png",
+        price: "₦18,500",
+        size: "60 Softgels (Twin Pack)"
+      };
+    }
+
     if (answers[1] === 'general' || answers[1] === 'weight') {
       return {
         id: 'omg',
@@ -119,7 +149,7 @@ export default function Quiz({ onClose, onProductClick, onShopRedirect }) {
 
         {!showResult ? (
           <div className="quiz-step-content">
-            <span className="quiz-step-indicator">Question {currentStep === 2 && (answers[1] === 'general' || answers[1] === 'weight') ? 2 : currentStep + 1} of {answers[1] === 'general' || answers[1] === 'weight' ? 2 : questions.length}</span>
+            <span className="quiz-step-indicator">Question {currentStep === 2 && (answers[1] === 'general' || answers[1] === 'weight' || answers[1] === 'mens' || answers[1] === 'womens-young') ? 2 : currentStep + 1} of {answers[1] === 'general' || answers[1] === 'weight' || answers[1] === 'mens' || answers[1] === 'womens-young' ? 2 : questions.length}</span>
             <h2 className="quiz-question-title">{questions[currentStep].title}</h2>
             <p className="quiz-question-sub">{questions[currentStep].subtitle}</p>
 
@@ -397,6 +427,16 @@ export default function Quiz({ onClose, onProductClick, onShopRedirect }) {
           border-color: var(--color-border);
         }
         
+        .result-box.blue {
+          background-color: var(--color-blue-light);
+          border-color: var(--color-blue-secondary);
+        }
+        
+        .result-box.pink {
+          background-color: var(--color-pink-light);
+          border-color: var(--color-pink-secondary);
+        }
+        
         .result-img-side {
           display: flex;
           align-items: center;
@@ -434,6 +474,8 @@ export default function Quiz({ onClose, onProductClick, onShopRedirect }) {
         .purple .result-badge { color: var(--color-preg-primary); }
         .orange .result-badge { color: var(--color-pregplus-primary); }
         .green .result-badge { color: var(--color-accent-green); }
+        .blue .result-badge { color: var(--color-blue-primary); }
+        .pink .result-badge { color: var(--color-pink-primary); }
         
         .result-product-title {
           font-size: 1.65rem;
@@ -509,6 +551,10 @@ export default function Quiz({ onClose, onProductClick, onShopRedirect }) {
         .orange .btn-result-buy:hover { background-color: var(--color-pregplus-dark); }
         .green .btn-result-buy { background-color: var(--color-accent-green); }
         .green .btn-result-buy:hover { background-color: #2c855a; }
+        .blue .btn-result-buy { background-color: var(--color-blue-primary); }
+        .blue .btn-result-buy:hover { background-color: var(--color-blue-dark); }
+        .pink .btn-result-buy { background-color: var(--color-pink-primary); }
+        .pink .btn-result-buy:hover { background-color: var(--color-pink-dark); }
         
         .btn-result-detail {
           flex: 1;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ShoppingBag, ChevronDown, Menu, X, Search, Sparkles } from 'lucide-react';
 
 export default function Header({ currentPage, setCurrentPage, onOpenQuiz }) {
@@ -49,7 +49,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz }) {
             <span className="divider">•</span>
             <span>🔬 Backed by Greenlife Pharmaceuticals clinical heritage</span>
             <span className="divider">•</span>
-            <span>🇳🇬 100% NAFDAC certified launch trio</span>
+            <span>🇳🇬 100% NAFDAC certified formulas</span>
           </div>
         </div>
       )}
@@ -96,7 +96,21 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz }) {
                       <p className="dropdown-item-desc">Essential nutrients for overall health</p>
                     </div>
                   </div>
-                  <div className="dropdown-item blue" onClick={() => handleBenefitClick('immune')}>
+                  <div className="dropdown-item blue" onClick={() => handleBenefitClick('mens-health')}>
+                    <div className="item-dot"></div>
+                    <div>
+                      <h4 className="dropdown-item-title">Men's Vitality</h4>
+                      <p className="dropdown-item-desc">Energy & stamina support for men</p>
+                    </div>
+                  </div>
+                  <div className="dropdown-item pink" onClick={() => handleBenefitClick('womens-health')}>
+                    <div className="item-dot"></div>
+                    <div>
+                      <h4 className="dropdown-item-title">Women's Wellness</h4>
+                      <p className="dropdown-item-desc">Hormonal balance & glow</p>
+                    </div>
+                  </div>
+                  <div className="dropdown-item yellow" onClick={() => handleBenefitClick('immune')}>
                     <div className="item-dot"></div>
                     <div>
                       <h4 className="dropdown-item-title">Immune Support</h4>
@@ -166,7 +180,13 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz }) {
               <div className="mobile-dropdown-item green" onClick={() => handleBenefitClick('daily-wellness')}>
                 Everyday Wellness
               </div>
-              <div className="mobile-dropdown-item blue" onClick={() => handleBenefitClick('immune')}>
+              <div className="mobile-dropdown-item blue" onClick={() => handleBenefitClick('mens-health')}>
+                Men's Vitality
+              </div>
+              <div className="mobile-dropdown-item pink" onClick={() => handleBenefitClick('womens-health')}>
+                Women's Wellness
+              </div>
+              <div className="mobile-dropdown-item yellow" onClick={() => handleBenefitClick('immune')}>
                 Immune Support
               </div>
             </div>
@@ -240,19 +260,19 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz }) {
           height: 112px;
           padding-top: 32px;
           z-index: 1000;
-          background-color: transparent;
-          border-bottom: 1px solid transparent;
+          background-color: var(--color-preg-dark);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
           transition: var(--transition-smooth);
           display: flex;
           align-items: center;
         }
         
         .header.scrolled {
-          background-color: rgba(251, 251, 249, 0.85);
+          background-color: rgba(77, 30, 102, 0.95);
           backdrop-filter: blur(16px) saturate(180%);
           -webkit-backdrop-filter: blur(16px) saturate(180%);
-          border-bottom: 1px solid var(--color-border);
-          box-shadow: 0 4px 20px rgba(110, 100, 120, 0.05);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
           height: 70px;
           padding-top: 0;
         }
@@ -296,14 +316,14 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz }) {
           font-family: var(--font-heading);
           font-weight: 800;
           font-size: 1.6rem;
-          color: var(--color-preg-primary);
+          color: var(--color-white);
           line-height: 1;
         }
         
         .logo-subtext {
           font-size: 0.65rem;
           font-weight: 700;
-          color: var(--color-text-muted);
+          color: var(--color-preg-secondary);
           letter-spacing: 0.1em;
           text-transform: uppercase;
           margin-top: -2px;
@@ -318,8 +338,8 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz }) {
         
         .nav-link {
           font-size: 0.95rem;
-          font-weight: 600;
-          color: var(--color-text-dark);
+          font-weight: 700;
+          color: var(--color-white);
           padding: 8px 0;
           position: relative;
           display: flex;
@@ -335,7 +355,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz }) {
           left: 0;
           width: 0;
           height: 3px;
-          background-color: var(--color-preg-primary);
+          background-color: var(--color-pregplus-primary);
           border-radius: var(--radius-full);
           transition: var(--transition-smooth);
         }
@@ -408,7 +428,9 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz }) {
         .dropdown-item.purple .item-dot { background-color: var(--color-preg-primary); }
         .dropdown-item.orange .item-dot { background-color: var(--color-pregplus-primary); }
         .dropdown-item.green .item-dot { background-color: var(--color-accent-green); }
-        .dropdown-item.blue .item-dot { background-color: var(--color-accent-blue); }
+        .dropdown-item.blue .item-dot { background-color: var(--color-blue-primary); }
+        .dropdown-item.pink .item-dot { background-color: var(--color-pink-primary); }
+        .dropdown-item.yellow .item-dot { background-color: var(--color-accent-yellow); }
         
         .dropdown-item-title {
           font-size: 0.9rem;
@@ -431,36 +453,39 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz }) {
         }
         
         .btn-search-icon {
-          color: var(--color-text-dark);
+          color: var(--color-white);
           padding: 8px;
           border-radius: var(--radius-full);
         }
         
         .btn-search-icon:hover {
-          background-color: rgba(110, 100, 120, 0.05);
+          background-color: rgba(255, 255, 255, 0.1);
         }
         
         .btn-quiz {
           font-size: 0.85rem;
           padding: 10px 20px;
-          background-color: var(--color-preg-primary);
-          color: var(--color-white);
+          background-color: var(--color-white);
+          color: var(--color-preg-dark);
+          font-weight: 700;
           border-radius: var(--radius-full);
+          border: 2px solid var(--color-white);
         }
         
         .btn-quiz:hover {
-          background-color: var(--color-preg-dark);
+          background-color: transparent;
+          color: var(--color-white);
         }
         
         .cart-icon {
           position: relative;
-          color: var(--color-text-dark);
+          color: var(--color-white);
           padding: 8px;
           border-radius: var(--radius-full);
         }
         
         .cart-icon:hover {
-          background-color: rgba(110, 100, 120, 0.05);
+          background-color: rgba(255, 255, 255, 0.1);
         }
         
         .cart-badge {
@@ -482,7 +507,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz }) {
         
         .mobile-toggle {
           display: none;
-          color: var(--color-text-dark);
+          color: var(--color-white);
         }
         
         /* Mobile Drawer Styles */
@@ -547,7 +572,9 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz }) {
         .mobile-dropdown-item.purple { border-left-color: var(--color-preg-primary); background-color: var(--color-preg-light); }
         .mobile-dropdown-item.orange { border-left-color: var(--color-pregplus-primary); background-color: var(--color-pregplus-light); }
         .mobile-dropdown-item.green { border-left-color: var(--color-accent-green); background-color: var(--color-accent-green-light); }
-        .mobile-dropdown-item.blue { border-left-color: var(--color-accent-blue); background-color: var(--color-accent-blue-light); }
+        .mobile-dropdown-item.blue { border-left-color: var(--color-blue-primary); background-color: var(--color-blue-light); }
+        .mobile-dropdown-item.pink { border-left-color: var(--color-pink-primary); background-color: var(--color-pink-light); }
+        .mobile-dropdown-item.yellow { border-left-color: var(--color-accent-yellow); background-color: var(--color-accent-yellow-light); }
         
         .drawer-links {
           display: flex;

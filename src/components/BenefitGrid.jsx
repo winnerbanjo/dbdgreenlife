@@ -1,4 +1,3 @@
-import React from 'react';
 import { Sparkles, Activity, ShieldAlert, Heart } from 'lucide-react';
 
 const benefits = [

@@ -1,5 +1,4 @@
-import React from 'react';
-import { Award, ShieldCheck, Heart, Users, Target, Activity } from 'lucide-react';
+import { Award, ShieldCheck, Users, Target, Activity } from 'lucide-react';
 
 const values = [
   {

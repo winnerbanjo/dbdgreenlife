@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ShieldCheck, Heart, Pill, Award, ArrowLeft, Check, HelpCircle, Star, ShoppingCart } from 'lucide-react';
+import { useState } from 'react';
+import { ShieldCheck, Award, ArrowLeft, Check, HelpCircle, Star, ShoppingCart } from 'lucide-react';
 
 const productsDetailData = {
   pregnancy: {
@@ -180,15 +180,10 @@ const productsDetailData = {
 
 export default function ProductDetail({ productId, onBack, onShopRedirect }) {
   const product = productsDetailData[productId] || productsDetailData.pregnancy;
-  const isPurple = product.theme === 'purple';
-  const isGreen = product.theme === 'green';
   
   let themeName = `theme-${product.theme || 'purple'}`;
 
   const [selectedIngredient, setSelectedIngredient] = useState(null);
-  const [showPortalModal, setShowPortalModal] = useState(false);
-  const [portalTab, setPortalTab] = useState('select'); // 'select' or 'b2b'
-  const [wholesaleCartons, setWholesaleCartons] = useState(5);
   const [absorptionStep, setAbsorptionStep] = useState(0);
 
   const handleBuyClick = () => {

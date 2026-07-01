@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Mail, CheckCircle2, ShieldCheck, Heart } from 'lucide-react';
 
 export default function Footer({ setCurrentPage }) {

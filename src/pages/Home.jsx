@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import BenefitGrid from '../components/BenefitGrid';
 import ProductCard from '../components/ProductCard';
 import ScienceSection from '../components/ScienceSection';
-import { Sparkles, ArrowRight, Pill, Award, Sliders, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowRight, Pill, Sliders, CheckCircle2 } from 'lucide-react';
 
 const productsData = [
   {
@@ -63,6 +63,7 @@ const productsData = [
     type: 'Men\'s Vitality',
     image: '/assets/proman.png',
     theme: 'blue',
+    price: '₦18,500',
     size: '60 Softgels (Twin Pack)',
     benefitType: 'mens-health',
     bullets: [
@@ -78,6 +79,7 @@ const productsData = [
     type: 'Women\'s Wellness',
     image: '/assets/prowoman-young.png',
     theme: 'pink',
+    price: '₦18,500',
     size: '60 Softgels (Twin Pack)',
     benefitType: 'womens-health',
     bullets: [
@@ -91,20 +93,6 @@ const productsData = [
 export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
   const [activeBenefit, setActiveBenefit] = useState('all');
   const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
-  const [isMobile, setIsMobile] = useState(false);
-  const sectionRef = React.useRef(null);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-    };
-  }, []);
 
 // Carousel no longer uses scroll‑based transforms; variables removed.
   // Softgel mixer states
@@ -198,7 +186,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
             </p>
             <div className="hero-actions">
               <a href="#products-section" className="btn-round btn-purple">
-                Shop Our Launch Trio
+                Shop Our Launch Collection
                 <ArrowRight size={16} style={{ marginLeft: '6px' }} />
               </a>
               <button className="btn-round btn-outline btn-hero-quiz" onClick={onOpenQuiz}>
@@ -262,10 +250,10 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
       <section id="products-section" className="products-section">
         <div className="container">
           <div className="products-section-header">
-            <h2 className="products-title">Our Launch Trio</h2>
+            <h2 className="products-title">Our Launch Collection</h2>
             {activeBenefit !== 'all' && (
               <button className="btn-clear-filter" onClick={() => setActiveBenefit('all')}>
-                Show All Trio
+                Show All Products
               </button>
             )}
           </div>
@@ -293,7 +281,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
               We believe that everyday health shouldn't feel like a chore. Day by Day combines clean, pharmaceutical-grade formulas from Greenlife with active botanical oils and probiotics. No oversized chalky pills, just easy daily softgels designed to look great on your shelf and feel amazing in your body.
             </p>
             <a href="#products-section" className="btn-round btn-promo-action">
-              Explore Our Launch Trio
+              Explore Our Launch Collection
             </a>
           </div>
           <div className="promo-image-side promo-graphics-container">
@@ -301,7 +289,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
             <div className="promo-box-stack">
               <img src="/assets/pregnancy-nobg.png" alt="Wellness Pregnancy Box" className="promo-stack-img img-preg" />
               <img src="/assets/omg-nobg.png" alt="OMG Everyday Wellness Box" className="promo-stack-img img-omg" />
-              <img src="/assets/pregnancy-plus-nobg.png" alt="Wellness Pregnancy Plus Box" className="promo-stack-img img-plus" />
+              <img src="/assets/proman.png" alt="PROMAN Men's Vitality Box" className="promo-stack-img img-men" />
             </div>
           </div>
         </div>
@@ -1040,16 +1028,17 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         .promo-heading-title {
           font-size: 3rem;
           font-family: var(--font-serif);
-          font-weight: 400;
+          font-weight: 700;
           line-height: 1.1;
-          color: var(--color-text-dark);
+          color: var(--color-preg-primary);
           margin-bottom: 24px;
         }
         
         .promo-desc-text {
           font-size: 1.15rem;
           line-height: 1.6;
-          color: var(--color-text-muted);
+          color: var(--color-preg-primary);
+          font-weight: 500;
           margin-bottom: 36px;
         }
         
@@ -1127,7 +1116,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           animation: bobUp 3.5s ease-in-out infinite 0.5s;
         }
 
-        .img-plus {
+        .img-men {
           right: 12%;
           transform: rotate(12deg) translateY(-5px);
           z-index: 3;
@@ -1142,7 +1131,7 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
           transform: scale(1.05) translateY(5px);
         }
 
-        .promo-box-stack:hover .img-plus {
+        .promo-box-stack:hover .img-men {
           transform: rotate(18deg) translateX(15px) translateY(-5px);
         }
 

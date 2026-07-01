@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Send, Sparkles, Heart } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { MessageCircle, X, Sparkles } from 'lucide-react';
 
 const CHAT_STEPS = {
   welcome: {
@@ -68,17 +68,15 @@ const CHAT_STEPS = {
 
 export default function LiveChat({ onOpenQuiz, onViewProduct, onShopProduct, setCurrentPage }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    { id: 1, sender: 'bot', text: CHAT_STEPS.welcome.message }
+  ]);
   const [currentStepId, setCurrentStepId] = useState('welcome');
   const [unread, setUnread] = useState(true);
   const chatEndRef = useRef(null);
+  const msgIdRef = useRef(2);
 
   useEffect(() => {
-    // Add welcome message initially
-    setMessages([
-      { id: 1, sender: 'bot', text: CHAT_STEPS.welcome.message }
-    ]);
-    
     // Pulse chat badge after 5 seconds to get attention
     const timer = setTimeout(() => {
       if (!isOpen) {
@@ -86,7 +84,7 @@ export default function LiveChat({ onOpenQuiz, onViewProduct, onShopProduct, set
       }
     }, 4000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [isOpen]);
 
   useEffect(() => {
     if (chatEndRef.current) {
@@ -101,7 +99,7 @@ export default function LiveChat({ onOpenQuiz, onViewProduct, onShopProduct, set
 
   const handleOptionClick = (option) => {
     // Add user message
-    const userMsg = { id: Date.now(), sender: 'user', text: option.label };
+    const userMsg = { id: msgIdRef.current++, sender: 'user', text: option.label };
     setMessages(prev => [...prev, userMsg]);
 
     const nextStepId = option.next;
@@ -154,7 +152,7 @@ export default function LiveChat({ onOpenQuiz, onViewProduct, onShopProduct, set
       if (nextStep) {
         setCurrentStepId(nextStepId);
         setMessages(prev => [...prev, {
-          id: Date.now() + 1,
+          id: msgIdRef.current++,
           sender: 'bot',
           text: nextStep.message
         }]);

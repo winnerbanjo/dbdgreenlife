@@ -1,4 +1,3 @@
-import React from 'react';
 import { Pill, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function ProductCard({ product, onViewDetails, onShopNow }) {
@@ -41,7 +40,8 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         {/* Price & Action Row */}
         <div className="card-action-row">
           <div className="price-tag">
-            <span className="pack-size" style={{ fontSize: '0.85rem', fontWeight: 600 }}>{product.size}</span>
+            <span className="amount">{product.price}</span>
+            <span className="pack-size">{product.size}</span>
           </div>
 
           <div className="card-buttons">
@@ -91,6 +91,7 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         .product-card.theme-orange::before { background-color: var(--color-pregplus-primary); }
         .product-card.theme-blue::before { background-color: var(--color-blue-primary); }
         .product-card.theme-pink::before { background-color: var(--color-pink-primary); }
+        .product-card.theme-green::before { background-color: var(--color-accent-green); }
         
         /* Card Badges */
         .card-badge {
@@ -162,6 +163,11 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
           background-color: var(--color-pink-light);
           border-color: var(--color-pink-secondary);
         }
+
+        .product-card.theme-green:hover {
+          background-color: var(--color-accent-green-light);
+          border-color: var(--color-accent-green);
+        }
         
         .product-card:hover .product-image {
           transform: scale(1.08) translateY(-5px);
@@ -194,6 +200,10 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
 
         .theme-pink .brand-label {
           color: var(--color-pink-accent);
+        }
+
+        .theme-green .brand-label {
+          color: var(--color-accent-green);
         }
         
         .product-title {
@@ -244,6 +254,7 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         .theme-orange .bullet-icon { color: var(--color-pregplus-primary); }
         .theme-blue .bullet-icon { color: var(--color-blue-primary); }
         .theme-pink .bullet-icon { color: var(--color-pink-primary); }
+        .theme-green .bullet-icon { color: var(--color-accent-green); }
         
         /* Action Row */
         .card-action-row {
