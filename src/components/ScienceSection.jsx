@@ -1,41 +1,35 @@
-import { ShieldCheck, Flame, HeartHandshake, Check } from 'lucide-react';
+import { ShieldCheck, Flame, HeartHandshake, Check, PackageCheck, Award, FileText } from 'lucide-react';
 
-const clinicalAdvisors = [
-  {
-    name: "Dr. Amina Bello",
-    role: "Lead OB-GYN & Maternal Health Specialist",
-    bio: "Over 15 years of clinical practice in prenatal nutrition and maternal wellness counseling.",
-    initials: "AB"
-  },
-  {
-    name: "Prof. Kolawole Davies",
-    role: "Senior Pharmacologist & Formulation Lead",
-    bio: "Specializes in bioavailability and high-assimilation active nutrient formulations.",
-    initials: "KD"
-  },
-  {
-    name: "Tariq Ibrahim, RD",
-    role: "Prenatal Dietitian & Wellness Consultant",
-    bio: "Focuses on everyday dietary supplementation, gut absorption, and micro-nutrient balances.",
-    initials: "TI"
-  }
-];
-
-const certificationPillars = [
+const qualityPillars = [
   {
     title: "Pharmaceutical Heritage",
-    desc: "Formulated by Greenlife Pharmaceuticals, bringing over 20 years of clinical experience to daily wellness.",
+    desc: "Formulated under the quality oversight of Greenlife Pharmaceuticals, bringing over 20 years of clinical experience in Nigeria.",
     icon: ShieldCheck
   },
   {
-    title: "Bioavailable Softgels",
-    desc: "Softgel encapsulation allows immediate absorption and is easier on sensitive prenatal stomachs.",
+    title: "Standardized Encapsulation",
+    desc: "Targeted softgel and capsule formats designed for smooth transit and protected dispersion of active nutrients.",
     icon: Flame
   },
   {
-    title: "NAFDAC & Quality Approved",
-    desc: "Manufactured in state-of-the-art facilities with absolute batch testing for safety and compliance.",
+    title: "NAFDAC Registrations",
+    desc: "Each product record carries an official NAFDAC registration number as transcribed from packaging documentation.",
     icon: HeartHandshake
+  }
+];
+
+const standardsChecklist = [
+  {
+    title: "Standardized Active Assays",
+    detail: "Every batch adheres to itemised ingredient counts (ranging from 8 in full-spectrum Omega to 50 in comprehensive mature women's formulas)."
+  },
+  {
+    title: "Verifiable Pack Traceability",
+    detail: "Products are labeled with specific registration numbers, batch codes, manufacture dates, and tamper-evident twin-pack or blister configurations."
+  },
+  {
+    title: "Balanced Nutritional Forms",
+    detail: "Preserves exact mineral salts, amino acid forms, and cold-pressed botanical oil blends (including Safflower, Avocado, and Rice Bran)."
   }
 ];
 
@@ -45,7 +39,7 @@ export default function ScienceSection() {
       <div className="container">
         {/* Core Pillars */}
         <div className="science-pillars-grid">
-          {certificationPillars.map((pillar, idx) => {
+          {qualityPillars.map((pillar, idx) => {
             const Icon = pillar.icon;
             return (
               <div key={idx} className="pillar-card">
@@ -59,41 +53,44 @@ export default function ScienceSection() {
           })}
         </div>
 
-        {/* Clinical Advisory Board */}
+        {/* Formulation Quality Panel */}
         <div className="advisory-panel">
           <div className="panel-text-side">
-            <span className="panel-badge">Clinical Credibility</span>
-            <h2 className="panel-title">Formulated by Experts. Trusted by Moms.</h2>
+            <span className="panel-badge">Quality Standards</span>
+            <h2 className="panel-title">Pharmaceutical Discipline. Everyday Nutrition.</h2>
             <p className="panel-desc">
-              At Day by Day, we believe health is a science. Our clinical advisory board collaborates with researchers and pharmacists at Greenlife to ensure each softgel delivers safe, effective, and science-backed dosages.
+              At Day by Day, our formulations translate Greenlife's clinical standards into approachable daily habits. We focus on transparent labeling, exact nutrient amounts, and verified packaging formats for every life stage.
             </p>
 
             <ul className="safety-bullets">
               <li className="safety-bullet">
                 <div className="bullet-check"><Check size={14} /></div>
-                <span>Zero artificial fillers, binders, or synthetic coatings</span>
+                <span>Standardized units across milligrams (mg), micrograms (mcg), and International Units (IU)</span>
               </li>
               <li className="safety-bullet">
                 <div className="bullet-check"><Check size={14} /></div>
-                <span>Purity tested for heavy metals and active concentrations</span>
+                <span>Itemised dual-pack divisions separating multivitamin cores from botanical Omega blends</span>
               </li>
               <li className="safety-bullet">
                 <div className="bullet-check"><Check size={14} /></div>
-                <span>Gentle digestive formulations with integrated probiotics</span>
+                <span>Clear packaging documentation with confirmed NAFDAC registration details</span>
               </li>
             </ul>
           </div>
 
           <div className="panel-advisors-side">
-            <h3 className="advisors-header">Clinical Advisory Board</h3>
+            <h3 className="advisors-header">Formulation Quality Framework</h3>
             <div className="advisors-list">
-              {clinicalAdvisors.map((advisor, idx) => (
-                <div key={idx} className="advisor-card">
-                  <div className="advisor-avatar">{advisor.initials}</div>
-                  <div className="advisor-info">
-                    <h4 className="advisor-name">{advisor.name}</h4>
-                    <span className="advisor-role">{advisor.role}</span>
-                    <p className="advisor-bio">{advisor.bio}</p>
+              {standardsChecklist.map((item, idx) => (
+                <div key={idx} className="standards-card">
+                  <div className="standards-icon-box">
+                    {idx === 0 && <PackageCheck size={20} />}
+                    {idx === 1 && <FileText size={20} />}
+                    {idx === 2 && <Award size={20} />}
+                  </div>
+                  <div className="standards-info">
+                    <h4 className="standards-title">{item.title}</h4>
+                    <p className="standards-desc">{item.detail}</p>
                   </div>
                 </div>
               ))}
@@ -156,7 +153,7 @@ export default function ScienceSection() {
           line-height: 1.5;
         }
         
-        /* Advisory Panel */
+        /* Advisory/Quality Panel */
         .advisory-panel {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -208,7 +205,7 @@ export default function ScienceSection() {
           display: flex;
           align-items: center;
           gap: 12px;
-          font-size: 0.95rem;
+          font-size: 0.92rem;
           font-weight: 600;
           color: var(--color-text-dark);
         }
@@ -225,7 +222,7 @@ export default function ScienceSection() {
           flex-shrink: 0;
         }
         
-        /* Advisors Side */
+        /* Standards Side */
         .panel-advisors-side {
           display: flex;
           flex-direction: column;
@@ -242,44 +239,39 @@ export default function ScienceSection() {
         .advisors-list {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: 20px;
         }
         
-        .advisor-card {
+        .standards-card {
           display: flex;
           gap: 16px;
           align-items: flex-start;
+          background-color: var(--color-bg-base);
+          padding: 16px 20px;
+          border-radius: var(--radius-md);
+          border: 1px solid var(--color-border);
         }
         
-        .advisor-avatar {
-          width: 46px;
-          height: 46px;
-          background-color: var(--color-pregplus-light);
-          color: var(--color-pregplus-primary);
+        .standards-icon-box {
+          width: 40px;
+          height: 40px;
+          background-color: var(--color-white);
+          color: var(--color-preg-primary);
           border-radius: var(--radius-full);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-weight: 700;
-          font-size: 1rem;
           flex-shrink: 0;
           box-shadow: var(--shadow-sm);
         }
         
-        .advisor-name {
-          font-size: 1.05rem;
+        .standards-title {
+          font-size: 1rem;
           color: var(--color-text-dark);
-        }
-        
-        .advisor-role {
-          font-size: 0.8rem;
-          font-weight: 700;
-          color: var(--color-preg-primary);
-          display: block;
           margin-bottom: 4px;
         }
         
-        .advisor-bio {
+        .standards-desc {
           font-size: 0.85rem;
           color: var(--color-text-muted);
           line-height: 1.4;

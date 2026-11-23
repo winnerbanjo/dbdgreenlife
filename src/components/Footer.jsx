@@ -13,12 +13,23 @@ export default function Footer({ setCurrentPage }) {
     }
   };
 
+  const handleFooterBenefitClick = (benefitId) => {
+    setCurrentPage('home');
+    setTimeout(() => {
+      const section = document.getElementById('products-section');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        window.dispatchEvent(new CustomEvent('filter-benefit', { detail: benefitId }));
+      }
+    }, 100);
+  };
+
   return (
     <footer className="footer">
       <div className="footer-newsletter">
         <div className="newsletter-content">
           <h3 className="newsletter-title">Join Our Wellness Community</h3>
-          <p className="newsletter-text">Subscribe for health tips, early product launches, and science-backed supplement guides.</p>
+          <p className="newsletter-text">Subscribe for formulation updates, health insights, and science-backed supplementation tips.</p>
         </div>
         <form onSubmit={handleSubscribe} className="newsletter-form">
           {subscribed ? (
@@ -54,37 +65,58 @@ export default function Footer({ setCurrentPage }) {
               <span className="logo-subtext">by Greenlife</span>
             </div>
             <p className="brand-pitch">
-              Making everyday health simple, accessible, and scientifically sound. Formulation meets lifestyle for daily vitality.
+              Making everyday health simple, accessible, and scientifically sound. Formulation meets lifestyle for daily vitality across Nigeria.
             </p>
             <div className="certification-badge">
               <ShieldCheck size={20} className="badge-icon" />
-              <span>Greenlife Certified Quality Standards</span>
+              <span>Greenlife Quality Standards</span>
             </div>
           </div>
 
-          {/* Navigation Links */}
+          {/* Navigation Links Aligned to Catalogue */}
           <div className="footer-col">
-            <h4 className="footer-col-title">Shop Benefits</h4>
+            <h4 className="footer-col-title">Shop by Benefit</h4>
             <ul className="footer-links">
-              <li><a href="#products-section" onClick={() => setCurrentPage('home')}>Pregnancy Care</a></li>
-              <li><a href="#products-section" onClick={() => setCurrentPage('home')}>Maternal Health Plus</a></li>
-              <li><a href="#products-section" onClick={() => setCurrentPage('home')}>Everyday Wellness</a></li>
-              <li><a href="#products-section" onClick={() => setCurrentPage('home')}>Immune Support</a></li>
+              <li>
+                <button type="button" onClick={() => handleFooterBenefitClick('pregnancy-care')} className="link-btn">
+                  Pregnancy Care (2)
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => handleFooterBenefitClick('womens-daily')} className="link-btn">
+                  Women's Daily (2)
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => handleFooterBenefitClick('mens-daily')} className="link-btn">
+                  Men's Daily (2)
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => handleFooterBenefitClick('general-daily')} className="link-btn">
+                  General Daily (Wellness)
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => handleFooterBenefitClick('weight-management')} className="link-btn">
+                  OMG Omega 3-5-6-7-9
+                </button>
+              </li>
             </ul>
           </div>
 
           <div className="footer-col">
-            <h4 className="footer-col-title">Science & Story</h4>
+            <h4 className="footer-col-title">Formulation &amp; Heritage</h4>
             <ul className="footer-links">
-              <li><button onClick={() => { setCurrentPage('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="link-btn">Clinical Advisory Board</button></li>
               <li><button onClick={() => { setCurrentPage('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="link-btn">Greenlife Heritage</button></li>
-              <li><button onClick={() => { setCurrentPage('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="link-btn">Ingredient Purity</button></li>
-              <li><button onClick={() => alert("Redirecting to Greenlife Corporate platform...")} className="link-btn">B2B/B2C Partner Portal</button></li>
+              <li><button onClick={() => { setCurrentPage('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="link-btn">Quality &amp; Safety Standards</button></li>
+              <li><button onClick={() => { setCurrentPage('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="link-btn">Dosage &amp; Encapsulation</button></li>
+              <li><button onClick={() => alert("Connecting to Greenlife Corporate platform...")} className="link-btn">B2B/B2C Partner Inquiries</button></li>
             </ul>
           </div>
 
           <div className="footer-col">
-            <h4 className="footer-col-title">Contact & Support</h4>
+            <h4 className="footer-col-title">Contact &amp; Support</h4>
             <p className="contact-info">Greenlife Pharmaceuticals Ltd.</p>
             <p className="contact-info">35A, Association Avenue Ilupeju,</p>
             <p className="contact-info">Lagos, Nigeria</p>
@@ -96,15 +128,15 @@ export default function Footer({ setCurrentPage }) {
       <div className="footer-bottom">
         <div className="bottom-container container">
           <p className="copyright">
-            © {new Date().getFullYear()} Day by Day Wellness. All rights reserved. Backed by Greenlife Pharmaceuticals.
+            © {new Date().getFullYear()} Day by Day Wellness. All rights reserved. Marketed by Greenlife Pharmaceuticals Ltd.
           </p>
           <p className="disclaimer">
-            * These statements have not been evaluated by the National Agency for Food and Drug Administration and Control (NAFDAC) or other regulatory authorities. These products are not intended to diagnose, treat, cure, or prevent any disease.
+            * Food supplements must not replace a varied and balanced diet and a healthy lifestyle. Individual registration numbers are recorded on pack details. As with other food supplements, seek professional advice if you are under medical supervision or suffer from food allergies.
           </p>
           <div className="love-text">
-            <span>Made with</span>
+            <span>Formulated for daily vitality</span>
             <Heart size={14} className="heart-icon" />
-            <span>for daily vitality.</span>
+            <span>by Greenlife.</span>
           </div>
         </div>
       </div>
@@ -205,7 +237,7 @@ export default function Footer({ setCurrentPage }) {
         
         .footer-cols {
           display: grid;
-          grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+          grid-template-columns: 1.5fr 1.1fr 1.1fr 1.1fr;
           gap: 40px;
         }
         
@@ -277,16 +309,18 @@ export default function Footer({ setCurrentPage }) {
           gap: 12px;
         }
         
-        .footer-links a,
         .link-btn {
           font-size: 0.9rem;
           color: var(--color-text-muted);
           text-align: left;
           font-family: var(--font-primary);
+          background: none;
+          border: none;
+          padding: 0;
+          cursor: pointer;
           transition: var(--transition-smooth);
         }
         
-        .footer-links a:hover,
         .link-btn:hover {
           color: var(--color-preg-primary);
           padding-left: 4px;

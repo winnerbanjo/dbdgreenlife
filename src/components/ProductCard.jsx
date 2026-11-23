@@ -23,9 +23,9 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
 
       {/* Card Content */}
       <div className="card-info">
-        <span className="brand-label">Day by Day Wellness</span>
+        <span className="brand-label">{product.group}</span>
         <h3 className="product-title" onClick={onViewDetails}>{product.title}</h3>
-        <p className="product-subtitle">{product.subtitle}</p>
+        <p className="product-subtitle">{product.differentiator || product.subtitle}</p>
 
         {/* Highlight Bullets */}
         <div className="benefits-list">
@@ -40,24 +40,39 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         {/* Price & Action Row */}
         <div className="card-action-row">
           <div className="price-tag">
-            <span className="pack-size" style={{ fontSize: '0.85rem', fontWeight: 600 }}>{product.size}</span>
+            {product.hasConfirmedPrice ? (
+              <span className="amount">{product.price}</span>
+            ) : (
+              <span className="price-pending">Storefront Pending</span>
+            )}
+            <span className="pack-size">{product.packSize} • {product.ingredientCount} Actives</span>
           </div>
 
           <div className="card-buttons">
             <button 
               className="btn-round btn-detail-arrow" 
               onClick={onViewDetails} 
-              aria-label="View Details"
+              aria-label="View Product Details"
+              title="View Product Details"
             >
               <ArrowRight size={18} />
             </button>
             
-            <button 
-              className={`btn-round btn-${product.theme || 'purple'} btn-card-shop`}
-              onClick={onShopNow}
-            >
-              Shop
-            </button>
+            {product.hasConfirmedPrice ? (
+              <button 
+                className={`btn-round btn-${product.theme || 'purple'} btn-card-shop`}
+                onClick={onShopNow}
+              >
+                Shop
+              </button>
+            ) : (
+              <button 
+                className="btn-round btn-outline btn-card-details"
+                onClick={onViewDetails}
+              >
+                Details
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -74,6 +89,7 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
           border: 1px solid var(--color-border);
           transition: var(--transition-bounce);
           overflow: hidden;
+          height: 100%;
         }
         
         .product-card::before {
@@ -91,6 +107,7 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         .product-card.theme-blue::before { background-color: var(--color-blue-primary); }
         .product-card.theme-pink::before { background-color: var(--color-pink-primary); }
         .product-card.theme-green::before { background-color: var(--color-accent-green); }
+        .product-card.theme-teal::before { background-color: #0f5a47; }
         
         /* Card Badges */
         .card-badge {
@@ -111,7 +128,7 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         
         /* Image Area */
         .product-image-container {
-          height: 260px;
+          height: 240px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -121,7 +138,8 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         }
         
         .product-image {
-          max-height: 220px;
+          max-height: 210px;
+          max-width: 90%;
           object-fit: contain;
           z-index: 2;
           transition: transform 0.3s ease;
@@ -139,7 +157,7 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         
         /* Hover Effects */
         .product-card:hover {
-          transform: translateY(-10px);
+          transform: translateY(-8px);
           box-shadow: var(--shadow-hover);
         }
         
@@ -167,9 +185,14 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
           background-color: var(--color-accent-green-light);
           border-color: var(--color-accent-green);
         }
+
+        .product-card.theme-teal:hover {
+          background-color: #edf7f4;
+          border-color: #9dd4c3;
+        }
         
         .product-card:hover .product-image {
-          transform: scale(1.08) translateY(-5px);
+          transform: scale(1.06) translateY(-4px);
         }
         
         /* Card Info */
@@ -181,7 +204,7 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         }
         
         .brand-label {
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 700;
           color: var(--color-preg-accent);
           text-transform: uppercase;
@@ -189,27 +212,18 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
           margin-bottom: 4px;
         }
         
-        .theme-orange .brand-label {
-          color: var(--color-pregplus-accent);
-        }
-
-        .theme-blue .brand-label {
-          color: var(--color-blue-accent);
-        }
-
-        .theme-pink .brand-label {
-          color: var(--color-pink-accent);
-        }
-
-        .theme-green .brand-label {
-          color: var(--color-accent-green);
-        }
+        .theme-orange .brand-label { color: var(--color-pregplus-accent); }
+        .theme-blue .brand-label { color: var(--color-blue-accent); }
+        .theme-pink .brand-label { color: var(--color-pink-accent); }
+        .theme-green .brand-label { color: var(--color-accent-green); }
+        .theme-teal .brand-label { color: #0f5a47; }
         
         .product-title {
-          font-size: 1.5rem;
+          font-size: 1.35rem;
           color: var(--color-text-dark);
           margin-bottom: 6px;
           cursor: pointer;
+          line-height: 1.25;
         }
         
         .product-title:hover {
@@ -217,11 +231,11 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         }
         
         .product-subtitle {
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           color: var(--color-text-muted);
           line-height: 1.4;
-          margin-bottom: 16px;
-          height: 40px;
+          margin-bottom: 14px;
+          min-height: 38px;
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
@@ -233,7 +247,7 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
           display: flex;
           flex-direction: column;
           gap: 6px;
-          margin-bottom: 24px;
+          margin-bottom: 20px;
         }
         
         .benefit-bullet {
@@ -254,6 +268,7 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         .theme-blue .bullet-icon { color: var(--color-blue-primary); }
         .theme-pink .bullet-icon { color: var(--color-pink-primary); }
         .theme-green .bullet-icon { color: var(--color-accent-green); }
+        .theme-teal .bullet-icon { color: #0f5a47; }
         
         /* Action Row */
         .card-action-row {
@@ -271,16 +286,25 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         }
         
         .amount {
-          font-size: 1.3rem;
+          font-size: 1.25rem;
           font-weight: 800;
           color: var(--color-text-dark);
           line-height: 1.1;
         }
+
+        .price-pending {
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: var(--color-text-muted);
+          font-style: italic;
+          line-height: 1.1;
+        }
         
         .pack-size {
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           color: var(--color-text-muted);
-          font-weight: 500;
+          font-weight: 600;
+          margin-top: 3px;
         }
         
         .card-buttons {
@@ -293,9 +317,10 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
           background-color: var(--color-bg-base);
           border: 1.5px solid var(--color-border);
           color: var(--color-text-dark);
-          width: 42px;
-          height: 42px;
+          width: 40px;
+          height: 40px;
           padding: 0;
+          cursor: pointer;
         }
         
         .btn-detail-arrow:hover {
@@ -305,8 +330,21 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
         }
         
         .btn-card-shop {
-          padding: 10px 24px;
-          font-size: 0.9rem;
+          padding: 8px 18px;
+          font-size: 0.88rem;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        .btn-card-details {
+          padding: 8px 16px;
+          font-size: 0.82rem;
+          font-weight: 600;
+          border: 1px solid var(--color-border);
+          cursor: pointer;
+        }
+        .btn-card-details:hover {
+          background-color: var(--color-bg-base);
         }
       `}</style>
     </div>

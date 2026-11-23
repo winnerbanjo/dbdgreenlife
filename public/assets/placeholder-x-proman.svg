@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#edf2f7" />
+      <stop offset="100%" stop-color="#dbe4ef" />
+    </linearGradient>
+    <linearGradient id="boxGradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#142850" />
+      <stop offset="100%" stop-color="#0c172e" />
+    </linearGradient>
+    <linearGradient id="boxFrontBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="60%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#eaf0f8" />
+    </linearGradient>
+    <filter id="shadowBlue" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#142850" flood-opacity="0.22" />
+    </filter>
+  </defs>
+
+  <!-- Ambient Backdrop -->
+  <rect width="400" height="500" rx="24" fill="url(#bgGradBlue)" />
+  <circle cx="200" cy="220" r="140" fill="#cbd9eb" opacity="0.4" />
+
+  <!-- Packaging Silhouette -->
+  <g filter="url(#shadowBlue)">
+    <!-- Main Box -->
+    <rect x="110" y="70" width="180" height="300" rx="12" fill="url(#boxFrontBlue)" stroke="#142850" stroke-width="2" />
+    
+    <!-- Top Brand Header Block -->
+    <path d="M 110 82 Q 110 70 122 70 L 278 70 Q 290 70 290 82 L 290 135 L 110 135 Z" fill="url(#boxGradBlue)" />
+    <text x="200" y="98" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#90b4ce" letter-spacing="1.5">DAY BY DAY</text>
+    <text x="200" y="122" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="800" fill="#ffffff" letter-spacing="1">X-PROMAN</text>
+
+    <!-- Formula Accent Ribbon -->
+    <path d="M 110 260 Q 200 240 290 260 L 290 358 Q 290 370 278 370 L 122 370 Q 110 370 110 358 Z" fill="#142850" opacity="0.95" />
+    <text x="200" y="295" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="0.5">46 ACTIVE INGREDIENTS</text>
+    <text x="200" y="318" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="500" fill="#c4d7ec">Male Reproductive &amp; Vitality</text>
+    <text x="200" y="345" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#90b4ce" letter-spacing="0.5">60 SOFTGELS (30 + 30)</text>
+
+    <!-- Center Icon Graphic -->
+    <circle cx="200" cy="190" r="32" fill="#e2ecf7" />
+    <polygon points="200,168 214,196 186,196" fill="#142850" />
+    <circle cx="200" cy="204" r="5" fill="#142850" />
+  </g>
+
+  <!-- Status Ribbon at Bottom -->
+  <rect x="60" y="405" width="280" height="40" rx="20" fill="#ffffff" stroke="#b0c8e2" stroke-width="1.5" />
+  <circle cx="82" cy="425" r="5" fill="#142850" />
+  <text x="96" y="429" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#142850">Official Pack Visual Awaiting Handoff</text>
+</svg>

@@ -1,47 +1,61 @@
-import { Sparkles, Activity, ShieldAlert, Heart } from 'lucide-react';
+import { Sparkles, Activity, Heart, Shield, Brain, Zap, Scale } from 'lucide-react';
 
 const benefits = [
   {
-    id: 'pregnancy',
+    id: 'pregnancy-care',
     label: 'Pregnancy Care',
     color: 'purple',
-    desc: 'Prenatal Vitamins & Probiotics',
+    desc: 'Wellness Pregnancy & Pregnancy Plus (2)',
     icon: Sparkles,
   },
   {
-    id: 'pregnancy-plus',
-    label: 'Maternal Health Plus',
-    color: 'orange',
-    desc: 'Omega-3 Double Pack',
+    id: 'womens-daily',
+    label: "Women's Daily",
+    color: 'pink',
+    desc: 'Prowoman Young & Prowoman 40+ (2)',
+    icon: Sparkles,
+  },
+  {
+    id: 'mens-daily',
+    label: "Men's Daily",
+    color: 'blue',
+    desc: 'PROMAN & X-PROMAN Vitality (2)',
+    icon: Zap,
+  },
+  {
+    id: 'general-daily',
+    label: 'General Daily',
+    color: 'teal',
+    desc: 'Day By Day Wellness (34 Nutrients)',
+    icon: Activity,
+  },
+  {
+    id: 'weight-management',
+    label: 'Weight Management',
+    color: 'green',
+    desc: 'Day By Day OMG (Omega-7)',
+    icon: Scale,
+  },
+  {
+    id: 'brain-health',
+    label: 'Brain Health',
+    color: 'green',
+    desc: 'Day By Day OMG (Omega-3 & 9)',
+    icon: Brain,
+  },
+  {
+    id: 'heart-health',
+    label: 'Heart Health',
+    color: 'green',
+    desc: 'Day By Day OMG (Cardiovascular Support)',
     icon: Heart,
   },
   {
-    id: 'daily-wellness',
-    label: 'Everyday Wellness',
+    id: 'anti-aging',
+    label: 'Anti-aging & Skin',
     color: 'green',
-    desc: 'Daily Essential Nutrients',
-    icon: Activity,
-  },
-  {
-    id: 'mens-health',
-    label: "Men's Vitality",
-    color: 'blue',
-    desc: 'Energy & Focus Support',
-    icon: Activity,
-  },
-  {
-    id: 'womens-health',
-    label: "Women's Wellness",
-    color: 'pink',
-    desc: 'Balance & Skin Glow',
-    icon: Sparkles,
-  },
-  {
-    id: 'immune',
-    label: 'Immune Support',
-    color: 'yellow',
-    desc: 'Purity-Tested Defenses',
-    icon: ShieldAlert,
+    desc: 'Day By Day OMG (Omega-5 Punicic)',
+    icon: Shield,
   },
 ];
 
@@ -51,9 +65,9 @@ export default function BenefitGrid({ activeBenefit, onSelectBenefit }) {
       <div className="container">
         <div className="section-header">
           <span className="section-badge">Shop by Benefit</span>
-          <h2 className="section-title">Designed for Your Life Stage</h2>
+          <h2 className="section-title">Formulations For Every Life Stage</h2>
           <p className="section-subtitle">
-            Find the perfect wellness formulation tailored to support your body's specific daily needs.
+            Explore our eight reconciled formulations. Filter by health priority to compare active nutrient panels and pack sizes.
           </p>
         </div>
 
@@ -68,7 +82,7 @@ export default function BenefitGrid({ activeBenefit, onSelectBenefit }) {
                 className={`benefit-card ${benefit.color} ${isActive ? 'active' : ''}`}
               >
                 <div className="benefit-icon-wrapper">
-                  <IconComponent size={28} className="benefit-icon" />
+                  <IconComponent size={26} className="benefit-icon" />
                 </div>
                 <h3 className="benefit-label">{benefit.label}</h3>
                 <p className="benefit-desc">{benefit.desc}</p>
@@ -80,13 +94,13 @@ export default function BenefitGrid({ activeBenefit, onSelectBenefit }) {
 
       <style>{`
         .benefit-section {
-          padding: 80px 0 40px;
+          padding: 70px 0 30px;
           background-color: var(--color-white);
         }
         
         .section-header {
           text-align: center;
-          margin-bottom: 48px;
+          margin-bottom: 40px;
         }
         
         .section-badge {
@@ -111,21 +125,21 @@ export default function BenefitGrid({ activeBenefit, onSelectBenefit }) {
         .section-subtitle {
           font-size: 1.05rem;
           color: var(--color-text-muted);
-          max-width: 600px;
+          max-width: 640px;
           margin: 0 auto;
         }
         
         /* Benefit Grid */
         .benefit-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-          gap: 24px;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
         }
         
         .benefit-card {
           background-color: var(--color-white);
           border-radius: var(--radius-lg);
-          padding: 30px 20px;
+          padding: 24px 18px;
           text-align: center;
           box-shadow: var(--shadow-sm);
           border: 2px solid transparent;
@@ -133,36 +147,37 @@ export default function BenefitGrid({ activeBenefit, onSelectBenefit }) {
           display: flex;
           flex-direction: column;
           align-items: center;
+          cursor: pointer;
         }
         
         .benefit-icon-wrapper {
-          width: 70px;
-          height: 70px;
+          width: 60px;
+          height: 60px;
           border-radius: var(--radius-full);
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 20px;
+          margin-bottom: 16px;
           transition: var(--transition-bounce);
         }
         
         .benefit-label {
-          font-size: 1.15rem;
+          font-size: 1.05rem;
           font-weight: 700;
           margin-bottom: 6px;
           color: var(--color-text-dark);
         }
         
         .benefit-desc {
-          font-size: 0.85rem;
+          font-size: 0.8rem;
           color: var(--color-text-muted);
-          line-height: 1.4;
+          line-height: 1.35;
         }
         
         /* Hover and Colors */
         .benefit-card:hover {
-          transform: translateY(-8px);
-          box-shadow: var(--shadow-lg);
+          transform: translateY(-6px);
+          box-shadow: var(--shadow-md);
         }
         
         .benefit-card.active {
@@ -182,15 +197,39 @@ export default function BenefitGrid({ activeBenefit, onSelectBenefit }) {
           color: var(--color-white);
         }
         
-        .benefit-card.orange .benefit-icon-wrapper {
-          background-color: var(--color-pregplus-light);
-          color: var(--color-pregplus-primary);
+        .benefit-card.pink .benefit-icon-wrapper {
+          background-color: var(--color-pink-light);
+          color: var(--color-pink-primary);
         }
-        .benefit-card.orange:hover, .benefit-card.orange.active {
-          border-color: var(--color-pregplus-primary);
+        .benefit-card.pink:hover, .benefit-card.pink.active {
+          border-color: var(--color-pink-primary);
         }
-        .benefit-card.orange.active .benefit-icon-wrapper {
-          background-color: var(--color-pregplus-primary);
+        .benefit-card.pink.active .benefit-icon-wrapper {
+          background-color: var(--color-pink-primary);
+          color: var(--color-white);
+        }
+
+        .benefit-card.blue .benefit-icon-wrapper {
+          background-color: var(--color-blue-light);
+          color: var(--color-blue-primary);
+        }
+        .benefit-card.blue:hover, .benefit-card.blue.active {
+          border-color: var(--color-blue-primary);
+        }
+        .benefit-card.blue.active .benefit-icon-wrapper {
+          background-color: var(--color-blue-primary);
+          color: var(--color-white);
+        }
+
+        .benefit-card.teal .benefit-icon-wrapper {
+          background-color: #edf7f4;
+          color: #0f5a47;
+        }
+        .benefit-card.teal:hover, .benefit-card.teal.active {
+          border-color: #0f5a47;
+        }
+        .benefit-card.teal.active .benefit-icon-wrapper {
+          background-color: #0f5a47;
           color: var(--color-white);
         }
         
@@ -206,59 +245,28 @@ export default function BenefitGrid({ activeBenefit, onSelectBenefit }) {
           color: var(--color-white);
         }
         
-        .benefit-card.yellow .benefit-icon-wrapper {
-          background-color: var(--color-accent-yellow-light);
-          color: var(--color-accent-yellow);
-        }
-        .benefit-card.yellow:hover, .benefit-card.yellow.active {
-          border-color: var(--color-accent-yellow);
-        }
-        .benefit-card.yellow.active .benefit-icon-wrapper {
-          background-color: var(--color-accent-yellow);
-          color: var(--color-white);
-        }
-        
-        .benefit-card.blue .benefit-icon-wrapper {
-          background-color: var(--color-blue-light);
-          color: var(--color-blue-primary);
-        }
-        .benefit-card.blue:hover, .benefit-card.blue.active {
-          border-color: var(--color-blue-primary);
-        }
-        .benefit-card.blue.active .benefit-icon-wrapper {
-          background-color: var(--color-blue-primary);
-          color: var(--color-white);
-        }
-        
-        .benefit-card.pink .benefit-icon-wrapper {
-          background-color: var(--color-pink-light);
-          color: var(--color-pink-primary);
-        }
-        .benefit-card.pink:hover, .benefit-card.pink.active {
-          border-color: var(--color-pink-primary);
-        }
-        .benefit-card.pink.active .benefit-icon-wrapper {
-          background-color: var(--color-pink-primary);
-          color: var(--color-white);
-        }
-        
         /* Media Queries */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+          .benefit-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 640px) {
           .benefit-grid {
             display: flex;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             gap: 16px;
-            padding: 10px 10px 20px;
+            padding: 10px 4px 20px;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
-            -ms-overflow-style: none;
           }
           .benefit-grid::-webkit-scrollbar {
             display: none;
           }
           .benefit-card {
-            flex: 0 0 250px;
+            flex: 0 0 240px;
             scroll-snap-align: start;
           }
         }

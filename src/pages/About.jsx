@@ -2,28 +2,28 @@ import { Award, ShieldCheck, Users, Target, Activity } from 'lucide-react';
 
 const values = [
   {
-    title: "Wellness-Driven Innovation",
-    desc: "Constantly researching and developing new formulations to address modern everyday health goals.",
-    icon: Activity
-  },
-  {
-    title: "Quality & Safety First",
-    desc: "Rigorous clinical testing standards, raw material assays, and batch verification under GMP standards.",
+    title: "Pharmaceutical Heritage",
+    desc: "Backed by Greenlife Pharmaceuticals, bringing clinical discipline and therapeutic reliability to daily nutritional supplements.",
     icon: ShieldCheck
   },
   {
-    title: "Simplicity & Accessibility",
-    desc: "No confusing medical jargon or oversized pills. Just clean softgels that fit perfectly into your daily habits.",
-    icon: Target
-  },
-  {
-    title: "Science-Backed Formulations",
-    desc: "Dosages and ingredients selected based on active clinical trials, not marketing hype.",
+    title: "Quality & Safety Verification",
+    desc: "Strict quality control assays, raw material standards, and packaging integrity across all product lines.",
     icon: Award
   },
   {
-    title: "Trust & Transparency",
-    desc: "Clear labeling of all components, direct access to chemical analyses, and open NAFDAC registrations.",
+    title: "Transparent Formulations",
+    desc: "Clear itemisation of all active ingredients, forms, and precise dosages in mg, mcg, and IU without hidden blends.",
+    icon: Target
+  },
+  {
+    title: "Purpose-Built Life Stage Care",
+    desc: "Targeted product design addressing prenatal needs, young women's cycles, mature women 40+, men's stamina, and daily omegas.",
+    icon: Activity
+  },
+  {
+    title: "Accessible Daily Formats",
+    desc: "Convenient softgels and capsules engineered for smooth swallowing and daily consistency without chalky pills.",
     icon: Users
   }
 ];
@@ -35,9 +35,9 @@ export default function About({ onExploreProducts }) {
       <section className="about-hero">
         <div className="container about-hero-container">
           <span className="about-badge">Our Story</span>
-          <h1 className="about-hero-title">Clinical Science. <br />Everyday Lifestyle.</h1>
+          <h1 className="about-hero-title">Pharmaceutical Discipline. <br />Everyday Nutrition.</h1>
           <p className="about-hero-desc">
-            Day by Day Wellness was founded to bridge the gap between heavy clinical pharmaceutical credibility and modern, accessible wellness habits.
+            Day by Day Wellness was established to bridge the gap between rigorous pharmaceutical formulation standards and approachable daily wellness habits across Nigeria.
           </p>
         </div>
       </section>
@@ -48,28 +48,28 @@ export default function About({ onExploreProducts }) {
           <div className="narrative-text">
             <h2 className="narrative-title">Backed by Greenlife Heritage</h2>
             <p className="narrative-p">
-              Greenlife Pharmaceuticals has been a cornerstone of clinical health and therapeutics for over two decades. Day by Day Wellness is Greenlife's nutraceutical and wellness brand, focusing on preventive health and science-backed supplementation.
+              Greenlife Pharmaceuticals Ltd. has been a prominent name in therapeutic healthcare and pharmaceuticals in Nigeria for more than two decades. Day by Day represents Greenlife's dedicated nutraceutical line, emphasizing preventive nutrition and standardized supplementation.
             </p>
             <p className="narrative-p font-bold">
-              "We believe that everyday health shouldn't be complicated or clinical. It should be a joyful daily habit."
+              "We believe daily supplementation should be transparent, approachable, and grounded in pharmaceutical quality standards."
             </p>
             <p className="narrative-p">
-              By combining Greenlife's strict pharmaceutical quality standards with friendly, easy-to-understand product formats (like our easy-to-swallow softgels), we give consumers supplement routines they can trust and actually look forward to taking.
+              By uniting Greenlife's regulatory and manufacturing oversight with modern packaging formats—such as dual-action twin-packs and calibrated botanical oil blends—we deliver supplement routines Nigerian families can rely on every single day.
             </p>
           </div>
 
           <div className="narrative-stats">
             <div className="stat-card">
               <span className="stat-number">20+</span>
-              <span className="stat-label">Years of Pharma Experience</span>
+              <span className="stat-label">Years of Greenlife Pharma Experience</span>
             </div>
             <div className="stat-card purple">
-              <span className="stat-number">100%</span>
-              <span className="stat-label">NAFDAC Registered Formulas</span>
+              <span className="stat-number">8</span>
+              <span className="stat-label">Reconciled Core Formulations</span>
             </div>
             <div className="stat-card orange">
-              <span className="stat-number">0%</span>
-              <span className="stat-label">Artificial Colors or Fillers</span>
+              <span className="stat-number">100%</span>
+              <span className="stat-label">Standardized Active Nutrient Labeling</span>
             </div>
           </div>
         </div>
@@ -79,10 +79,10 @@ export default function About({ onExploreProducts }) {
       <section className="values-section">
         <div className="container">
           <div className="section-header">
-            <span className="section-badge">Core Values</span>
+            <span className="section-badge">Core Pillars</span>
             <h2 className="section-title">What Guides Us Daily</h2>
             <p className="section-subtitle">
-              These pillars define how we formulate our supplements, test our ingredients, and support our community.
+              These principles govern how our eight formulations are catalogued, labeled, and supplied to our community.
             </p>
           </div>
 
@@ -110,13 +110,13 @@ export default function About({ onExploreProducts }) {
             <img src="/assets/lifestyle-models.jpg" alt="Day by Day community" className="community-img" />
           </div>
           <div className="about-community-content">
-            <span className="community-badge">Designed for You</span>
-            <h2 className="community-title">Supplements That Match Your Vibe</h2>
+            <span className="community-badge">Everyday Routine</span>
+            <h2 className="community-title">Formulations Built for Your Life Stage</h2>
             <p className="community-p">
-              Wellness isn't a chore; it's a celebration. Day by Day is crafted to fit seamlessly into your lifestyle, whether you're building a family, crushing gym goals, or heading out on a trip.
+              Every stage of life brings distinct nutritional demands. Whether preparing for motherhood, navigating menstrual cycles, sustaining peak physical stamina, or seeking whole-body Omega support, Day By Day provides transparent, calibrated solutions.
             </p>
             <p className="community-p">
-              Our formulas look great on your shelf and feel even better in your body. Clean, effective, and made to share with your besties.
+              Each formulation is crafted with precision active ingredient panels, verifiable registration numbers, and stomach-friendly softgel encapsulation.
             </p>
           </div>
         </div>
@@ -125,12 +125,12 @@ export default function About({ onExploreProducts }) {
       {/* CTA Section */}
       <section className="about-cta-section container">
         <div className="about-cta-box">
-          <h2 className="about-cta-title">Start Your Wellness Journey Today</h2>
+          <h2 className="about-cta-title">Explore the Reconciled Catalogue</h2>
           <p className="about-cta-text">
-            Explore our launch range of prenatal and maternal softgels, designed to support you and your baby day by day.
+            Explore our complete eight-product catalogue spanning Women's Daily, Men's Daily, Pregnancy Care, General Daily, and full-spectrum Omega care.
           </p>
           <button className="btn-round btn-purple btn-cta" onClick={onExploreProducts}>
-            View Supplements
+            View All 8 Formulations
             <Activity size={16} style={{ marginLeft: '8px' }} />
           </button>
         </div>
@@ -345,6 +345,7 @@ export default function About({ onExploreProducts }) {
           color: var(--color-preg-primary);
           font-size: 1.05rem;
           padding: 14px 40px;
+          cursor: pointer;
         }
         
         .btn-cta:hover {

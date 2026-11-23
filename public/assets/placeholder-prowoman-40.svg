@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf2f5" />
+      <stop offset="100%" stop-color="#f5e1e8" />
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#801c48" />
+      <stop offset="100%" stop-color="#540e2e" />
+    </linearGradient>
+    <linearGradient id="boxFront" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="60%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#faedf1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#801c48" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <!-- Ambient Backdrop -->
+  <rect width="400" height="500" rx="24" fill="url(#bgGrad)" />
+  <circle cx="200" cy="220" r="140" fill="#f8d7e1" opacity="0.5" />
+
+  <!-- Packaging Silhouette -->
+  <g filter="url(#shadow)">
+    <!-- Main Box -->
+    <rect x="110" y="70" width="180" height="300" rx="12" fill="url(#boxFront)" stroke="#801c48" stroke-width="2" />
+    
+    <!-- Top Brand Header Block -->
+    <path d="M 110 82 Q 110 70 122 70 L 278 70 Q 290 70 290 82 L 290 135 L 110 135 Z" fill="url(#boxGrad)" />
+    <text x="200" y="98" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#fce4ec" letter-spacing="1.5">DAY BY DAY</text>
+    <text x="200" y="122" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="800" fill="#ffffff" letter-spacing="1">PROWOMAN 40+</text>
+
+    <!-- Formula Accent Ribbon -->
+    <path d="M 110 260 Q 200 240 290 260 L 290 358 Q 290 370 278 370 L 122 370 Q 110 370 110 358 Z" fill="#801c48" opacity="0.95" />
+    <text x="200" y="295" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="0.5">50 ACTIVE INGREDIENTS</text>
+    <text x="200" y="318" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="500" fill="#fce4ec">Menopause &amp; Vitality Support</text>
+    <text x="200" y="345" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#f8bbd0" letter-spacing="0.5">60 CAPSULES (30 + 30)</text>
+
+    <!-- Center Icon Graphic -->
+    <circle cx="200" cy="190" r="32" fill="#fce4ec" />
+    <path d="M 200 172 L 200 208 M 182 190 L 218 190" stroke="#801c48" stroke-width="3" stroke-linecap="round" />
+    <circle cx="200" cy="190" r="20" fill="none" stroke="#801c48" stroke-width="1.5" stroke-dasharray="3 3" />
+  </g>
+
+  <!-- Status Ribbon at Bottom -->
+  <rect x="60" y="405" width="280" height="40" rx="20" fill="#ffffff" stroke="#e8b6c6" stroke-width="1.5" />
+  <circle cx="82" cy="425" r="5" fill="#801c48" />
+  <text x="96" y="429" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#601435">Official Pack Visual Awaiting Handoff</text>
+</svg>
