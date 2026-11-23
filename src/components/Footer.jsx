@@ -143,24 +143,24 @@ export default function Footer({ setCurrentPage }) {
 
       <style>{`
         .footer {
-          background-color: #f3f0f7;
+          background-color: var(--color-bg-base);
           border-top: 1px solid var(--color-border);
           padding-top: 60px;
           margin-top: auto;
         }
         
         .footer-newsletter {
-          background: linear-gradient(135deg, var(--color-preg-light) 0%, var(--color-pregplus-light) 100%);
+          background: linear-gradient(135deg, #FAF8F5 0%, #F4F0E8 100%);
           border-radius: var(--radius-xl);
           max-width: 1100px;
           margin: 0 auto 60px;
-          padding: 40px;
+          padding: 44px;
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 40px;
-          box-shadow: var(--shadow-md);
-          border: 1px solid var(--color-white);
+          box-shadow: var(--shadow-sm);
+          border: 1px solid var(--color-border);
         }
         
         .newsletter-content {
@@ -169,13 +169,16 @@ export default function Footer({ setCurrentPage }) {
         
         .newsletter-title {
           font-size: 1.75rem;
-          color: var(--color-preg-primary);
+          font-weight: 700;
+          color: var(--color-text-dark);
           margin-bottom: 8px;
+          letter-spacing: -0.01em;
         }
         
         .newsletter-text {
           font-size: 0.95rem;
           color: var(--color-text-muted);
+          line-height: 1.5;
         }
         
         .newsletter-form {
@@ -197,21 +200,24 @@ export default function Footer({ setCurrentPage }) {
           border: none;
           background: none;
           padding: 0 16px;
-          font-size: 0.95rem;
+          font-size: 0.92rem;
           font-family: var(--font-primary);
           color: var(--color-text-dark);
           outline: none;
         }
         
         .btn-newsletter {
-          background-color: var(--color-preg-primary);
+          background-color: var(--color-text-dark);
           color: var(--color-white);
-          padding: 10px 20px;
+          padding: 10px 22px;
           font-size: 0.85rem;
+          font-weight: 600;
+          border-radius: var(--radius-full);
+          transition: var(--transition-smooth);
         }
         
         .btn-newsletter:hover {
-          background-color: var(--color-preg-dark);
+          background-color: #000000;
         }
         
         .newsletter-success {
@@ -220,7 +226,7 @@ export default function Footer({ setCurrentPage }) {
           gap: 8px;
           color: var(--color-accent-green);
           font-weight: 600;
-          font-size: 1rem;
+          font-size: 0.95rem;
           background-color: var(--color-accent-green-light);
           padding: 12px 24px;
           border-radius: var(--radius-full);
@@ -232,7 +238,7 @@ export default function Footer({ setCurrentPage }) {
         
         /* Main Footer Grid */
         .footer-main {
-          padding-bottom: 40px;
+          padding-bottom: 50px;
         }
         
         .footer-cols {
@@ -255,23 +261,25 @@ export default function Footer({ setCurrentPage }) {
         .footer-logo .logo-text {
           font-family: var(--font-heading);
           font-weight: 800;
-          font-size: 1.8rem;
-          color: var(--color-preg-primary);
+          font-size: 1.7rem;
+          letter-spacing: -0.02em;
+          color: var(--color-text-dark);
           line-height: 1;
         }
         
         .footer-logo .logo-subtext {
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 700;
           color: var(--color-text-muted);
-          letter-spacing: 0.1em;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
+          margin-top: 2px;
         }
         
         .brand-pitch {
           font-size: 0.9rem;
           color: var(--color-text-muted);
-          line-height: 1.5;
+          line-height: 1.6;
         }
         
         .certification-badge {
@@ -281,25 +289,25 @@ export default function Footer({ setCurrentPage }) {
           background-color: var(--color-white);
           padding: 8px 16px;
           border-radius: var(--radius-sm);
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           font-weight: 600;
-          color: var(--color-preg-primary);
+          color: var(--color-text-dark);
           border: 1px solid var(--color-border);
           box-shadow: var(--shadow-sm);
           width: fit-content;
         }
         
         .badge-icon {
-          color: var(--color-accent-green);
+          color: #2d8a5b;
         }
         
         .footer-col-title {
-          font-size: 1.05rem;
+          font-size: 0.85rem;
           font-weight: 700;
           color: var(--color-text-dark);
           margin-bottom: 20px;
           text-transform: uppercase;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.08em;
         }
         
         .footer-links {
@@ -310,7 +318,7 @@ export default function Footer({ setCurrentPage }) {
         }
         
         .link-btn {
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           color: var(--color-text-muted);
           text-align: left;
           font-family: var(--font-primary);
@@ -322,26 +330,27 @@ export default function Footer({ setCurrentPage }) {
         }
         
         .link-btn:hover {
-          color: var(--color-preg-primary);
-          padding-left: 4px;
+          color: var(--color-text-dark);
+          padding-left: 3px;
         }
         
         .contact-info {
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           color: var(--color-text-muted);
           margin-bottom: 6px;
+          line-height: 1.5;
         }
         
         .contact-info.email {
-          color: var(--color-preg-primary);
+          color: var(--color-text-dark);
           font-weight: 600;
-          margin-top: 12px;
+          margin-top: 10px;
         }
         
         /* Footer Bottom */
         .footer-bottom {
-          background-color: #ece7f2;
-          padding: 30px 0;
+          background-color: var(--color-bg-subtle);
+          padding: 26px 0;
           border-top: 1px solid var(--color-border);
         }
         

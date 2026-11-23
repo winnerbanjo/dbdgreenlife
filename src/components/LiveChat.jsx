@@ -1,95 +1,95 @@
 import { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Sparkles } from 'lucide-react';
+import { MessageCircle, X } from 'lucide-react';
 
 const CHAT_STEPS = {
   welcome: {
-    message: "Hey! ✨ Welcome to Day by Day by Greenlife. I'm here to help you navigate our eight daily formulations. How can I help you today? 💅",
+    message: "Welcome to Day By Day by Greenlife. I'm here to help you navigate our eight daily formulations. How can I assist you today?",
     options: [
-      { label: "Help me find my formulation match 🌸", next: "quiz_prompt" },
-      { label: "Check NAFDAC registrations & safety 🔬", next: "safety" },
-      { label: "Discount codes & current offers 🎟️", next: "discount" },
-      { label: "Tell me about Greenlife Pharmaceuticals 🧪", next: "greenlife" }
+      { label: "Find my formulation match", next: "quiz_prompt" },
+      { label: "Check NAFDAC registrations & safety", next: "safety" },
+      { label: "Discount codes & current offers", next: "discount" },
+      { label: "Learn about Greenlife Pharmaceuticals", next: "greenlife" }
     ]
   },
   quiz_prompt: {
-    message: "What is your main health priority right now? We offer eight reconciled formulations across prenatal, men's, women's, and full-spectrum omega care: 👇",
+    message: "What is your main health priority right now? We offer eight reconciled formulations across prenatal, men's, women's, and full-spectrum omega care:",
     options: [
-      { label: "Prenatal Essentials (Wellness Pregnancy) 💜", next: "recommend_pregnancy" },
-      { label: "Advanced Prenatal + DHA (Pregnancy Plus) 🧡", next: "recommend_plus" },
-      { label: "Women's Daily (Prowoman Young & 40+) 🌸", next: "recommend_prowoman" },
-      { label: "Men's Daily Stamina (PROMAN & X-PROMAN) ⚡", next: "recommend_proman" },
-      { label: "Full-Spectrum 3-5-6-7-9 Omega (OMG) 💚", next: "recommend_omg" },
-      { label: "General Daily Foundation (Wellness) 🌿", next: "recommend_wellness" },
-      { label: "I want to take the 1-minute quiz! 📝", next: "start_quiz_action" }
+      { label: "Prenatal Essentials (Wellness Pregnancy)", next: "recommend_pregnancy" },
+      { label: "Advanced Prenatal + DHA (Pregnancy Plus)", next: "recommend_plus" },
+      { label: "Women's Daily (Prowoman Young & 40+)", next: "recommend_prowoman" },
+      { label: "Men's Daily Stamina (PROMAN & X-PROMAN)", next: "recommend_proman" },
+      { label: "Full-Spectrum 3-5-6-7-9 Omega (OMG)", next: "recommend_omg" },
+      { label: "General Daily Foundation (Wellness)", next: "recommend_wellness" },
+      { label: "Take the 1-minute wellness quiz", next: "start_quiz_action" }
     ]
   },
   recommend_pregnancy: {
     message: "Day By Day Wellness Pregnancy provides 24 vital nutrients including 600 mcg Folic Acid, 18 mg Iron, L-Lysine, L-Arginine & Inositol in a single daily softgel. Registered under NAFDAC Reg. No. A7-102912.",
     options: [
-      { label: "View Wellness Pregnancy 💜", next: "view_pregnancy_action" },
-      { label: "Explore Pregnancy Plus instead 🧡", next: "view_plus_action" },
-      { label: "Main menu 🏠", next: "welcome" }
+      { label: "View Wellness Pregnancy", next: "view_pregnancy_action" },
+      { label: "Explore Pregnancy Plus instead", next: "view_plus_action" },
+      { label: "Return to main menu", next: "welcome" }
     ]
   },
   recommend_plus: {
     message: "Wellness Pregnancy Plus is a 60-softgel twin-pack (30 + 30). Its second softgel delivers 850 mg of high-potency Omega 3-6-9 with 300 mg DHA and 75 mg EPA for foetal cognitive and eye development.",
     options: [
-      { label: "View Pregnancy Plus 🧡", next: "view_plus_action" },
-      { label: "Compare with Wellness Pregnancy 💜", next: "view_pregnancy_action" },
-      { label: "Main menu 🏠", next: "welcome" }
+      { label: "View Pregnancy Plus", next: "view_plus_action" },
+      { label: "Compare with Wellness Pregnancy", next: "view_pregnancy_action" },
+      { label: "Return to main menu", next: "welcome" }
     ]
   },
   recommend_prowoman: {
     message: "Our Women's Daily line offers two distinct formulations: Prowoman Young (41 actives with Dong Quai, Black Cohosh & Shatavari for women 18–40) and Prowoman 40+ (50 actives for menopause comfort, bone mobility, and skin).",
     options: [
-      { label: "View Prowoman Young 🌸", next: "view_young_action" },
-      { label: "View Prowoman 40+ 💗", next: "view_40_action" },
-      { label: "Main menu 🏠", next: "welcome" }
+      { label: "View Prowoman Young", next: "view_young_action" },
+      { label: "View Prowoman 40+", next: "view_40_action" },
+      { label: "Return to main menu", next: "welcome" }
     ]
   },
   recommend_proman: {
     message: "Our Men's Daily line offers PROMAN (40 actives with CoQ10, Ginseng, Graviola, and Omega 3-5-6-7-9 for stamina and focus) and X-PROMAN (46 actives with 8 reproductive and libido botanicals for vitality).",
     options: [
-      { label: "View Day By Day PROMAN ⚡", next: "view_proman_action" },
-      { label: "View Day By Day X-PROMAN 💙", next: "view_xproman_action" },
-      { label: "Main menu 🏠", next: "welcome" }
+      { label: "View Day By Day PROMAN", next: "view_proman_action" },
+      { label: "View Day By Day X-PROMAN", next: "view_xproman_action" },
+      { label: "Return to main menu", next: "welcome" }
     ]
   },
   recommend_omg: {
     message: "Day By Day OMG delivers a full-spectrum Omega 3-5-6-7-9 blend backed by cold-pressed Virgin Coconut, Avocado, Grape Seed & Rice Bran oils. Sourced for weight management (Omega-7), heart & brain health (Omega-3 & 9), and skin anti-aging (Omega-5).",
     options: [
-      { label: "View Day By Day OMG 💚", next: "view_omg_action" },
-      { label: "Main menu 🏠", next: "welcome" }
+      { label: "View Day By Day OMG", next: "view_omg_action" },
+      { label: "Return to main menu", next: "welcome" }
     ]
   },
   recommend_wellness: {
     message: "Day By Day Wellness is our foundational daily supplement providing 34 vital nutrients—vitamins, minerals, amino acids, Ginseng, and Omega-3—for everyday stress support and all-day energy. Registered under NAFDAC Reg. No. A7-100492.",
     options: [
-      { label: "View Day By Day Wellness 🌿", next: "view_wellness_action" },
-      { label: "Main menu 🏠", next: "welcome" }
+      { label: "View Day By Day Wellness", next: "view_wellness_action" },
+      { label: "Return to main menu", next: "welcome" }
     ]
   },
   safety: {
     message: "Quality and compliance are foundational at Greenlife. Every product carries a confirmed or pending NAFDAC registration recorded on its pack details. Formulations are manufactured and tested under strict pharmaceutical quality standards.",
     options: [
-      { label: "Learn more about our heritage 🧬", next: "about_science_action" },
-      { label: "Back to main menu 🏠", next: "welcome" }
+      { label: "Learn more about our heritage", next: "about_science_action" },
+      { label: "Return to main menu", next: "welcome" }
     ]
   },
   discount: {
-    message: "Use code BESTIE10 at checkout for 10% off verified purchase orders across Nigeria.",
+    message: "Use code DAYBYDAY at checkout for launch benefits across Nigeria.",
     options: [
-      { label: "Shop Wellness Pregnancy 💜", next: "shop_pregnancy_action" },
-      { label: "Shop Pregnancy Plus 🧡", next: "shop_plus_action" },
-      { label: "Shop Day By Day OMG 💚", next: "shop_omg_action" },
-      { label: "Main menu 🏠", next: "welcome" }
+      { label: "Shop Wellness Pregnancy", next: "shop_pregnancy_action" },
+      { label: "Shop Pregnancy Plus", next: "shop_plus_action" },
+      { label: "Shop Day By Day OMG", next: "shop_omg_action" },
+      { label: "Return to main menu", next: "welcome" }
     ]
   },
   greenlife: {
-    message: "Greenlife Pharmaceuticals Ltd. has over 20 years of clinical and therapeutic heritage in Nigeria. Day by Day is Greenlife's daily nutraceutical brand, translating pharmaceutical formulation rigor into approachable everyday wellness.",
+    message: "Greenlife Pharmaceuticals Ltd. has over 20 years of clinical and therapeutic heritage in Nigeria. Day By Day is Greenlife's daily nutraceutical brand, translating pharmaceutical formulation rigor into approachable everyday wellness.",
     options: [
-      { label: "Read Our Story 📖", next: "about_science_action" },
-      { label: "Main menu 🏠", next: "welcome" }
+      { label: "Read Our Story", next: "about_science_action" },
+      { label: "Return to main menu", next: "welcome" }
     ]
   }
 };
@@ -263,7 +263,6 @@ export default function LiveChat({ onOpenQuiz, onViewProduct, onShopProduct, set
           {/* Dynamic Interactive Options List */}
           <div className="chat-footer">
             <div className="chat-options-title">
-              <Sparkles size={12} className="sparkle-icon" />
               <span>Select an inquiry or product:</span>
             </div>
             <div className="chat-quick-replies">

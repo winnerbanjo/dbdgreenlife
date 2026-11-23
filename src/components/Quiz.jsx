@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, Sparkles, Check, ArrowRight, ShieldCheck, ArrowLeft } from 'lucide-react';
+import { X, Check, ArrowRight, ShieldCheck, ArrowLeft, Award } from 'lucide-react';
 import { PRODUCTS_BY_ID } from '../data/products';
 
 const questions = [
@@ -8,13 +8,13 @@ const questions = [
     title: "What is your main health priority right now?",
     subtitle: "Select the area that best describes your life stage or daily wellness focus.",
     options: [
-      { label: "Healthy Pregnancy & Prenatal Nutrition", value: "pregnancy", icon: "🌸" },
-      { label: "Women's Daily Cycle Balance & Skin (18–40)", value: "womens-young", icon: "✨" },
-      { label: "Women's 40+ Menopause Comfort & Bone Mobility", value: "womens-40", icon: "💗" },
-      { label: "Men's Everyday Stamina, Energy & Focus", value: "mens-proman", icon: "⚡" },
-      { label: "Male Reproductive Vitality & Performance", value: "mens-xproman", icon: "💙" },
-      { label: "Full-Spectrum Omega for Weight, Heart & Skin", value: "omg", icon: "💚" },
-      { label: "Foundational Daily Wellness Multivitamin & Minerals", value: "wellness", icon: "🌿" }
+      { label: "Healthy Pregnancy & Prenatal Nutrition", value: "pregnancy", badge: "Maternal Care" },
+      { label: "Women's Daily Cycle Balance & Skin (18–40)", value: "womens-young", badge: "Women's Daily" },
+      { label: "Women's 40+ Menopause Comfort & Bone Mobility", value: "womens-40", badge: "Women 40+" },
+      { label: "Men's Everyday Stamina, Energy & Focus", value: "mens-proman", badge: "Men's Vitality" },
+      { label: "Male Reproductive Vitality & Performance", value: "mens-xproman", badge: "Men's Performance" },
+      { label: "Full-Spectrum Omega for Weight, Heart & Skin", value: "omg", badge: "Omega 3-5-6-7-9" },
+      { label: "Foundational Daily Wellness Multivitamin & Minerals", value: "wellness", badge: "General Daily" }
     ]
   },
   {
@@ -22,8 +22,8 @@ const questions = [
     title: "For prenatal care, do you prefer a single-softgel routine or a twin-pack with Omega-3 DHA?",
     subtitle: "DHA contributes to normal foetal brain and eye development.",
     options: [
-      { label: "Single Softgel: Multivitamins, Iron, Folic Acid & Inositol (30 Softgels)", value: "pregnancy-single", icon: "💜" },
-      { label: "Twin-Pack Duo: Prenatal Essentials + 300 mg DHA / 75 mg EPA (60 Softgels)", value: "pregnancy-plus", icon: "🧡" }
+      { label: "Single Softgel: Multivitamins, Iron, Folic Acid & Inositol (30 Softgels)", value: "pregnancy-single", badge: "Single Softgel" },
+      { label: "Twin-Pack Duo: Prenatal Essentials + 300 mg DHA / 75 mg EPA (60 Softgels)", value: "pregnancy-plus", badge: "Twin-Pack" }
     ]
   },
   {
@@ -31,9 +31,9 @@ const questions = [
     title: "What packaging format best matches your daily routine?",
     subtitle: "All Day by Day formulations are engineered for clean absorption without artificial fillers.",
     options: [
-      { label: "Convenient monthly 30-day single supply", value: "single-pack", icon: "💊" },
-      { label: "Comprehensive 60-count dual-action twin-pack (30 + 30)", value: "twin-pack", icon: "✨" },
-      { label: "Show best formulation recommendation based on my health goals", value: "neutral", icon: "🔬" }
+      { label: "Convenient monthly 30-day single supply", value: "single-pack", badge: "30-Day Pack" },
+      { label: "Comprehensive 60-count dual-action twin-pack (30 + 30)", value: "twin-pack", badge: "60-Count Twin" },
+      { label: "Show best formulation recommendation based on my health goals", value: "neutral", badge: "Recommended" }
     ]
   }
 ];
@@ -173,7 +173,7 @@ export default function Quiz({ onClose, onProductClick, onShopRedirect }) {
                   onClick={() => handleOptionSelect(questions[currentStep].id, option.value)}
                   className="quiz-option-btn"
                 >
-                  <span className="option-icon">{option.icon}</span>
+                  <span className="option-badge">{option.badge}</span>
                   <span className="option-label">{option.label}</span>
                   <span className="option-checkmark">
                     <Check size={14} />
@@ -185,7 +185,7 @@ export default function Quiz({ onClose, onProductClick, onShopRedirect }) {
         ) : (
           <div className="quiz-result-content">
             <div className="result-header">
-              <Sparkles size={24} className="result-sparkle-icon" />
+              <Award size={26} className="result-sparkle-icon" />
               <h2 className="result-headline">Your Recommended Formulation Match</h2>
               <p className="result-sub">Reconciled to match your specific health priorities and pack format</p>
             </div>
@@ -408,8 +408,16 @@ export default function Quiz({ onClose, onProductClick, onShopRedirect }) {
           transform: translateX(4px);
         }
 
-        .option-icon {
-          font-size: 1.3rem;
+        .option-badge {
+          font-size: 0.72rem;
+          font-weight: 700;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          background-color: var(--color-white);
+          color: var(--color-text-muted);
+          border: 1px solid var(--color-border);
+          padding: 4px 10px;
+          border-radius: var(--radius-full);
           flex-shrink: 0;
         }
 

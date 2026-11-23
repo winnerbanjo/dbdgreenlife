@@ -1,4 +1,4 @@
-/* Global CSS Reset & Design Tokens for Day by Day Wellness (Olly-style Design) */
+/* Global CSS Reset & Design Tokens for Day by Day Wellness (Lemme-inspired Luxury DTC Aesthetic) */
 
 :root {
   /* Fonts */
@@ -6,74 +6,80 @@
   --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
   --font-serif: 'EB Garamond', Georgia, serif;
 
-  /* Global Colors */
+  /* Global Lemme-style Canvas Colors */
   --color-white: #ffffff;
-  --color-bg-base: #f5effa;
-  --color-text-dark: #2c2533;
-  --color-text-muted: #6e6478;
-  --color-border: #e9e5ee;
+  --color-bg-base: #FAF8F5; /* Warm luxury off-white canvas */
+  --color-bg-subtle: #F4F0E8; /* Muted stone tint */
+  --color-bg-card: #ffffff;
+  --color-text-dark: #1A1A1A; /* Deep matte charcoal */
+  --color-text-body: #3A3734;
+  --color-text-muted: #726C66; /* Elegant muted warm gray */
+  --color-border: #E8E3DC; /* Hairline luxury border */
+  --color-border-subtle: #F0ECE5;
   
   /* Brand Theme: General */
-  --color-brand-primary: #8a3eb7;
-  --color-brand-primary-light: #f8f3fc;
+  --color-brand-primary: #1A1A1A;
+  --color-brand-accent: #6f2c91;
+  --color-brand-primary-light: #F4EEF8;
   
-  /* Brand Theme: Wellness Pregnancy (Purple) */
+  /* Subtle Pastel Tinted Backgrounds for Product Cards (Lemme DTC Style) */
+  --tint-purple: #F4EEF8;
+  --tint-orange: #FDF1EB;
+  --tint-blue: #EEF3F8;
+  --tint-pink: #FBF0F4;
+  --tint-green: #EFF6F1;
+  --tint-teal: #EEF5F4;
+  --tint-stone: #F6F4EE;
+
+  /* Brand Theme: Wellness Pregnancy */
   --color-preg-primary: #6f2c91;
   --color-preg-secondary: #e8d5f2;
-  --color-preg-light: #f7f0fa;
-  --color-preg-accent: #b188c7;
+  --color-preg-light: #F4EEF8;
   --color-preg-dark: #4d1e66;
-  --color-preg-gradient: linear-gradient(135deg, #8c42b5 0%, #6f2c91 100%);
   
-  /* Brand Theme: Wellness Pregnancy Plus (Orange/Red) */
-  --color-pregplus-primary: #d8562a;
+  /* Brand Theme: Wellness Pregnancy Plus */
+  --color-pregplus-primary: #c84d23;
   --color-pregplus-secondary: #ffdcc8;
-  --color-pregplus-light: #fef3ec;
-  --color-pregplus-accent: #f0a88e;
-  --color-pregplus-dark: #a13d1b;
-  --color-pregplus-gradient: linear-gradient(135deg, #e3744f 0%, #d8562a 100%);
+  --color-pregplus-light: #FDF1EB;
+  --color-pregplus-dark: #8c2f10;
 
-  /* Brand Theme: PROMAN (Blue) */
-  --color-blue-primary: #1e3a8a;
+  /* Brand Theme: PROMAN */
+  --color-blue-primary: #1c3d6e;
   --color-blue-secondary: #dbeafe;
-  --color-blue-light: #eff6ff;
-  --color-blue-accent: #3b82f6;
-  --color-blue-dark: #172554;
-  --color-blue-gradient: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  --color-blue-light: #EEF3F8;
+  --color-blue-dark: #122442;
 
-  /* Brand Theme: PROWOMAN YOUNG (Pink) */
-  --color-pink-primary: #be185d;
+  /* Brand Theme: PROWOMAN YOUNG */
+  --color-pink-primary: #b82260;
   --color-pink-secondary: #fce7f3;
-  --color-pink-light: #fdf2f8;
-  --color-pink-accent: #ec4899;
-  --color-pink-dark: #4c0519;
-  --color-pink-gradient: linear-gradient(135deg, #db2777 0%, #be185d 100%);
+  --color-pink-light: #FBF0F4;
+  --color-pink-dark: #5c0d2e;
 
   /* UI Accents */
-  --color-accent-blue: #407ec9;
-  --color-accent-blue-light: #eef5fc;
-  --color-accent-green: #3ca976;
-  --color-accent-green-light: #ebf6f1;
-  --color-accent-yellow: #f5b041;
-  --color-accent-yellow-light: #fef7ec;
+  --color-accent-blue: #2a6ab5;
+  --color-accent-blue-light: #EEF3F8;
+  --color-accent-green: #2d8a5b;
+  --color-accent-green-light: #EFF6F1;
+  --color-accent-yellow: #d99320;
   
-  /* Shadows */
-  --shadow-sm: 0 4px 6px -1px rgba(110, 100, 120, 0.05), 0 2px 4px -1px rgba(110, 100, 120, 0.03);
-  --shadow-md: 0 10px 15px -3px rgba(110, 100, 120, 0.08), 0 4px 6px -2px rgba(110, 100, 120, 0.05);
-  --shadow-lg: 0 20px 25px -5px rgba(110, 100, 120, 0.12), 0 10px 10px -5px rgba(110, 100, 120, 0.04);
-  --shadow-hover: 0 25px 40px -10px rgba(110, 100, 120, 0.25);
-  --shadow-inset: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  /* Shadows - Understated, soft luxury shadows */
+  --shadow-sm: 0 2px 6px rgba(26, 26, 26, 0.04);
+  --shadow-md: 0 8px 24px rgba(26, 26, 26, 0.06);
+  --shadow-lg: 0 16px 40px rgba(26, 26, 26, 0.08);
+  --shadow-hover: 0 20px 45px rgba(26, 26, 26, 0.12);
+  --shadow-card: 0 4px 16px rgba(26, 26, 26, 0.04);
 
   /* Radius */
+  --radius-xs: 4px;
   --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 36px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
   --radius-full: 9999px;
 
   /* Transitions */
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-smooth: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Base Styles */
@@ -124,6 +130,16 @@ h3 {
   letter-spacing: -0.01em;
 }
 
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-editorial {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -139,26 +155,41 @@ button {
   outline: none;
 }
 
-/* Interactive Elements (Buttons & Inputs) */
+/* Interactive Elements (Lemme-Style Pill Buttons) */
 .btn-round {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 28px;
+  padding: 13px 30px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.01em;
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-sm);
   transition: var(--transition-bounce);
+  cursor: pointer;
 }
 
 .btn-round:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
 .btn-round:active {
-  transform: translateY(-1px);
+  transform: translateY(0);
+}
+
+/* Dark Primary Pill Button (Lemme Signature) */
+.btn-dark {
+  background-color: var(--color-text-dark);
+  color: var(--color-white);
+  border: 1px solid var(--color-text-dark);
+}
+
+.btn-dark:hover {
+  background-color: #000000;
+  color: var(--color-white);
+  border-color: #000000;
 }
 
 .btn-purple {
@@ -203,17 +234,28 @@ button {
 }
 
 .btn-green:hover {
-  background-color: #2c855a;
+  background-color: #246e48;
 }
 
-
 .btn-outline {
-  border: 2px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   background-color: transparent;
   color: var(--color-text-dark);
 }
 
 .btn-outline:hover {
+  border-color: var(--color-text-dark);
+  background-color: rgba(26, 26, 26, 0.03);
+}
+
+.btn-white {
+  background-color: var(--color-white);
+  color: var(--color-text-dark);
+  border: 1px solid var(--color-border);
+}
+
+.btn-white:hover {
+  background-color: #FAF8F5;
   border-color: var(--color-text-dark);
 }
 

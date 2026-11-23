@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { ShoppingBag, ChevronDown, Menu, X, Search, Sparkles, ArrowRight, Check } from 'lucide-react';
+import { ShoppingBag, ChevronDown, Menu, X, Search, ArrowRight, Check } from 'lucide-react';
 import { PRODUCTS_DATA } from '../data/products';
 
 export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProductClick, onShopRedirect }) {
@@ -65,17 +65,19 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProd
 
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
-      {/* Top Alert Promo Bar */}
+      {/* Top Alert Promo Bar (Lemme Luxury Style) */}
       {!isScrolled && (
         <div className="top-alert-bar">
           <div className="alert-bar-content animate-marquee">
-            <span>✨ Code <strong>BESTIE10</strong> gets you 10% off!</span>
+            <span>Free delivery across Nigeria on orders over ₦30,000</span>
             <span className="divider">•</span>
-            <span>🚚 Free shipping across Nigeria on orders over ₦30,000</span>
+            <span>Formulated by Greenlife Pharmaceuticals</span>
             <span className="divider">•</span>
-            <span>🔬 Backed by Greenlife Pharmaceuticals clinical heritage</span>
+            <span>NAFDAC Registered Formulations</span>
             <span className="divider">•</span>
-            <span>🇳🇬 NAFDAC Registered Formulations</span>
+            <span>100% Quality Assay Verified</span>
+            <span className="divider">•</span>
+            <span>Code <strong>DAYBYDAY</strong> for launch benefits</span>
           </div>
         </div>
       )}
@@ -184,7 +186,6 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProd
           </button>
           
           <button className="btn-round btn-quiz" onClick={onOpenQuiz}>
-            <Sparkles size={16} style={{ marginRight: '6px' }} />
             Take the Quiz
           </button>
           
@@ -337,23 +338,23 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProd
           </div>
 
           <button 
-            className="btn-round btn-orange mobile-drawer-btn" 
+            className="btn-round btn-dark mobile-drawer-btn" 
             onClick={() => { setMobileMenuOpen(false); onOpenQuiz(); }}
             style={{ width: '100%', marginTop: '30px' }}
           >
-            <Sparkles size={16} style={{ marginRight: '6px' }} />
             Take the Quiz
           </button>
         </div>
       </div>
       
       <style>{`
-        /* Top Alert Bar */
+        /* Top Alert Bar (Lemme Luxury Style) */
         .top-alert-bar {
-          background: linear-gradient(90deg, var(--color-preg-primary) 0%, var(--color-pregplus-primary) 100%);
-          color: var(--color-white);
-          font-size: 0.78rem;
-          font-weight: 700;
+          background-color: #1A1A1A;
+          color: #FAF8F5;
+          font-size: 0.74rem;
+          font-weight: 500;
+          letter-spacing: 0.04em;
           height: 32px;
           display: flex;
           align-items: center;
@@ -368,14 +369,14 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProd
         .alert-bar-content {
           display: flex;
           align-items: center;
-          gap: 30px;
+          gap: 24px;
           white-space: nowrap;
-          animation: marquee 20s linear infinite;
+          animation: marquee 22s linear infinite;
           padding-left: 20px;
         }
         
         .divider {
-          opacity: 0.6;
+          opacity: 0.4;
         }
         
         @keyframes marquee {
@@ -388,22 +389,22 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProd
           top: 0;
           left: 0;
           width: 100%;
-          height: 112px;
+          height: 104px;
           padding-top: 32px;
           z-index: 1000;
-          background-color: var(--color-preg-dark);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          background-color: rgba(250, 248, 245, 0.95);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-bottom: 1px solid var(--color-border);
           transition: var(--transition-smooth);
           display: flex;
           align-items: center;
         }
         
         .header.scrolled {
-          background-color: rgba(77, 30, 102, 0.95);
-          backdrop-filter: blur(16px) saturate(180%);
-          -webkit-backdrop-filter: blur(16px) saturate(180%);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+          background-color: rgba(255, 255, 255, 0.98);
+          border-bottom: 1px solid var(--color-border);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
           height: 70px;
           padding-top: 0;
         }
@@ -427,37 +428,30 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProd
         }
         
         .logo-icon {
-          width: 12px;
-          height: 12px;
-          background-color: var(--color-pregplus-primary);
+          width: 8px;
+          height: 8px;
+          background-color: var(--color-text-dark);
           border-radius: var(--radius-full);
-          margin-bottom: -4px;
-          margin-left: 2px;
-          box-shadow: 0 0 10px var(--color-pregplus-accent);
-          animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-          0% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.3); opacity: 0.8; }
-          100% { transform: scale(1); opacity: 1; }
+          margin-bottom: 2px;
+          margin-left: 1px;
         }
         
         .logo-text {
           font-family: var(--font-heading);
           font-weight: 800;
-          font-size: 1.6rem;
-          color: var(--color-white);
+          font-size: 1.5rem;
+          letter-spacing: -0.02em;
+          color: var(--color-text-dark);
           line-height: 1;
         }
         
         .logo-subtext {
           font-size: 0.65rem;
           font-weight: 700;
-          color: var(--color-preg-secondary);
-          letter-spacing: 0.1em;
+          color: var(--color-text-muted);
+          letter-spacing: 0.12em;
           text-transform: uppercase;
-          margin-top: -2px;
+          margin-top: 2px;
         }
         
         /* Navigation Styles */
@@ -468,15 +462,20 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProd
         }
         
         .nav-link {
-          font-size: 0.95rem;
-          font-weight: 700;
-          color: var(--color-white);
+          font-size: 0.92rem;
+          font-weight: 600;
+          color: var(--color-text-dark);
           padding: 8px 0;
           position: relative;
           display: flex;
           align-items: center;
           gap: 4px;
           cursor: pointer;
+          transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover {
+          color: #555555;
         }
         
         .nav-link::after {
@@ -485,8 +484,8 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProd
           bottom: 0;
           left: 0;
           width: 0;
-          height: 3px;
-          background-color: var(--color-pregplus-primary);
+          height: 2px;
+          background-color: var(--color-text-dark);
           border-radius: var(--radius-full);
           transition: var(--transition-smooth);
         }
@@ -517,7 +516,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProd
           width: 340px;
           background-color: var(--color-white);
           border-radius: var(--radius-md);
-          box-shadow: var(--shadow-lg);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
           padding: 16px;
           border: 1px solid var(--color-border);
           animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -547,7 +546,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProd
         }
         
         .dropdown-item:hover {
-          background-color: var(--color-brand-primary-light);
+          background-color: var(--color-bg-subtle);
         }
         
         .item-dot {
@@ -581,55 +580,58 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProd
         .header-actions {
           display: flex;
           align-items: center;
-          gap: 16px;
+          gap: 14px;
         }
         
         .btn-search-icon {
-          color: var(--color-white);
+          color: var(--color-text-dark);
           padding: 8px;
           border-radius: var(--radius-full);
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
+          transition: var(--transition-smooth);
         }
         
         .btn-search-icon:hover {
-          background-color: rgba(255, 255, 255, 0.1);
+          background-color: var(--color-bg-subtle);
         }
         
         .btn-quiz {
-          font-size: 0.85rem;
-          padding: 10px 20px;
-          background-color: var(--color-white);
-          color: var(--color-preg-dark);
-          font-weight: 700;
+          font-size: 0.84rem;
+          padding: 8px 20px;
+          background-color: var(--color-text-dark);
+          color: var(--color-white);
+          font-weight: 600;
           border-radius: var(--radius-full);
-          border: 2px solid var(--color-white);
+          border: 1px solid var(--color-text-dark);
+          transition: var(--transition-smooth);
         }
         
         .btn-quiz:hover {
-          background-color: transparent;
-          color: var(--color-white);
+          background-color: #000000;
+          border-color: #000000;
         }
         
         .cart-icon {
           position: relative;
-          color: var(--color-white);
+          color: var(--color-text-dark);
           padding: 8px;
           border-radius: var(--radius-full);
           cursor: pointer;
+          transition: var(--transition-smooth);
         }
         
         .cart-icon:hover {
-          background-color: rgba(255, 255, 255, 0.1);
+          background-color: var(--color-bg-subtle);
         }
         
         .cart-badge {
           position: absolute;
-          top: 0;
-          right: 0;
-          background-color: var(--color-pregplus-primary);
+          top: 2px;
+          right: 2px;
+          background-color: var(--color-text-dark);
           color: var(--color-white);
           font-size: 0.65rem;
           font-weight: 700;
@@ -644,7 +646,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProd
         
         .mobile-toggle {
           display: none;
-          color: var(--color-white);
+          color: var(--color-text-dark);
         }
 
         /* Search Overlay & Modal */

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ShieldCheck, Award, ArrowLeft, Check, ChevronDown, ChevronUp, ShoppingCart, Info, AlertCircle, Sparkles } from 'lucide-react';
+import { ShieldCheck, Award, ArrowLeft, Check, ChevronDown, ChevronUp, ShoppingCart, Info, AlertCircle } from 'lucide-react';
 import { PRODUCTS_BY_ID } from '../data/products';
 
 export default function ProductDetail({ productId, onBack, onShopRedirect }) {
@@ -145,7 +145,7 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
               {product.ingredientsPanel.map((panel, pIdx) => (
                 <div key={pIdx} className="ingredient-section-card">
                   <h3 className="ingredient-section-title">
-                    <Sparkles size={16} className="sparkle-icon" />
+                    <Award size={16} className="sparkle-icon" />
                     {panel.section}
                   </h3>
                   <div className="ingredients-chip-grid">

@@ -1,78 +1,87 @@
-import { Pill, Sparkles, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, Star } from 'lucide-react';
+
+const THEME_TINTS = {
+  purple: '#F4EEF8',
+  orange: '#FDF1EB',
+  blue: '#EEF3F8',
+  pink: '#FBF0F4',
+  green: '#EFF6F1',
+  teal: '#EEF5F4',
+  stone: '#F6F4EE'
+};
 
 export default function ProductCard({ product, onViewDetails, onShopNow }) {
-  const themeClass = `theme-${product.theme || 'purple'}`;
-  
+  const themeTint = THEME_TINTS[product.theme] || '#F7F5F0';
+
   return (
-    <div className={`product-card ${themeClass}`}>
-      {/* Product Card Top (Pill Badge) */}
-      <div className="card-badge">
-        <Pill size={14} style={{ marginRight: '4px' }} />
-        <span>{product.type}</span>
-      </div>
-
-      {/* Product Image Area */}
-      <div className="product-image-container" onClick={onViewDetails}>
-        <img 
-          src={product.image} 
-          alt={product.title} 
-          className="product-image animate-float"
-        />
-        <div className="product-image-shadow"></div>
-      </div>
-
-      {/* Card Content */}
-      <div className="card-info">
-        <span className="brand-label">{product.group}</span>
-        <h3 className="product-title" onClick={onViewDetails}>{product.title}</h3>
-        <p className="product-subtitle">{product.differentiator || product.subtitle}</p>
-
-        {/* Highlight Bullets */}
-        <div className="benefits-list">
-          {product.bullets.slice(0, 3).map((bullet, idx) => (
-            <div key={idx} className="benefit-bullet">
-              <Sparkles size={12} className="bullet-icon" />
-              <span>{bullet}</span>
-            </div>
-          ))}
+    <div className="product-card">
+      {/* Product Image Container with Soft Pastel Tint (Lemme Style) */}
+      <div 
+        className="product-image-box" 
+        style={{ backgroundColor: themeTint }}
+        onClick={onViewDetails}
+      >
+        <div className="product-badge-pill">
+          <span>{product.group || product.type}</span>
         </div>
 
-        {/* Price & Action Row */}
-        <div className="card-action-row">
-          <div className="price-tag">
+        <div className="image-wrapper">
+          <img 
+            src={product.image} 
+            alt={product.title} 
+            className="product-pack-img"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      {/* Product Content Details */}
+      <div className="product-card-body">
+        {/* Star Rating Row */}
+        <div className="product-rating-row">
+          <div className="stars-group">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} size={12} fill="#1A1A1A" color="#1A1A1A" />
+            ))}
+          </div>
+          <span className="rating-score">4.9 (120+)</span>
+        </div>
+
+        {/* Title & Tagline */}
+        <h3 className="product-card-title" onClick={onViewDetails}>
+          {product.title}
+        </h3>
+        
+        <p className="product-card-tagline">
+          {product.differentiator || product.subtitle}
+        </p>
+
+        {/* Pack & Ingredient Specs */}
+        <div className="product-specs-chip">
+          <span>{product.packSize}</span>
+          <span className="dot-sep">•</span>
+          <span>{product.ingredientCount} Active Nutrients</span>
+        </div>
+
+        {/* Price & Action Button Footer */}
+        <div className="product-card-footer">
+          <div className="price-container">
             {product.hasConfirmedPrice ? (
-              <span className="amount">{product.price}</span>
+              <span className="price-val">{product.price}</span>
             ) : (
               <span className="price-pending">Storefront Pending</span>
             )}
-            <span className="pack-size">{product.packSize} • {product.ingredientCount} Actives</span>
           </div>
 
-          <div className="card-buttons">
+          <div className="action-buttons-group">
             <button 
-              className="btn-round btn-detail-arrow" 
-              onClick={onViewDetails} 
-              aria-label="View Product Details"
-              title="View Product Details"
+              className="btn-round btn-card-action"
+              onClick={product.hasConfirmedPrice ? onShopNow : onViewDetails}
             >
-              <ArrowRight size={18} />
+              {product.hasConfirmedPrice ? 'Shop' : 'Details'}
+              <ArrowRight size={13} style={{ marginLeft: '4px' }} />
             </button>
-            
-            {product.hasConfirmedPrice ? (
-              <button 
-                className={`btn-round btn-${product.theme || 'purple'} btn-card-shop`}
-                onClick={onShopNow}
-              >
-                Shop
-              </button>
-            ) : (
-              <button 
-                className="btn-round btn-outline btn-card-details"
-                onClick={onViewDetails}
-              >
-                Details
-              </button>
-            )}
           </div>
         </div>
       </div>
@@ -80,271 +89,187 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
       <style>{`
         .product-card {
           background-color: var(--color-white);
-          border-radius: var(--radius-xl);
-          padding: 24px;
-          box-shadow: var(--shadow-sm);
-          position: relative;
+          border-radius: var(--radius-lg);
+          padding: 16px;
+          border: 1px solid var(--color-border);
           display: flex;
           flex-direction: column;
-          border: 1px solid var(--color-border);
+          position: relative;
           transition: var(--transition-bounce);
-          overflow: hidden;
           height: 100%;
         }
-        
-        .product-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
+
+        .product-card:hover {
+          transform: translateY(-4px);
+          box-shadow: var(--shadow-md);
+          border-color: #D6D0C7;
+        }
+
+        .product-image-box {
+          position: relative;
           width: 100%;
-          height: 10px;
-          transition: var(--transition-smooth);
-        }
-        
-        .product-card.theme-purple::before { background-color: var(--color-preg-primary); }
-        .product-card.theme-orange::before { background-color: var(--color-pregplus-primary); }
-        .product-card.theme-blue::before { background-color: var(--color-blue-primary); }
-        .product-card.theme-pink::before { background-color: var(--color-pink-primary); }
-        .product-card.theme-green::before { background-color: var(--color-accent-green); }
-        .product-card.theme-teal::before { background-color: #0f5a47; }
-        
-        /* Card Badges */
-        .card-badge {
-          position: absolute;
-          top: 24px;
-          left: 24px;
-          display: inline-flex;
-          align-items: center;
-          background-color: var(--color-bg-base);
-          padding: 6px 12px;
-          border-radius: var(--radius-full);
-          font-size: 0.75rem;
-          font-weight: 700;
-          color: var(--color-text-muted);
-          border: 1px solid var(--color-border);
-          z-index: 5;
-        }
-        
-        /* Image Area */
-        .product-image-container {
-          height: 240px;
+          height: 260px;
+          border-radius: 14px;
           display: flex;
           align-items: center;
           justify-content: center;
-          position: relative;
-          margin-top: 20px;
           cursor: pointer;
+          overflow: hidden;
+          transition: var(--transition-smooth);
         }
-        
-        .product-image {
-          max-height: 210px;
+
+        .product-badge-pill {
+          position: absolute;
+          top: 14px;
+          left: 14px;
+          background-color: rgba(255, 255, 255, 0.92);
+          backdrop-filter: blur(4px);
+          padding: 5px 12px;
+          border-radius: var(--radius-full);
+          font-size: 0.7rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--color-text-dark);
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          z-index: 2;
+        }
+
+        .image-wrapper {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 24px;
+        }
+
+        .product-pack-img {
+          max-height: 200px;
           max-width: 90%;
           object-fit: contain;
-          z-index: 2;
-          transition: transform 0.3s ease;
-        }
-        
-        .product-image-shadow {
-          position: absolute;
-          bottom: 10px;
-          width: 70%;
-          height: 20px;
-          background: radial-gradient(ellipse at center, rgba(110,100,120,0.15) 0%, rgba(0,0,0,0) 70%);
-          border-radius: 50%;
-          z-index: 1;
-        }
-        
-        /* Hover Effects */
-        .product-card:hover {
-          transform: translateY(-8px);
-          box-shadow: var(--shadow-hover);
-        }
-        
-        .product-card.theme-purple:hover {
-          background-color: var(--color-preg-light);
-          border-color: var(--color-preg-secondary);
-        }
-        
-        .product-card.theme-orange:hover {
-          background-color: var(--color-pregplus-light);
-          border-color: var(--color-pregplus-secondary);
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .product-card.theme-blue:hover {
-          background-color: var(--color-blue-light);
-          border-color: var(--color-blue-secondary);
+        .product-card:hover .product-pack-img {
+          transform: scale(1.05);
         }
 
-        .product-card.theme-pink:hover {
-          background-color: var(--color-pink-light);
-          border-color: var(--color-pink-secondary);
-        }
-
-        .product-card.theme-green:hover {
-          background-color: var(--color-accent-green-light);
-          border-color: var(--color-accent-green);
-        }
-
-        .product-card.theme-teal:hover {
-          background-color: #edf7f4;
-          border-color: #9dd4c3;
-        }
-        
-        .product-card:hover .product-image {
-          transform: scale(1.06) translateY(-4px);
-        }
-        
-        /* Card Info */
-        .card-info {
+        .product-card-body {
           display: flex;
           flex-direction: column;
-          flex: 1;
-          margin-top: 16px;
+          flex-grow: 1;
+          padding: 18px 6px 4px;
         }
-        
-        .brand-label {
-          font-size: 0.72rem;
+
+        .product-rating-row {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          margin-bottom: 8px;
+        }
+
+        .stars-group {
+          display: flex;
+          align-items: center;
+          gap: 2px;
+        }
+
+        .rating-score {
+          font-size: 0.78rem;
+          font-weight: 600;
+          color: var(--color-text-muted);
+        }
+
+        .product-card-title {
+          font-family: var(--font-heading);
+          font-size: 1.18rem;
           font-weight: 700;
-          color: var(--color-preg-accent);
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          margin-bottom: 4px;
-        }
-        
-        .theme-orange .brand-label { color: var(--color-pregplus-accent); }
-        .theme-blue .brand-label { color: var(--color-blue-accent); }
-        .theme-pink .brand-label { color: var(--color-pink-accent); }
-        .theme-green .brand-label { color: var(--color-accent-green); }
-        .theme-teal .brand-label { color: #0f5a47; }
-        
-        .product-title {
-          font-size: 1.35rem;
+          letter-spacing: -0.01em;
           color: var(--color-text-dark);
           margin-bottom: 6px;
           cursor: pointer;
-          line-height: 1.25;
+          transition: var(--transition-smooth);
+          line-height: 1.3;
         }
-        
-        .product-title:hover {
-          color: var(--color-brand-primary);
+
+        .product-card-title:hover {
+          color: #555555;
         }
-        
-        .product-subtitle {
-          font-size: 0.88rem;
+
+        .product-card-tagline {
+          font-size: 0.86rem;
           color: var(--color-text-muted);
-          line-height: 1.4;
+          line-height: 1.5;
           margin-bottom: 14px;
-          min-height: 38px;
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
+          min-height: 40px;
         }
-        
-        /* Benefits Bullet List */
-        .benefits-list {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-          margin-bottom: 20px;
-        }
-        
-        .benefit-bullet {
-          display: flex;
+
+        .product-specs-chip {
+          display: inline-flex;
           align-items: center;
-          font-size: 0.82rem;
-          color: var(--color-text-dark);
-          font-weight: 500;
+          gap: 6px;
+          font-size: 0.78rem;
+          font-weight: 600;
+          color: var(--color-text-muted);
+          background-color: var(--color-bg-base);
+          padding: 4px 10px;
+          border-radius: var(--radius-sm);
+          width: fit-content;
+          margin-bottom: 16px;
         }
-        
-        .bullet-icon {
-          flex-shrink: 0;
-          margin-right: 8px;
+
+        .dot-sep {
+          color: #B5AEA4;
         }
-        
-        .theme-purple .bullet-icon { color: var(--color-preg-primary); }
-        .theme-orange .bullet-icon { color: var(--color-pregplus-primary); }
-        .theme-blue .bullet-icon { color: var(--color-blue-primary); }
-        .theme-pink .bullet-icon { color: var(--color-pink-primary); }
-        .theme-green .bullet-icon { color: var(--color-accent-green); }
-        .theme-teal .bullet-icon { color: #0f5a47; }
-        
-        /* Action Row */
-        .card-action-row {
+
+        .product-card-footer {
           display: flex;
           align-items: center;
           justify-content: space-between;
           margin-top: auto;
-          padding-top: 16px;
-          border-top: 1px solid var(--color-border);
+          padding-top: 14px;
+          border-top: 1px solid var(--color-border-subtle);
         }
-        
-        .price-tag {
+
+        .price-container {
           display: flex;
           flex-direction: column;
         }
-        
-        .amount {
-          font-size: 1.25rem;
+
+        .price-val {
+          font-size: 1.15rem;
           font-weight: 800;
+          letter-spacing: -0.02em;
           color: var(--color-text-dark);
-          line-height: 1.1;
         }
 
         .price-pending {
-          font-size: 0.8rem;
-          font-weight: 700;
+          font-size: 0.78rem;
+          font-weight: 600;
           color: var(--color-text-muted);
           font-style: italic;
-          line-height: 1.1;
-        }
-        
-        .pack-size {
-          font-size: 0.72rem;
-          color: var(--color-text-muted);
-          font-weight: 600;
-          margin-top: 3px;
-        }
-        
-        .card-buttons {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-        
-        .btn-detail-arrow {
-          background-color: var(--color-bg-base);
-          border: 1.5px solid var(--color-border);
-          color: var(--color-text-dark);
-          width: 40px;
-          height: 40px;
-          padding: 0;
-          cursor: pointer;
-        }
-        
-        .btn-detail-arrow:hover {
-          background-color: var(--color-text-dark);
-          color: var(--color-white);
-          border-color: var(--color-text-dark);
-        }
-        
-        .btn-card-shop {
-          padding: 8px 18px;
-          font-size: 0.88rem;
-          font-weight: 700;
-          cursor: pointer;
         }
 
-        .btn-card-details {
-          padding: 8px 16px;
-          font-size: 0.82rem;
+        .btn-card-action {
+          padding: 8px 18px;
+          font-size: 0.84rem;
           font-weight: 600;
-          border: 1px solid var(--color-border);
-          cursor: pointer;
+          background-color: var(--color-text-dark);
+          color: var(--color-white);
+          border: 1px solid var(--color-text-dark);
+          border-radius: var(--radius-full);
+          transition: var(--transition-bounce);
         }
-        .btn-card-details:hover {
-          background-color: var(--color-bg-base);
+
+        .btn-card-action:hover {
+          background-color: #000000;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
       `}</style>
     </div>
