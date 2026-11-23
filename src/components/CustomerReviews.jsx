@@ -522,6 +522,62 @@ export default function CustomerReviews() {
             width: 310px;
           }
         }
+
+        @media (max-width: 640px) {
+          .reviews-carousel-section {
+            padding: 50px 0 60px;
+          }
+          .reviews-header-container {
+            margin-bottom: 28px;
+            gap: 18px;
+          }
+          .reviews-main-title {
+            font-size: 1.85rem;
+            line-height: 1.15;
+          }
+          .reviews-header-sub {
+            font-size: 0.92rem;
+          }
+          .reviews-score-card {
+            width: 100%;
+            padding: 16px;
+          }
+          .score-number {
+            font-size: 1.25rem;
+          }
+          .tweet-card {
+            width: 280px;
+            padding: 16px 14px;
+            border-radius: 14px;
+          }
+          .author-avatar {
+            width: 32px;
+            height: 32px;
+            font-size: 0.74rem;
+          }
+          .author-name {
+            font-size: 0.84rem;
+          }
+          .author-handle {
+            font-size: 0.7rem;
+          }
+          .tweet-product-badge {
+            font-size: 0.62rem;
+            max-width: 105px;
+            padding: 2px 6px;
+          }
+          .tweet-body {
+            font-size: 0.82rem;
+            line-height: 1.45;
+            margin-bottom: 12px;
+          }
+          .carousel-outer-wrapper {
+            gap: 14px;
+          }
+          .tweets-track-inner {
+            gap: 14px;
+          }
+        }
       `}</style>
     </section>
   );

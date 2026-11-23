@@ -271,6 +271,69 @@ export default function ProductCard({ product, onViewDetails, onShopNow }) {
           transform: translateY(-2px);
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
+
+        @media (max-width: 640px) {
+          .product-card {
+            padding: 10px;
+            border-radius: 14px;
+          }
+          .product-image-box {
+            height: 155px;
+            border-radius: 10px;
+          }
+          .product-badge-pill {
+            top: 8px;
+            left: 8px;
+            font-size: 0.6rem;
+            padding: 3px 8px;
+          }
+          .image-wrapper {
+            padding: 12px;
+          }
+          .product-pack-img {
+            max-height: 125px;
+          }
+          .product-card-body {
+            padding: 12px 2px 2px;
+          }
+          .product-rating-row {
+            margin-bottom: 4px;
+          }
+          .rating-score {
+            font-size: 0.72rem;
+          }
+          .product-card-title {
+            font-size: 0.94rem;
+            min-height: 38px;
+            line-height: 1.25;
+            margin-bottom: 4px;
+          }
+          .product-card-tagline {
+            font-size: 0.76rem;
+            line-height: 1.4;
+            min-height: 32px;
+            margin-bottom: 8px;
+          }
+          .product-specs-chip {
+            font-size: 0.68rem;
+            padding: 2px 6px;
+            margin-bottom: 10px;
+            gap: 4px;
+          }
+          .product-card-footer {
+            padding-top: 10px;
+          }
+          .price-val {
+            font-size: 0.98rem;
+          }
+          .price-pending {
+            font-size: 0.7rem;
+          }
+          .btn-card-action {
+            padding: 6px 12px;
+            font-size: 0.76rem;
+          }
+        }
       `}</style>
     </div>
   );

@@ -668,8 +668,36 @@ export default function Quiz({ onClose, onProductClick, onShopRedirect }) {
         }
 
         @media (max-width: 680px) {
+          .quiz-modal {
+            padding: 26px 16px 22px;
+            border-radius: var(--radius-lg);
+            width: 95%;
+            max-height: 92vh;
+          }
+          .quiz-close-btn {
+            top: 16px;
+            right: 16px;
+          }
+          .quiz-question-title {
+            font-size: 1.3rem;
+          }
+          .quiz-question-sub {
+            font-size: 0.88rem;
+            margin-bottom: 18px;
+          }
+          .quiz-option-btn {
+            padding: 10px 12px;
+            gap: 10px;
+          }
+          .option-label {
+            font-size: 0.88rem;
+          }
+          .result-headline {
+            font-size: 1.28rem;
+          }
           .result-box {
             grid-template-columns: 1fr;
+            padding: 18px 16px;
           }
           .result-img-side {
             height: 160px;

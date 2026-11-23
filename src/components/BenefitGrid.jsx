@@ -156,13 +156,32 @@ export default function BenefitGrid({ activeBenefit, onSelectBenefit }) {
         }
 
         @media (max-width: 768px) {
+          .category-filter-section {
+            padding: 36px 0 16px;
+          }
+          .filter-header {
+            margin-bottom: 18px;
+            padding: 0 8px;
+          }
+          .filter-title {
+            font-size: 1.65rem;
+          }
+          .filter-subtitle {
+            font-size: 0.88rem;
+          }
+          .pills-scroll-wrapper {
+            padding: 4px 0 12px;
+            -webkit-overflow-scrolling: touch;
+          }
           .pills-track {
             justify-content: flex-start;
             flex-wrap: nowrap;
             padding: 0 16px;
+            gap: 8px;
           }
-          .filter-title {
-            font-size: 1.8rem;
+          .category-pill {
+            padding: 8px 14px;
+            font-size: 0.82rem;
           }
         }
       `}</style>

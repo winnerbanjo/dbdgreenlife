@@ -948,6 +948,63 @@ export default function ProductDetail({ productId, onBack, onShopRedirect }) {
             gap: 40px;
           }
         }
+
+        @media (max-width: 640px) {
+          .detail-page {
+            margin-top: 64px;
+          }
+          .nav-row {
+            padding-top: 16px;
+            margin-bottom: 12px;
+          }
+          .detail-hero {
+            padding: 16px 0 32px;
+          }
+          .detail-hero-container {
+            gap: 24px;
+          }
+          .detail-img-panel {
+            height: 240px;
+            border-radius: 16px;
+          }
+          .detail-product-image {
+            max-height: 200px;
+          }
+          .detail-title {
+            font-size: 1.75rem;
+            line-height: 1.2;
+          }
+          .detail-tagline {
+            font-size: 0.95rem;
+          }
+          .detail-subtitle {
+            font-size: 0.88rem;
+          }
+          .detail-purchase-row {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+            padding: 16px;
+          }
+          .detail-actions {
+            width: 100%;
+          }
+          .btn-buy-now,
+          .btn-details-pending {
+            width: 100%;
+            justify-content: center;
+            padding: 13px;
+          }
+          .facts-card,
+          .usage-card {
+            padding: 20px 16px;
+            border-radius: 18px;
+          }
+          .ingredients-chip-grid {
+            grid-template-columns: 1fr;
+            gap: 6px;
+          }
+        }
       `}</style>
     </div>
   );

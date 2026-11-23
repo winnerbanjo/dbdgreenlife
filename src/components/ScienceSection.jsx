@@ -212,6 +212,42 @@ export default function ScienceSection() {
             font-size: 1.9rem;
           }
         }
+
+        @media (max-width: 640px) {
+          .science-section {
+            padding: 50px 0;
+          }
+          .quality-framework-panel {
+            padding: 22px 16px;
+            border-radius: 18px;
+            gap: 28px;
+          }
+          .panel-title {
+            font-size: 1.6rem;
+            line-height: 1.18;
+          }
+          .panel-desc {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+          }
+          .safety-bullets {
+            gap: 12px;
+          }
+          .safety-bullet {
+            font-size: 0.84rem;
+            gap: 10px;
+          }
+          .standards-card {
+            padding: 12px 14px;
+            gap: 12px;
+          }
+          .standards-title {
+            font-size: 0.88rem;
+          }
+          .standards-desc {
+            font-size: 0.78rem;
+          }
+        }
       `}</style>
     </section>
   );

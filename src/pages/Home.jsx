@@ -841,29 +841,189 @@ export default function Home({ onProductClick, onShopRedirect, onOpenQuiz }) {
         }
 
         @media (max-width: 640px) {
-          .products-grid {
-            grid-template-columns: 1fr;
+          .home-page {
+            margin-top: 64px;
+          }
+          .editorial-hero {
+            padding: 40px 0 32px;
           }
           .hero-main-title {
-            font-size: 2.3rem;
+            font-size: 2.15rem;
+            line-height: 1.14;
+            margin-bottom: 14px;
+          }
+          .hero-description {
+            font-size: 0.95rem;
+            line-height: 1.52;
+            margin-bottom: 24px;
           }
           .hero-cta-group {
             flex-direction: column;
             align-items: stretch;
+            gap: 10px;
+            margin-bottom: 28px;
+          }
+          .hero-btn-primary,
+          .hero-btn-quiz {
+            width: 100%;
+            justify-content: center;
+            padding: 13px 20px;
+            font-size: 0.92rem;
           }
           .hero-trust-bar {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 14px;
+            padding-top: 18px;
+          }
+          .trust-pill-item {
+            font-size: 0.78rem;
           }
           .trust-sep {
             display: none;
           }
+          .hero-stage-card {
+            padding: 24px 12px 16px;
+            border-radius: 18px;
+          }
           .stage-images-wrapper {
-            height: 290px;
+            height: 240px;
+            padding-bottom: 12px;
+            gap: 6px;
+          }
+          .pack-img-primary {
+            max-height: 190px;
+            max-width: 125px;
+          }
+          .pack-img {
+            max-height: 135px;
+            max-width: 90px;
+          }
+          .pack-label-primary {
+            font-size: 0.68rem;
+            padding: 4px 10px;
+            margin-top: 8px;
+          }
+          .pack-label {
+            font-size: 0.62rem;
+            padding: 3px 7px;
+            margin-top: 8px;
+          }
+          .floating-badge {
+            font-size: 0.6rem;
+            padding: 2px 7px;
+          }
+          .badge-left {
+            top: 4px;
+            left: 0;
+          }
+          .badge-center {
+            top: -10px;
+          }
+          .badge-right {
+            top: 6px;
+            right: 0;
+          }
+          .stage-caption-pill {
+            font-size: 0.68rem;
+          }
+          .editorial-marquee-strip {
+            padding: 10px 0;
+          }
+          .marquee-content {
+            gap: 18px;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+          }
+          .collection-section {
+            padding: 40px 0 50px;
+          }
+          .collection-header-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 22px;
+          }
+          .collection-title {
+            font-size: 1.8rem;
+          }
+          .collection-sub {
+            font-size: 0.88rem;
+          }
+          .products-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+          }
+          .brand-philosophy-section {
+            padding: 50px 0;
+          }
+          .philosophy-header {
+            margin-bottom: 30px;
+          }
+          .philosophy-title {
+            font-size: 1.85rem;
+          }
+          .philosophy-sub {
+            font-size: 0.9rem;
+          }
+          .philosophy-grid {
+            gap: 14px;
+          }
+          .philosophy-card {
+            padding: 22px 18px;
+            border-radius: 16px;
+          }
+          .philosophy-icon-box {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 14px;
+          }
+          .card-heading {
+            font-size: 1.1rem;
+          }
+          .card-body-text {
+            font-size: 0.86rem;
+          }
+          .quote-banner-section {
+            padding: 45px 0;
           }
           .quote-text {
-            font-size: 1.4rem;
+            font-size: 1.35rem;
+            line-height: 1.4;
+            margin-bottom: 14px;
+          }
+          .author-name {
+            font-size: 0.88rem;
+          }
+          .author-role {
+            font-size: 0.76rem;
+          }
+          .quiz-banner-section {
+            padding: 50px 0;
+          }
+          .quiz-banner-card {
+            padding: 34px 18px;
+            border-radius: 20px;
+          }
+          .quiz-banner-title {
+            font-size: 1.7rem;
+          }
+          .quiz-banner-desc {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+          }
+          .quiz-action-btn {
+            width: 100%;
+            padding: 13px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .products-grid {
+            grid-template-columns: 1fr;
+          }
+          .hero-main-title {
+            font-size: 1.9rem;
           }
         }
       `}</style>

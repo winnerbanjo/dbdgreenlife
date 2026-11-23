@@ -953,10 +953,73 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuiz, onProd
             display: none;
           }
           .mobile-toggle {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
           }
           .btn-quiz {
             display: none;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .top-alert-bar {
+            height: 28px;
+            font-size: 0.68rem;
+          }
+          .header {
+            height: 84px;
+            padding-top: 28px;
+          }
+          .header.scrolled {
+            height: 58px;
+            padding-top: 0;
+          }
+          .header-container {
+            padding: 0 16px;
+          }
+          .logo-text {
+            font-size: 1.25rem;
+          }
+          .logo-subtext {
+            font-size: 0.58rem;
+          }
+          .header-actions {
+            gap: 8px;
+          }
+          .search-overlay {
+            padding: 16px 12px;
+          }
+          .search-modal {
+            border-radius: 16px;
+            max-height: 90vh;
+          }
+          .search-header {
+            padding: 12px 14px;
+          }
+          .search-results-container {
+            padding: 12px 14px 20px;
+          }
+          .search-result-card {
+            padding: 10px 12px;
+            gap: 12px;
+          }
+          .search-result-img-box {
+            width: 44px;
+            height: 44px;
+          }
+          .search-result-title {
+            font-size: 0.9rem;
+          }
+          .mobile-drawer {
+            max-width: 85vw;
+            width: 310px;
+            padding: 20px 16px;
+          }
+          .drawer-link {
+            font-size: 1.1rem;
+            padding: 6px 0;
           }
         }
       `}</style>
